@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "extends": "nashdot/base",
+  "rules": {
+    "object-shorthand": [2, "never"],
+    "prefer-template": 0,
+    "max-len": [2, 140, 2],
+    "no-param-reassign": 0,
+    "one-var": 0
+  },
+  "env": {
+    "node": true
+  }
+}
