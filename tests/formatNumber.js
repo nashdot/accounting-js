@@ -109,5 +109,5 @@ test('should accept a properties object', t => {
 test('properties should be optional', t => {
   const val = accounting.formatNumber(123456789.1234, {});
 
-  t.is(val, '123,456,789');
+  t.is(val, '123,456,789.12');
 });
