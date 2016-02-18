@@ -4,7 +4,7 @@
   "rules": {
     "object-shorthand": [2, "never"],
     "prefer-template": 0,
-    "max-len": [2, 140, 2],
+    "max-len": [2, 140, 2, {"ignoreComments": true, "ignoreTrailingComments": true}],
     "no-param-reassign": 0,
     "one-var": 0
   },
