@@ -45,6 +45,13 @@ test('should work for negative number', t => {
   t.is(accounting.formatNumber(-98765432.12, 4), '-98,765,432.1200');
 });
 
+test('should allow setting thousand and decimal separators a flag indicating whether to strip insignificant zeros', t => {
+  t.is(accounting.formatNumber(98765432.120, 3, null, null, true), '98,765,432.12');
+  t.is(accounting.formatNumber(98765432.120, 3, null, null, false), '98,765,432.120');
+  t.is(accounting.formatNumber(98765432.0120, 2, null, null, true), '98,765,432.01');
+  t.is(accounting.formatNumber(098765432.0120, 2, null, null, true), '98,765,432.01');
+});
+
 test('should allow setting thousands separator', t => {
   t.is(accounting.formatNumber(98765432.12, 0, '|'), '98|765|432');
   t.is(accounting.formatNumber(98765432.12, 1, '>'), '98>765>432.1');
