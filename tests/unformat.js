@@ -1,5 +1,5 @@
 import test from 'ava';
-import accounting from '../dist/accounting.umd.js';
+import accounting from '..';
 
 test('should remove padding special chars', t => {
   t.is(accounting.unformat('$ 123,456'), 123456);

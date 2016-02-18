@@ -1,5 +1,5 @@
 import test from 'ava';
-import accounting from '../dist/accounting.umd.js';
+import accounting from '..';
 
 test('performs basic float zero-padding', t => {
   t.is(accounting.toFixed(54321, 5), '54321.00000');

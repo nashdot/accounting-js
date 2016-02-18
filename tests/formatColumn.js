@@ -1,5 +1,5 @@
 import test from 'ava';
-import accounting from '../dist/accounting.umd.js';
+import accounting from '..';
 
 test('should work as expected', t => {
   const list = [123, 12345];

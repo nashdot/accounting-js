@@ -1,5 +1,5 @@
 import test from 'ava';
-import accounting from '../dist/accounting.umd.js';
+import accounting from '..';
 
 test('settings can be changed', t => {
   accounting.settings.symbol = '¥ ';

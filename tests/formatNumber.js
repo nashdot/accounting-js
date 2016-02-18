@@ -1,5 +1,5 @@
 import test from 'ava';
-import accounting from '../dist/accounting.umd.js';
+import accounting from '..';
 
 test('should enforce precision and round values', t => {
   t.is(accounting.formatNumber(123.456789, { precision: 0 }), '123');

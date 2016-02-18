@@ -1,5 +1,5 @@
 import test from 'ava';
-import accounting from '../dist/accounting.umd.js';
+import accounting from '..';
 
 test('should work for small numbers', t => {
   t.is(accounting.formatMoney(123), '$123.00');
