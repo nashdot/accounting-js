@@ -32,3 +32,10 @@ test('should accept an array', t => {
   t.is(vals[2], 12345678.901);
   t.is(vals[3], 3.21e-17);
 });
+
+test('should fallback with correct value', t => {
+  t.is(accounting.unformat('string'), 0);
+  t.is(accounting.unformat({ joss: 1 }), 0);
+  t.is(accounting.unformat('string', ',', null), null);
+  t.is(accounting.unformat('string', ',', 'failed'), 'failed');
+});

@@ -14,5 +14,5 @@ test('should work for negative numbers', t => {
 });
 
 test('should allow precision to be `0` and not override with default `2`', t => {
-  t.is(accounting.formatMoney(5318008, '$', 0), '$5,318,008');
+  t.is(accounting.formatMoney(5318008, { symbol: '$', precision: 0 }), '$5,318,008');
 });
