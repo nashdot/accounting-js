@@ -76,6 +76,10 @@ test('should allow setting thousand and decimal separators', t => {
   t.is(accounting.formatNumber(98765432.12, 4, '[', ']'), '98[765[432]1200');
 });
 
+test('should round 74.725 to "74.73"', t => {
+  t.is(accounting.formatNumber(74.725, 2), '74.73');
+});
+
 test('should use default separators if null', t => {
   t.is(accounting.formatNumber(12345.12345, 2, null, null), '12,345.12');
 });
