@@ -2,12 +2,9 @@
   "parser": "babel-eslint",
   "extends": "nashdot/base",
   "rules": {
-    "object-shorthand": [2, "never"],
     "prefer-template": 0,
-    "max-len": [2, 140, 2, {"ignoreComments": true, "ignoreTrailingComments": true}],
     "no-param-reassign": 0,
     "one-var": 0,
-    "quote-props": [2, "as-needed", { keywords: false, unnecessary: true, numbers: false }],
     "arrow-body-style": [2, "as-needed"]
   },
   "env": {
