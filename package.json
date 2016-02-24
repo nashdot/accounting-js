@@ -1,6 +1,6 @@
 {
   "name": "accounting-js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Number, money and currency formatting library.",
   "main": "dist/accounting.umd.js",
   "jsnext:main": "dist/accounting.es6.js",
@@ -47,7 +47,6 @@
     "babel-preset-es2015-rollup": "^1.1.0",
     "eslint": "^2.2.0",
     "eslint-config-nashdot": "^1.1.0",
-    "is-string": "^1.0.4",
     "nyc": "^5.6.0",
     "rimraf": "^2.5.2",
     "rollup": "^0.25.0",
@@ -57,6 +56,7 @@
     "source-map-support": "^0.4.0"
   },
   "dependencies": {
+    "is-string": "^1.0.4",
     "object-assign": "^4.0.1"
   },
   "ava": {
