@@ -1,17 +1,13 @@
+import { readFileSync } from 'fs';
 import babel from 'rollup-plugin-babel';
-import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 
+const pkg = JSON.parse(readFileSync('package.json', 'utf-8'));
+
 export default {
-  entry: 'lib/index.js',
+  entry: pkg['jsnext:main'],
   sourceMap: true,
   plugins: [
-    nodeResolve({
-      jsnext: true,
-      main: true,
-      browser: true,
-      extensions: ['.js']
-    }),
     commonjs({
       include: 'node_modules/**'
     }),

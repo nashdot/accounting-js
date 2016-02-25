@@ -3,7 +3,7 @@
   "version": "1.1.1",
   "description": "Number, money and currency formatting library.",
   "main": "dist/accounting.umd.js",
-  "jsnext:main": "dist/accounting.es6.js",
+  "jsnext:main": "index.js",
   "scripts": {
     "prebuild": "eslint lib",
     "build": "rollup -c rollup.config.umd.js && rollup -c rollup.config.es6.js",
@@ -37,6 +37,9 @@
     "url": "https://github.com/nashdot/accounting-js/issues"
   },
   "files": [
+    "index.js",
+    "README.md",
+    "CHANGELOG.md",
     "lib",
     "dist"
   ],
