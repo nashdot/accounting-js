@@ -3,6 +3,8 @@
 
 **accounting-js** is a tiny JavaScript library for number, money and currency parsing/formatting. It's lightweight, fully localisable, has no dependencies, and works great client-side or server-side. Use standalone or as a nodeJS/npm and AMD/requireJS module.
 
+[Documentation](http://nashdot.github.io/accounting-js/docs)
+
 Same as original [accounting.js](http://openexchangerates.github.io/accounting.js), but
 
 * Rewrited with es6, respecting common style
