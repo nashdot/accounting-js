@@ -5,7 +5,7 @@ test('settings can be changed', t => {
   accounting.settings.symbol = '¥ ';
   t.is(accounting.formatMoney(123), '¥ 123.00');
 
-  accounting.settings = Object.assign({}, accounting.settings, {
+  Object.assign(accounting.settings, {
     symbol: '€',
     format: '%s %v',
     decimal: ',',
