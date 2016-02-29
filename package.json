@@ -5,6 +5,7 @@
   "main": "dist/accounting.umd.js",
   "jsnext:main": "lib/index.js",
   "scripts": {
+    "docs": "esdoc -c",
     "prebuild": "eslint lib",
     "build": "rollup -c rollup.config.umd.js",
     "prepublish": "npm run build",
