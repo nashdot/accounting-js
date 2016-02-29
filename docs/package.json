@@ -1,0 +1,80 @@
+{
+  "name": "accounting-js",
+  "version": "1.1.1",
+  "description": "Number, money and currency formatting library.",
+  "main": "dist/accounting.umd.js",
+  "jsnext:main": "lib/index.js",
+  "scripts": {
+    "doc": "esdoc -c esdoc.json",
+    "prebuild": "eslint lib",
+    "build": "rollup -c rollup.config.umd.js",
+    "prepublish": "npm run build",
+    "pretest": "npm run build",
+    "test": "ava",
+    "precoverage": "rimraf coverage",
+    "coverage": "nyc --reporter=lcov --reporter=text npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nashdot/accounting-js"
+  },
+  "keywords": [
+    "es6",
+    "modules",
+    "rollup",
+    "bundle",
+    "accounting",
+    "number",
+    "money",
+    "currency",
+    "format",
+    "utilities",
+    "finance",
+    "exchange"
+  ],
+  "author": "Stanislav Lesnikov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nashdot/accounting-js/issues"
+  },
+  "files": [
+    "index.js",
+    "README.md",
+    "CHANGELOG.md",
+    "lib",
+    "dist"
+  ],
+  "homepage": "https://github.com/nashdot/accounting-js#readme",
+  "devDependencies": {
+    "ava": "^0.12.0",
+    "babel-eslint": "^5.0.0",
+    "babel-preset-es2015-rollup": "^1.1.0",
+    "esdoc": "^0.4.5",
+    "eslint": "^2.2.0",
+    "eslint-config-nashdot": "^1.1.0",
+    "nyc": "^5.6.0",
+    "rimraf": "^2.5.2",
+    "rollup": "^0.25.0",
+    "rollup-plugin-babel": "^2.3.9",
+    "rollup-plugin-commonjs": "^2.2.1",
+    "rollup-plugin-node-resolve": "^1.4.0",
+    "source-map-support": "^0.4.0"
+  },
+  "dependencies": {
+    "is-string": "^1.0.4",
+    "object-assign": "^4.0.1"
+  },
+  "ava": {
+    "files": [
+      "tests/*.js"
+    ],
+    "failFast": true,
+    "tap": true
+  },
+  "nyc": {
+    "exclude": [
+      "rollup*.js",
+      "tests"
+    ]
+  }
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">lib/unformat.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/nashdot/accounting-js" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-formatColumn">formatColumn</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-formatMoney">formatMoney</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-formatNumber">formatNumber</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFixed">toFixed</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unformat">unformat</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-settings">settings</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">internal</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-checkCurrencyFormat">checkCurrencyFormat</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-checkPrecision">checkPrecision</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stripInsignificantZeros">stripInsignificantZeros</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/unformat.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import settings from &apos;./settings&apos;;
+
+/**
+ * Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.
+ * Alias: `accounting.parse(string)`
+ *
+ * Decimal must be included in the regular expression to match floats (defaults to
+ * accounting.settings.decimal), so if the number uses a non-standard decimal
+ * separator, provide it as the second argument.
+ *
+ * Also matches bracketed negatives (eg. &apos;$ (1.99)&apos; =&gt; -1.99).
+ *
+ * Doesn&apos;t throw any errors (`NaN`s become 0) but this may change in future.
+ *
+ * ```js
+ *  accounting.unformat(&quot;&#xA3; 12,345,678.90 GBP&quot;); // 12345678.9
+ * ```
+ *
+ * @method unformat
+ * @for accounting
+ * @param {String|Array&lt;String&gt;} value The string or array of strings containing the number/s to parse
+ * @param {Number}               decimal Number of decimal digits of the resultant number
+ * @return {Float} The parsed number
+ */
+function unformat(value, decimal = settings.decimal, fallback = settings.fallback) {
+  // Recursively unformat arrays:
+  if (Array.isArray(value)) {
+    return value.map((val) =&gt; unformat(val, decimal, fallback));
+  }
+
+  // Return the value as-is if it&apos;s already a number
+  if (typeof value === &apos;number&apos;) return value;
+
+   // Build regex to strip out everything except digits, decimal point and minus sign
+  const regex = new RegExp(&apos;[^0-9-(-)-&apos; + decimal + &apos;]&apos;, [&apos;g&apos;]);
+  const unformattedValueString =
+      (&apos;&apos; + value)
+      .replace(regex, &apos;&apos;)         // strip out any cruft
+      .replace(decimal, &apos;.&apos;)      // make sure decimal point is standard
+      .replace(/\(([-]*\d*[^)]?\d+)\)/g, &apos;-$1&apos;) // replace bracketed values with negatives
+      .replace(/\((.*)\)/, &apos;&apos;);   // remove any brackets that do not have numeric value
+
+  /**
+   * Handling -ve number and bracket, eg.
+   * (-100) = 100, -(100) = 100, --100 = 100
+   */
+  const negative = (unformattedValueString.match(/-/g) || 2).length % 2,
+    absUnformatted = parseFloat(unformattedValueString.replace(/-/g, &apos;&apos;)),
+    unformatted = absUnformatted * ((negative) ? -1 : 1);
+
+  // This will fail silently which may cause trouble, let&apos;s wait and see
+  return !isNaN(unformatted) ? unformatted : fallback;
+}
+
+export default unformat;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.5)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

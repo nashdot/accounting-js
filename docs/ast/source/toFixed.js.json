@@ -1,0 +1,1805 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "checkPrecision",
+            "range": [
+              7,
+              21
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 21
+              }
+            }
+          },
+          "range": [
+            7,
+            21
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
+            },
+            "end": {
+              "line": 1,
+              "column": 21
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./internal/checkPrecision",
+        "raw": "'./internal/checkPrecision'",
+        "range": [
+          27,
+          54
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 27
+          },
+          "end": {
+            "line": 1,
+            "column": 54
+          }
+        }
+      },
+      "range": [
+        0,
+        55
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 55
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "settings",
+            "range": [
+              63,
+              71
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            63,
+            71
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 15
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./settings",
+        "raw": "'./settings'",
+        "range": [
+          77,
+          89
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 21
+          },
+          "end": {
+            "line": 2,
+            "column": 33
+          }
+        }
+      },
+      "range": [
+        56,
+        90
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 34
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * ```js\n *  (0.615).toFixed(2);           // \"0.61\" (native toFixed has rounding issues)\n *  accounting.toFixed(0.615, 2); // \"0.62\"\n * ```\n *\n * @method toFixed\n * @for accounting\n * @param {Float}   value         The float to be treated as a decimal number\n * @param {Number} [precision=2] The number of decimal digits to keep\n * @return {String} The given number transformed into a string with the given precission\n ",
+          "range": [
+            92,
+            733
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 20,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Identifier",
+      "id": {
+        "type": "Identifier",
+        "name": "toFixed",
+        "range": [
+          743,
+          750
+        ],
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 9
+          },
+          "end": {
+            "line": 21,
+            "column": 16
+          }
+        }
+      },
+      "params": [
+        {
+          "type": "Identifier",
+          "name": "value",
+          "range": [
+            751,
+            756
+          ],
+          "loc": {
+            "start": {
+              "line": 21,
+              "column": 17
+            },
+            "end": {
+              "line": 21,
+              "column": 22
+            }
+          }
+        },
+        {
+          "type": "Identifier",
+          "name": "precision",
+          "range": [
+            758,
+            767
+          ],
+          "loc": {
+            "start": {
+              "line": 21,
+              "column": 24
+            },
+            "end": {
+              "line": 21,
+              "column": 33
+            }
+          }
+        }
+      ],
+      "body": {
+        "type": "BlockStatement",
+        "body": [
+          {
+            "type": "ExpressionStatement",
+            "expression": {
+              "type": "AssignmentExpression",
+              "operator": "=",
+              "left": {
+                "type": "Identifier",
+                "name": "precision",
+                "range": [
+                  773,
+                  782
+                ],
+                "loc": {
+                  "start": {
+                    "line": 22,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 22,
+                    "column": 11
+                  }
+                }
+              },
+              "right": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "checkPrecision",
+                  "range": [
+                    785,
+                    799
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 22,
+                      "column": 14
+                    },
+                    "end": {
+                      "line": 22,
+                      "column": 28
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "name": "precision",
+                    "range": [
+                      800,
+                      809
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 22,
+                        "column": 29
+                      },
+                      "end": {
+                        "line": 22,
+                        "column": 38
+                      }
+                    }
+                  },
+                  {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                      "type": "Identifier",
+                      "name": "settings",
+                      "range": [
+                        811,
+                        819
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 22,
+                          "column": 40
+                        },
+                        "end": {
+                          "line": 22,
+                          "column": 48
+                        }
+                      }
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "name": "precision",
+                      "range": [
+                        820,
+                        829
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 22,
+                          "column": 49
+                        },
+                        "end": {
+                          "line": 22,
+                          "column": 58
+                        }
+                      }
+                    },
+                    "range": [
+                      811,
+                      829
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 22,
+                        "column": 40
+                      },
+                      "end": {
+                        "line": 22,
+                        "column": 58
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  785,
+                  830
+                ],
+                "loc": {
+                  "start": {
+                    "line": 22,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 22,
+                    "column": 59
+                  }
+                }
+              },
+              "range": [
+                773,
+                830
+              ],
+              "loc": {
+                "start": {
+                  "line": 22,
+                  "column": 2
+                },
+                "end": {
+                  "line": 22,
+                  "column": 59
+                }
+              }
+            },
+            "range": [
+              773,
+              831
+            ],
+            "loc": {
+              "start": {
+                "line": 22,
+                "column": 2
+              },
+              "end": {
+                "line": 22,
+                "column": 60
+              }
+            }
+          },
+          {
+            "type": "VariableDeclaration",
+            "declarations": [
+              {
+                "type": "VariableDeclarator",
+                "id": {
+                  "type": "Identifier",
+                  "name": "power",
+                  "range": [
+                    840,
+                    845
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 23,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 23,
+                      "column": 13
+                    }
+                  }
+                },
+                "init": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                      "type": "Identifier",
+                      "name": "Math",
+                      "range": [
+                        848,
+                        852
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 23,
+                          "column": 16
+                        },
+                        "end": {
+                          "line": 23,
+                          "column": 20
+                        }
+                      }
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "name": "pow",
+                      "range": [
+                        853,
+                        856
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 23,
+                          "column": 21
+                        },
+                        "end": {
+                          "line": 23,
+                          "column": 24
+                        }
+                      }
+                    },
+                    "range": [
+                      848,
+                      856
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 23,
+                        "column": 16
+                      },
+                      "end": {
+                        "line": 23,
+                        "column": 24
+                      }
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "value": 10,
+                      "raw": "10",
+                      "range": [
+                        857,
+                        859
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 23,
+                          "column": 25
+                        },
+                        "end": {
+                          "line": 23,
+                          "column": 27
+                        }
+                      }
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "precision",
+                      "range": [
+                        861,
+                        870
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 23,
+                          "column": 29
+                        },
+                        "end": {
+                          "line": 23,
+                          "column": 38
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    848,
+                    871
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 23,
+                      "column": 16
+                    },
+                    "end": {
+                      "line": 23,
+                      "column": 39
+                    }
+                  }
+                },
+                "range": [
+                  840,
+                  871
+                ],
+                "loc": {
+                  "start": {
+                    "line": 23,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 23,
+                    "column": 39
+                  }
+                }
+              }
+            ],
+            "kind": "const",
+            "range": [
+              834,
+              872
+            ],
+            "loc": {
+              "start": {
+                "line": 23,
+                "column": 2
+              },
+              "end": {
+                "line": 23,
+                "column": 40
+              }
+            },
+            "trailingComments": [
+              {
+                "type": "Line",
+                "value": " Multiply up by precision, round accurately, then divide and use native toFixed()",
+                "range": [
+                  876,
+                  959
+                ],
+                "loc": {
+                  "start": {
+                    "line": 25,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 25,
+                    "column": 85
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "ReturnStatement",
+            "argument": {
+              "type": "CallExpression",
+              "callee": {
+                "type": "MemberExpression",
+                "computed": false,
+                "object": {
+                  "type": "BinaryExpression",
+                  "operator": "/",
+                  "left": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "computed": false,
+                      "object": {
+                        "type": "Identifier",
+                        "name": "Math",
+                        "range": [
+                          970,
+                          974
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 26,
+                            "column": 10
+                          },
+                          "end": {
+                            "line": 26,
+                            "column": 14
+                          }
+                        }
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "round",
+                        "range": [
+                          975,
+                          980
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 26,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 26,
+                            "column": 20
+                          }
+                        }
+                      },
+                      "range": [
+                        970,
+                        980
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 26,
+                          "column": 10
+                        },
+                        "end": {
+                          "line": 26,
+                          "column": 20
+                        }
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "type": "BinaryExpression",
+                        "operator": "*",
+                        "left": {
+                          "type": "BinaryExpression",
+                          "operator": "+",
+                          "left": {
+                            "type": "Identifier",
+                            "name": "value",
+                            "range": [
+                              982,
+                              987
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 26,
+                                "column": 22
+                              },
+                              "end": {
+                                "line": 26,
+                                "column": 27
+                              }
+                            }
+                          },
+                          "right": {
+                            "type": "Literal",
+                            "value": 1e-8,
+                            "raw": "1e-8",
+                            "range": [
+                              990,
+                              994
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 26,
+                                "column": 30
+                              },
+                              "end": {
+                                "line": 26,
+                                "column": 34
+                              }
+                            }
+                          },
+                          "range": [
+                            982,
+                            994
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 26,
+                              "column": 22
+                            },
+                            "end": {
+                              "line": 26,
+                              "column": 34
+                            }
+                          }
+                        },
+                        "right": {
+                          "type": "Identifier",
+                          "name": "power",
+                          "range": [
+                            998,
+                            1003
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 26,
+                              "column": 38
+                            },
+                            "end": {
+                              "line": 26,
+                              "column": 43
+                            }
+                          }
+                        },
+                        "range": [
+                          981,
+                          1003
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 26,
+                            "column": 21
+                          },
+                          "end": {
+                            "line": 26,
+                            "column": 43
+                          }
+                        }
+                      }
+                    ],
+                    "range": [
+                      970,
+                      1004
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 26,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 26,
+                        "column": 44
+                      }
+                    }
+                  },
+                  "right": {
+                    "type": "Identifier",
+                    "name": "power",
+                    "range": [
+                      1007,
+                      1012
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 26,
+                        "column": 47
+                      },
+                      "end": {
+                        "line": 26,
+                        "column": 52
+                      }
+                    }
+                  },
+                  "range": [
+                    970,
+                    1012
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 26,
+                      "column": 10
+                    },
+                    "end": {
+                      "line": 26,
+                      "column": 52
+                    }
+                  }
+                },
+                "property": {
+                  "type": "Identifier",
+                  "name": "toFixed",
+                  "range": [
+                    1014,
+                    1021
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 26,
+                      "column": 54
+                    },
+                    "end": {
+                      "line": 26,
+                      "column": 61
+                    }
+                  }
+                },
+                "range": [
+                  969,
+                  1021
+                ],
+                "loc": {
+                  "start": {
+                    "line": 26,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 26,
+                    "column": 61
+                  }
+                }
+              },
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "name": "precision",
+                  "range": [
+                    1022,
+                    1031
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 26,
+                      "column": 62
+                    },
+                    "end": {
+                      "line": 26,
+                      "column": 71
+                    }
+                  }
+                }
+              ],
+              "range": [
+                969,
+                1032
+              ],
+              "loc": {
+                "start": {
+                  "line": 26,
+                  "column": 9
+                },
+                "end": {
+                  "line": 26,
+                  "column": 72
+                }
+              }
+            },
+            "range": [
+              962,
+              1033
+            ],
+            "loc": {
+              "start": {
+                "line": 26,
+                "column": 2
+              },
+              "end": {
+                "line": 26,
+                "column": 73
+              }
+            },
+            "leadingComments": [
+              {
+                "type": "Line",
+                "value": " Multiply up by precision, round accurately, then divide and use native toFixed()",
+                "range": [
+                  876,
+                  959
+                ],
+                "loc": {
+                  "start": {
+                    "line": 25,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 25,
+                    "column": 85
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "range": [
+          769,
+          1035
+        ],
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 35
+          },
+          "end": {
+            "line": 27,
+            "column": 1
+          }
+        }
+      },
+      "generator": false,
+      "expression": false,
+      "range": [
+        734,
+        1035
+      ],
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 0
+        },
+        "end": {
+          "line": 27,
+          "column": 1
+        }
+      },
+      "leadingComments": [],
+      "name": "_",
+      "trailingComments": []
+    },
+    {
+      "type": "Identifier",
+      "declaration": {
+        "type": "Identifier",
+        "name": "toFixed",
+        "range": [
+          1052,
+          1059
+        ],
+        "loc": {
+          "start": {
+            "line": 29,
+            "column": 15
+          },
+          "end": {
+            "line": 29,
+            "column": 22
+          }
+        }
+      },
+      "range": [
+        1037,
+        1060
+      ],
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 0
+        },
+        "end": {
+          "line": 29,
+          "column": 23
+        }
+      },
+      "name": "_",
+      "leadingComments": [],
+      "trailingComments": []
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "toFixed",
+          "range": [
+            743,
+            750
+          ],
+          "loc": {
+            "start": {
+              "line": 21,
+              "column": 9
+            },
+            "end": {
+              "line": 21,
+              "column": 16
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "value",
+            "range": [
+              751,
+              756
+            ],
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 17
+              },
+              "end": {
+                "line": 21,
+                "column": 22
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "precision",
+            "range": [
+              758,
+              767
+            ],
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 24
+              },
+              "end": {
+                "line": 21,
+                "column": 33
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "AssignmentExpression",
+                "operator": "=",
+                "left": {
+                  "type": "Identifier",
+                  "name": "precision",
+                  "range": [
+                    773,
+                    782
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 22,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 22,
+                      "column": 11
+                    }
+                  }
+                },
+                "right": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "Identifier",
+                    "name": "checkPrecision",
+                    "range": [
+                      785,
+                      799
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 22,
+                        "column": 14
+                      },
+                      "end": {
+                        "line": 22,
+                        "column": 28
+                      }
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "precision",
+                      "range": [
+                        800,
+                        809
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 22,
+                          "column": 29
+                        },
+                        "end": {
+                          "line": 22,
+                          "column": 38
+                        }
+                      }
+                    },
+                    {
+                      "type": "MemberExpression",
+                      "computed": false,
+                      "object": {
+                        "type": "Identifier",
+                        "name": "settings",
+                        "range": [
+                          811,
+                          819
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 22,
+                            "column": 40
+                          },
+                          "end": {
+                            "line": 22,
+                            "column": 48
+                          }
+                        }
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "precision",
+                        "range": [
+                          820,
+                          829
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 22,
+                            "column": 49
+                          },
+                          "end": {
+                            "line": 22,
+                            "column": 58
+                          }
+                        }
+                      },
+                      "range": [
+                        811,
+                        829
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 22,
+                          "column": 40
+                        },
+                        "end": {
+                          "line": 22,
+                          "column": 58
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    785,
+                    830
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 22,
+                      "column": 14
+                    },
+                    "end": {
+                      "line": 22,
+                      "column": 59
+                    }
+                  }
+                },
+                "range": [
+                  773,
+                  830
+                ],
+                "loc": {
+                  "start": {
+                    "line": 22,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 22,
+                    "column": 59
+                  }
+                }
+              },
+              "range": [
+                773,
+                831
+              ],
+              "loc": {
+                "start": {
+                  "line": 22,
+                  "column": 2
+                },
+                "end": {
+                  "line": 22,
+                  "column": 60
+                }
+              }
+            },
+            {
+              "type": "VariableDeclaration",
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "id": {
+                    "type": "Identifier",
+                    "name": "power",
+                    "range": [
+                      840,
+                      845
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 23,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 23,
+                        "column": 13
+                      }
+                    }
+                  },
+                  "init": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "computed": false,
+                      "object": {
+                        "type": "Identifier",
+                        "name": "Math",
+                        "range": [
+                          848,
+                          852
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 23,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 23,
+                            "column": 20
+                          }
+                        }
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "pow",
+                        "range": [
+                          853,
+                          856
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 23,
+                            "column": 21
+                          },
+                          "end": {
+                            "line": 23,
+                            "column": 24
+                          }
+                        }
+                      },
+                      "range": [
+                        848,
+                        856
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 23,
+                          "column": 16
+                        },
+                        "end": {
+                          "line": 23,
+                          "column": 24
+                        }
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "type": "Literal",
+                        "value": 10,
+                        "raw": "10",
+                        "range": [
+                          857,
+                          859
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 23,
+                            "column": 25
+                          },
+                          "end": {
+                            "line": 23,
+                            "column": 27
+                          }
+                        }
+                      },
+                      {
+                        "type": "Identifier",
+                        "name": "precision",
+                        "range": [
+                          861,
+                          870
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 23,
+                            "column": 29
+                          },
+                          "end": {
+                            "line": 23,
+                            "column": 38
+                          }
+                        }
+                      }
+                    ],
+                    "range": [
+                      848,
+                      871
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 23,
+                        "column": 16
+                      },
+                      "end": {
+                        "line": 23,
+                        "column": 39
+                      }
+                    }
+                  },
+                  "range": [
+                    840,
+                    871
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 23,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 23,
+                      "column": 39
+                    }
+                  }
+                }
+              ],
+              "kind": "const",
+              "range": [
+                834,
+                872
+              ],
+              "loc": {
+                "start": {
+                  "line": 23,
+                  "column": 2
+                },
+                "end": {
+                  "line": 23,
+                  "column": 40
+                }
+              },
+              "trailingComments": [
+                {
+                  "type": "Line",
+                  "value": " Multiply up by precision, round accurately, then divide and use native toFixed()",
+                  "range": [
+                    876,
+                    959
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 25,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 25,
+                      "column": 85
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "MemberExpression",
+                  "computed": false,
+                  "object": {
+                    "type": "BinaryExpression",
+                    "operator": "/",
+                    "left": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                          "type": "Identifier",
+                          "name": "Math",
+                          "range": [
+                            970,
+                            974
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 26,
+                              "column": 10
+                            },
+                            "end": {
+                              "line": 26,
+                              "column": 14
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "round",
+                          "range": [
+                            975,
+                            980
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 26,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 26,
+                              "column": 20
+                            }
+                          }
+                        },
+                        "range": [
+                          970,
+                          980
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 26,
+                            "column": 10
+                          },
+                          "end": {
+                            "line": 26,
+                            "column": 20
+                          }
+                        }
+                      },
+                      "arguments": [
+                        {
+                          "type": "BinaryExpression",
+                          "operator": "*",
+                          "left": {
+                            "type": "BinaryExpression",
+                            "operator": "+",
+                            "left": {
+                              "type": "Identifier",
+                              "name": "value",
+                              "range": [
+                                982,
+                                987
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 26,
+                                  "column": 22
+                                },
+                                "end": {
+                                  "line": 26,
+                                  "column": 27
+                                }
+                              }
+                            },
+                            "right": {
+                              "type": "Literal",
+                              "value": 1e-8,
+                              "raw": "1e-8",
+                              "range": [
+                                990,
+                                994
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 26,
+                                  "column": 30
+                                },
+                                "end": {
+                                  "line": 26,
+                                  "column": 34
+                                }
+                              }
+                            },
+                            "range": [
+                              982,
+                              994
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 26,
+                                "column": 22
+                              },
+                              "end": {
+                                "line": 26,
+                                "column": 34
+                              }
+                            }
+                          },
+                          "right": {
+                            "type": "Identifier",
+                            "name": "power",
+                            "range": [
+                              998,
+                              1003
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 26,
+                                "column": 38
+                              },
+                              "end": {
+                                "line": 26,
+                                "column": 43
+                              }
+                            }
+                          },
+                          "range": [
+                            981,
+                            1003
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 26,
+                              "column": 21
+                            },
+                            "end": {
+                              "line": 26,
+                              "column": 43
+                            }
+                          }
+                        }
+                      ],
+                      "range": [
+                        970,
+                        1004
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 26,
+                          "column": 10
+                        },
+                        "end": {
+                          "line": 26,
+                          "column": 44
+                        }
+                      }
+                    },
+                    "right": {
+                      "type": "Identifier",
+                      "name": "power",
+                      "range": [
+                        1007,
+                        1012
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 26,
+                          "column": 47
+                        },
+                        "end": {
+                          "line": 26,
+                          "column": 52
+                        }
+                      }
+                    },
+                    "range": [
+                      970,
+                      1012
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 26,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 26,
+                        "column": 52
+                      }
+                    }
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "toFixed",
+                    "range": [
+                      1014,
+                      1021
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 26,
+                        "column": 54
+                      },
+                      "end": {
+                        "line": 26,
+                        "column": 61
+                      }
+                    }
+                  },
+                  "range": [
+                    969,
+                    1021
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 26,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 26,
+                      "column": 61
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "name": "precision",
+                    "range": [
+                      1022,
+                      1031
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 26,
+                        "column": 62
+                      },
+                      "end": {
+                        "line": 26,
+                        "column": 71
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  969,
+                  1032
+                ],
+                "loc": {
+                  "start": {
+                    "line": 26,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 26,
+                    "column": 72
+                  }
+                }
+              },
+              "range": [
+                962,
+                1033
+              ],
+              "loc": {
+                "start": {
+                  "line": 26,
+                  "column": 2
+                },
+                "end": {
+                  "line": 26,
+                  "column": 73
+                }
+              },
+              "leadingComments": [
+                {
+                  "type": "Line",
+                  "value": " Multiply up by precision, round accurately, then divide and use native toFixed()",
+                  "range": [
+                    876,
+                    959
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 25,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 25,
+                      "column": 85
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "range": [
+            769,
+            1035
+          ],
+          "loc": {
+            "start": {
+              "line": 21,
+              "column": 35
+            },
+            "end": {
+              "line": 27,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          734,
+          1035
+        ],
+        "loc": {
+          "start": {
+            "line": 21,
+            "column": 0
+          },
+          "end": {
+            "line": 27,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * ```js\n *  (0.615).toFixed(2);           // \"0.61\" (native toFixed has rounding issues)\n *  accounting.toFixed(0.615, 2); // \"0.62\"\n * ```\n *\n * @method toFixed\n * @for accounting\n * @param {Float}   value         The float to be treated as a decimal number\n * @param {Number} [precision=2] The number of decimal digits to keep\n * @return {String} The given number transformed into a string with the given precission\n ",
+            "range": [
+              92,
+              733
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 0
+              },
+              "end": {
+                "line": 20,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "range": [
+        1037,
+        1060
+      ],
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 0
+        },
+        "end": {
+          "line": 29,
+          "column": 23
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    1060
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 29,
+      "column": 23
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * ```js\n *  (0.615).toFixed(2);           // \"0.61\" (native toFixed has rounding issues)\n *  accounting.toFixed(0.615, 2); // \"0.62\"\n * ```\n *\n * @method toFixed\n * @for accounting\n * @param {Float}   value         The float to be treated as a decimal number\n * @param {Number} [precision=2] The number of decimal digits to keep\n * @return {String} The given number transformed into a string with the given precission\n ",
+      "range": [
+        92,
+        733
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 20,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": " Multiply up by precision, round accurately, then divide and use native toFixed()",
+      "range": [
+        876,
+        959
+      ],
+      "loc": {
+        "start": {
+          "line": 25,
+          "column": 2
+        },
+        "end": {
+          "line": 25,
+          "column": 85
+        }
+      }
+    }
+  ]
+}
