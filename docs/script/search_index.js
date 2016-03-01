@@ -408,6 +408,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "lib/settings.js~settings",
+    "typedef/index.html#static-typedef-Settings",
+    "lib/settings.js~Settings",
+    "typedef"
+  ],
+  [
     "lib/tofixed.js",
     "file/lib/toFixed.js.html",
     "lib/toFixed.js",

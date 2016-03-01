@@ -145,7 +145,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import objectAssign from 'object-assign';\n\nimport stripInsignificantZeros from './internal/stripInsignificantZeros';\nimport settings from './settings';\nimport toFixed from './toFixed';\n\n/**\n * _Alias_: `format(number, opts)`\n *\n * Format a number, with comma-separated thousands and custom precision/decimal places.\n *\n * **Usage:**\n *\n * ```js\n * // Default usage\n * formatNumber(5318008);\n * // => 5,318,008\n *\n * // Custom format\n * formatNumber(9876543.21, { precision: 3, thousand: \" \" });\n * // => 9 876 543.210\n * ```\n *\n * @access public\n * @param {Number} number - Number to be formatted\n * @param {Object} [opts={}] - Object containing all the options of the method\n * @return {String} - Given number properly formatted\n  */\nfunction formatNumber(number, opts = {}) {\n  // Resursively format arrays:\n  if (Array.isArray(number)) {\n    return number.map((val) => formatNumber(val, opts));\n  }\n\n  // Build options object from second param (if object) or all params, extending defaults\n  opts = objectAssign({},\n    settings,\n    opts\n  );\n\n  // Do some calc\n  const negative = number < 0 ? '-' : '';\n  const base = parseInt(toFixed(Math.abs(number), opts.precision), 10) + '';\n  const mod = base.length > 3 ? base.length % 3 : 0;\n\n  // Format the number\n  const formatted = negative +\n    (mod ? base.substr(0, mod) + opts.thousand : '') +\n      base.substr(mod).replace(/(\\d{3})(?=\\d)/g, '$1' + opts.thousand) +\n        (opts.precision > 0 ? opts.decimal + toFixed(Math.abs(number), opts.precision).split('.')[1] : '');\n\n  return opts.stripZeros ? stripInsignificantZeros(formatted, opts.decimal) : formatted;\n}\n\nexport default formatNumber;\n"
+    "content": "import objectAssign from 'object-assign';\n\nimport stripInsignificantZeros from './internal/stripInsignificantZeros';\nimport settings from './settings';\nimport toFixed from './toFixed';\n\n/**\n * Format a number, with comma-separated thousands and custom precision/decimal places.\n *\n * _Alias_: `format(number, opts)`\n *\n * **Usage:**\n *\n * ```js\n * // Default usage\n * formatNumber(5318008);\n * // => 5,318,008\n *\n * // Custom format\n * formatNumber(9876543.21, { precision: 3, thousand: \" \" });\n * // => 9 876 543.210\n * ```\n *\n * @access public\n * @param {Number} number - Number to be formatted\n * @param {Object} [opts={}] - Object containing all the options of the method\n * @return {String} - Given number properly formatted\n  */\nfunction formatNumber(number, opts = {}) {\n  // Resursively format arrays:\n  if (Array.isArray(number)) {\n    return number.map((val) => formatNumber(val, opts));\n  }\n\n  // Build options object from second param (if object) or all params, extending defaults\n  opts = objectAssign({},\n    settings,\n    opts\n  );\n\n  // Do some calc\n  const negative = number < 0 ? '-' : '';\n  const base = parseInt(toFixed(Math.abs(number), opts.precision), 10) + '';\n  const mod = base.length > 3 ? base.length % 3 : 0;\n\n  // Format the number\n  const formatted = negative +\n    (mod ? base.substr(0, mod) + opts.thousand : '') +\n      base.substr(mod).replace(/(\\d{3})(?=\\d)/g, '$1' + opts.thousand) +\n        (opts.precision > 0 ? opts.decimal + toFixed(Math.abs(number), opts.precision).split('.')[1] : '');\n\n  return opts.stripZeros ? stripInsignificantZeros(formatted, opts.decimal) : formatted;\n}\n\nexport default formatNumber;\n"
   },
   {
     "__docId__": 6,
@@ -159,7 +159,7 @@
     "export": true,
     "importPath": "accounting-js/lib/formatNumber.js",
     "importStyle": "formatNumber",
-    "description": "_Alias_: `format(number, opts)`\n\nFormat a number, with comma-separated thousands and custom precision/decimal places.\n\n**Usage:**\n\n```js\n// Default usage\nformatNumber(5318008);\n// => 5,318,008\n\n// Custom format\nformatNumber(9876543.21, { precision: 3, thousand: \" \" });\n// => 9 876 543.210\n```",
+    "description": "Format a number, with comma-separated thousands and custom precision/decimal places.\n\n_Alias_: `format(number, opts)`\n\n**Usage:**\n\n```js\n// Default usage\nformatNumber(5318008);\n// => 5,318,008\n\n// Custom format\nformatNumber(9876543.21, { precision: 3, thousand: \" \" });\n// => 9 876 543.210\n```",
     "lineNumber": 29,
     "params": [
       {
@@ -231,11 +231,128 @@
     "longname": "lib/settings.js",
     "access": null,
     "description": null,
-    "lineNumber": 8,
-    "content": "/**\n * The library's settings configuration object.\n *\n * Contains default parameters for currency and number formatting.\n *\n * @type Object\n */\nconst settings = {\n  /**\n   * Currency symbol\n   *\n   * @type {String}\n   */\n  symbol: '$',\n  /**\n   * Controls output: %s = symbol, %v = value (can be object, see docs)\n   *\n   * @type {String|Object}\n   */\n  format: '%s%v',\n  /**\n   * Decimal point separator\n   *\n   * @type {String}\n   */\n  decimal: '.',\n  /**\n   * Thousands separator\n   *\n   * @type {String}\n   */\n  thousand: ',',\n  /**\n   * Decimal places\n   *\n   * @type {Number}\n   */\n  precision: 2,\n  /**\n   * Digit grouping (not implemented yet)\n   *\n   * @type {Number}\n   */\n  grouping: 3,\n  /**\n   * Strip insignificant zeros from decimal part\n   *\n   * @type {Boolean}\n   */\n  stripZeros: false,\n  /**\n   * Value returned on unformat() failure\n   *\n   * @type {Float}\n   */\n  fallback: 0\n};\n\nexport default settings;\n"
+    "lineNumber": 21,
+    "content": "/**\n * The library's settings configuration interface.\n *\n * @typedef {Object} Settings\n * @property {String} [symbol='$'] - Currency symbol\n * @property {String|Object} [format='%s%v'] - Controls output: %s = symbol, %v = value (can be object, see docs)\n * @property {String} [decimal='.'] - Decimal point separator\n * @property {String} [thousand=',] - Thousands separator\n * @property {Number} [precision=2] - Decimal places\n * @property {Number} [grouping=3] - Digit grouping (not implemented yet)\n * @property {Boolean} [stripZeros=false] - Strip insignificant zeros from decimal part\n * @property {Float} [fallback=0] - Value returned on unformat() failure\n */\n\n/**\n * The library's default settings configuration object.\n * Contains default parameters for currency and number formatting.\n *\n * @type {Settings} settings\n */\nconst settings = {\n  symbol: '$',\n  format: '%s%v',\n  decimal: '.',\n  thousand: ',',\n  precision: 2,\n  grouping: 3,\n  stripZeros: false,\n  fallback: 0\n};\n\nexport default settings;\n"
   },
   {
     "__docId__": 10,
+    "kind": "typedef",
+    "static": true,
+    "variation": null,
+    "name": "Settings",
+    "memberof": "lib/settings.js",
+    "longname": "lib/settings.js~Settings",
+    "access": null,
+    "description": "The library's settings configuration interface.",
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "'$'",
+        "defaultRaw": "'$'",
+        "name": "symbol",
+        "description": "Currency symbol"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String",
+          "Object"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "'%s%v'",
+        "defaultRaw": "'%s%v'",
+        "name": "format",
+        "description": "Controls output: %s = symbol, %v = value (can be object, see docs)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "'.'",
+        "defaultRaw": "'.'",
+        "name": "decimal",
+        "description": "Decimal point separator"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "',",
+        "defaultRaw": "',",
+        "name": "thousand",
+        "description": "Thousands separator"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "2",
+        "defaultRaw": 2,
+        "name": "precision",
+        "description": "Decimal places"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "3",
+        "defaultRaw": 3,
+        "name": "grouping",
+        "description": "Digit grouping (not implemented yet)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Boolean"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "false",
+        "defaultRaw": false,
+        "name": "stripZeros",
+        "description": "Strip insignificant zeros from decimal part"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Float"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "fallback",
+        "description": "Value returned on unformat() failure"
+      }
+    ],
+    "type": {
+      "types": [
+        "Object"
+      ],
+      "optional": false,
+      "name": "Settings"
+    }
+  },
+  {
+    "__docId__": 11,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -246,19 +363,19 @@
     "export": true,
     "importPath": "accounting-js/lib/settings.js",
     "importStyle": "settings",
-    "description": "The library's settings configuration object.\n\nContains default parameters for currency and number formatting.",
-    "lineNumber": 8,
+    "description": "The library's default settings configuration object.\nContains default parameters for currency and number formatting.",
+    "lineNumber": 21,
     "type": {
       "nullable": null,
       "types": [
-        "*"
+        "Settings"
       ],
       "spread": false,
       "description": null
     }
   },
   {
-    "__docId__": 11,
+    "__docId__": 12,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -271,7 +388,7 @@
     "content": "import checkPrecision from './internal/checkPrecision';\nimport settings from './settings';\n\n/**\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * **Usage:**\n *\n * ```js\n * // Native toFixed has rounding issues\n * (0.615).toFixed(2);\n * // => '0.61'\n *\n * // With accounting-js\n * toFixed(0.615, 2);\n * // => '0.62'\n * ```\n *\n * @access public\n * @param {Float} value - Float to be treated as a decimal number\n * @param {Number} [precision=settings.precision] - Number of decimal digits to keep\n * @return {String} - Given number transformed into a string with the given precission\n */\nfunction toFixed(value, precision) {\n  precision = checkPrecision(precision, settings.precision);\n  const power = Math.pow(10, precision);\n\n  // Multiply up by precision, round accurately, then divide and use native toFixed()\n  return (Math.round((value + 1e-8) * power) / power).toFixed(precision);\n}\n\nexport default toFixed;\n"
   },
   {
-    "__docId__": 12,
+    "__docId__": 13,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -319,7 +436,7 @@
     "generator": false
   },
   {
-    "__docId__": 13,
+    "__docId__": 14,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -329,10 +446,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import settings from './settings';\n\n/**\n * _Alias_: `parse(value, decimal, fallback)`\n *\n * Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.\n *\n * Decimal must be included in the regular expression to match floats (defaults to\n * `settings.decimal`), so if the number uses a non-standard decimal\n * separator, provide it as the second argument.\n *\n * Also matches bracketed negatives (eg. `'$ (1.99)' => -1.99`).\n *\n * Doesn't throw any errors (`NaN`s become 0 or provided by fallback value).\n *\n * **Usage:**\n *\n * ```js\n * unformat('£ 12,345,678.90 GBP');\n * // => 12345678.9\n * ```\n *\n * @access public\n * @param {String|Array<String>} value - String or array of strings containing the number/s to parse\n * @param {Number} [decimal=settings.decimal] - Number of decimal digits of the resultant number\n * @param {Float} [fallback=settings.fallback] - Value returned on unformat() failure\n * @return {Float} - Parsed number\n */\nfunction unformat(value, decimal = settings.decimal, fallback = settings.fallback) {\n  // Recursively unformat arrays:\n  if (Array.isArray(value)) {\n    return value.map((val) => unformat(val, decimal, fallback));\n  }\n\n  // Return the value as-is if it's already a number\n  if (typeof value === 'number') return value;\n\n   // Build regex to strip out everything except digits, decimal point and minus sign\n  const regex = new RegExp('[^0-9-(-)-' + decimal + ']', ['g']);\n  const unformattedValueString =\n      ('' + value)\n      .replace(regex, '')         // strip out any cruft\n      .replace(decimal, '.')      // make sure decimal point is standard\n      .replace(/\\(([-]*\\d*[^)]?\\d+)\\)/g, '-$1') // replace bracketed values with negatives\n      .replace(/\\((.*)\\)/, '');   // remove any brackets that do not have numeric value\n\n  /**\n   * Handling -ve number and bracket, eg.\n   * (-100) = 100, -(100) = 100, --100 = 100\n   */\n  const negative = (unformattedValueString.match(/-/g) || 2).length % 2,\n    absUnformatted = parseFloat(unformattedValueString.replace(/-/g, '')),\n    unformatted = absUnformatted * ((negative) ? -1 : 1);\n\n  // This will fail silently which may cause trouble, let's wait and see\n  return !isNaN(unformatted) ? unformatted : fallback;\n}\n\nexport default unformat;\n"
+    "content": "import settings from './settings';\n\n/**\n * Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.\n *\n * Decimal must be included in the regular expression to match floats (defaults to\n * `settings.decimal`), so if the number uses a non-standard decimal\n * separator, provide it as the second argument.\n *\n * Also matches bracketed negatives (eg. `'$ (1.99)' => -1.99`).\n *\n * Doesn't throw any errors (`NaN`s become 0 or provided by fallback value).\n *\n * _Alias_: `parse(value, decimal, fallback)`\n *\n * **Usage:**\n *\n * ```js\n * unformat('£ 12,345,678.90 GBP');\n * // => 12345678.9\n * ```\n *\n * @access public\n * @param {String|Array<String>} value - String or array of strings containing the number/s to parse\n * @param {Number} [decimal=settings.decimal] - Number of decimal digits of the resultant number\n * @param {Float} [fallback=settings.fallback] - Value returned on unformat() failure\n * @return {Float} - Parsed number\n */\nfunction unformat(value, decimal = settings.decimal, fallback = settings.fallback) {\n  // Recursively unformat arrays:\n  if (Array.isArray(value)) {\n    return value.map((val) => unformat(val, decimal, fallback));\n  }\n\n  // Return the value as-is if it's already a number\n  if (typeof value === 'number') return value;\n\n   // Build regex to strip out everything except digits, decimal point and minus sign\n  const regex = new RegExp('[^0-9-(-)-' + decimal + ']', ['g']);\n  const unformattedValueString =\n      ('' + value)\n      .replace(regex, '')         // strip out any cruft\n      .replace(decimal, '.')      // make sure decimal point is standard\n      .replace(/\\(([-]*\\d*[^)]?\\d+)\\)/g, '-$1') // replace bracketed values with negatives\n      .replace(/\\((.*)\\)/, '');   // remove any brackets that do not have numeric value\n\n  /**\n   * Handling -ve number and bracket, eg.\n   * (-100) = 100, -(100) = 100, --100 = 100\n   */\n  const negative = (unformattedValueString.match(/-/g) || 2).length % 2,\n    absUnformatted = parseFloat(unformattedValueString.replace(/-/g, '')),\n    unformatted = absUnformatted * ((negative) ? -1 : 1);\n\n  // This will fail silently which may cause trouble, let's wait and see\n  return !isNaN(unformatted) ? unformatted : fallback;\n}\n\nexport default unformat;\n"
   },
   {
-    "__docId__": 14,
+    "__docId__": 15,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -343,7 +460,7 @@
     "export": true,
     "importPath": "accounting-js/lib/unformat.js",
     "importStyle": "unformat",
-    "description": "_Alias_: `parse(value, decimal, fallback)`\n\nTakes a string/array of strings, removes all formatting/cruft and returns the raw float value.\n\nDecimal must be included in the regular expression to match floats (defaults to\n`settings.decimal`), so if the number uses a non-standard decimal\nseparator, provide it as the second argument.\n\nAlso matches bracketed negatives (eg. `'$ (1.99)' => -1.99`).\n\nDoesn't throw any errors (`NaN`s become 0 or provided by fallback value).\n\n**Usage:**\n\n```js\nunformat('£ 12,345,678.90 GBP');\n// => 12345678.9\n```",
+    "description": "Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.\n\nDecimal must be included in the regular expression to match floats (defaults to\n`settings.decimal`), so if the number uses a non-standard decimal\nseparator, provide it as the second argument.\n\nAlso matches bracketed negatives (eg. `'$ (1.99)' => -1.99`).\n\nDoesn't throw any errors (`NaN`s become 0 or provided by fallback value).\n\n_Alias_: `parse(value, decimal, fallback)`\n\n**Usage:**\n\n```js\nunformat('£ 12,345,678.90 GBP');\n// => 12345678.9\n```",
     "lineNumber": 29,
     "params": [
       {
@@ -393,7 +510,7 @@
     "generator": false
   },
   {
-    "__docId__": 16,
+    "__docId__": 17,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -406,7 +523,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 17,
+    "__docId__": 18,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -419,7 +536,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 18,
+    "__docId__": 19,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -432,7 +549,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 19,
+    "__docId__": 20,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -445,7 +562,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 20,
+    "__docId__": 21,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -458,7 +575,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 21,
+    "__docId__": 22,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -471,7 +588,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 22,
+    "__docId__": 23,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -484,7 +601,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 23,
+    "__docId__": 24,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -497,7 +614,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 24,
+    "__docId__": 25,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -510,7 +627,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 25,
+    "__docId__": 26,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -523,7 +640,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 26,
+    "__docId__": 27,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -536,7 +653,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 27,
+    "__docId__": 28,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -549,7 +666,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 28,
+    "__docId__": 29,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -562,7 +679,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 29,
+    "__docId__": 30,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -575,7 +692,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 30,
+    "__docId__": 31,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -588,7 +705,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 31,
+    "__docId__": 32,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -601,7 +718,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 32,
+    "__docId__": 33,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -614,7 +731,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 33,
+    "__docId__": 34,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -627,7 +744,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 34,
+    "__docId__": 35,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -640,7 +757,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 35,
+    "__docId__": 36,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -653,7 +770,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 36,
+    "__docId__": 37,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -666,7 +783,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 37,
+    "__docId__": 38,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -679,7 +796,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 38,
+    "__docId__": 39,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -692,7 +809,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 39,
+    "__docId__": 40,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -705,7 +822,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 40,
+    "__docId__": 41,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -718,7 +835,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 41,
+    "__docId__": 42,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -731,7 +848,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 42,
+    "__docId__": 43,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -744,7 +861,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 43,
+    "__docId__": 44,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -757,7 +874,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 44,
+    "__docId__": 45,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -770,7 +887,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 45,
+    "__docId__": 46,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -783,7 +900,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 46,
+    "__docId__": 47,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -796,7 +913,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 47,
+    "__docId__": 48,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -809,7 +926,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 48,
+    "__docId__": 49,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -822,7 +939,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 49,
+    "__docId__": 50,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -835,7 +952,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 50,
+    "__docId__": 51,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -848,7 +965,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 51,
+    "__docId__": 52,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -861,7 +978,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 52,
+    "__docId__": 53,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -874,7 +991,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 53,
+    "__docId__": 54,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -887,7 +1004,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 54,
+    "__docId__": 55,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -900,7 +1017,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 55,
+    "__docId__": 56,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -913,7 +1030,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 56,
+    "__docId__": 57,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -926,7 +1043,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 57,
+    "__docId__": 58,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -939,7 +1056,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 58,
+    "__docId__": 59,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -952,7 +1069,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 59,
+    "__docId__": 60,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -965,7 +1082,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 60,
+    "__docId__": 61,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -978,7 +1095,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 61,
+    "__docId__": 62,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -991,7 +1108,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 62,
+    "__docId__": 63,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1004,7 +1121,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 64,
+    "__docId__": 65,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1017,7 +1134,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 65,
+    "__docId__": 66,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1030,7 +1147,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 67,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1043,7 +1160,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 67,
+    "__docId__": 68,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1056,7 +1173,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 68,
+    "__docId__": 69,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1069,7 +1186,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 69,
+    "__docId__": 70,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1082,7 +1199,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 70,
+    "__docId__": 71,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1095,7 +1212,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 71,
+    "__docId__": 72,
     "kind": "external",
     "static": true,
     "variation": null,

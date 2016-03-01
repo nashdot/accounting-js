@@ -38,6 +38,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFixed">toFixed</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unformat">unformat</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-settings">settings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Settings">Settings</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -46,8 +47,6 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import settings from &apos;./settings&apos;;
 
 /**
- * _Alias_: `parse(value, decimal, fallback)`
- *
  * Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.
  *
  * Decimal must be included in the regular expression to match floats (defaults to
@@ -57,6 +56,8 @@
  * Also matches bracketed negatives (eg. `&apos;$ (1.99)&apos; =&gt; -1.99`).
  *
  * Doesn&apos;t throw any errors (`NaN`s become 0 or provided by fallback value).
+ *
+ * _Alias_: `parse(value, decimal, fallback)`
  *
  * **Usage:**
  *

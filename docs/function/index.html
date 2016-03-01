@@ -38,6 +38,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFixed">toFixed</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unformat">unformat</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-settings">settings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Settings">Settings</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -117,7 +118,7 @@ to line up currency symbols, thousand separators and decimals places.</p>
       <div>
         
         
-        <div data-ice="description"><p><em>Alias</em>: <code>format(number, opts)</code></p>
+        <div data-ice="description"><p>Format a number, with comma-separated thousands and custom precision/decimal places.</p>
 </div>
       </div>
     </td>
@@ -169,7 +170,7 @@ to line up currency symbols, thousand separators and decimals places.</p>
       <div>
         
         
-        <div data-ice="description"><p><em>Alias</em>: <code>parse(value, decimal, fallback)</code></p>
+        <div data-ice="description"><p>Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.</p>
 </div>
       </div>
     </td>
@@ -379,8 +380,8 @@ formatMoney(5318008, { symbol: &quot;GBP&quot;,  format: &quot;%v %s&quot; });
   <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import formatNumber from &apos;<span><a href="file/lib/formatNumber.js.html#lineNumber29">accounting-js/lib/formatNumber.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p><em>Alias</em>: <code>format(number, opts)</code></p>
-<p>Format a number, with comma-separated thousands and custom precision/decimal places.</p>
+  <div data-ice="description"><p>Format a number, with comma-separated thousands and custom precision/decimal places.</p>
+<p><em>Alias</em>: <code>format(number, opts)</code></p>
 <p><strong>Usage:</strong></p>
 <pre><code class="lang-js"><code class="source-code prettyprint">// Default usage
 formatNumber(5318008);
@@ -554,13 +555,13 @@ toFixed(0.615, 2);
   <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import unformat from &apos;<span><a href="file/lib/unformat.js.html#lineNumber29">accounting-js/lib/unformat.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p><em>Alias</em>: <code>parse(value, decimal, fallback)</code></p>
-<p>Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.</p>
+  <div data-ice="description"><p>Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.</p>
 <p>Decimal must be included in the regular expression to match floats (defaults to
 <code>settings.decimal</code>), so if the number uses a non-standard decimal
 separator, provide it as the second argument.</p>
 <p>Also matches bracketed negatives (eg. <code>&apos;$ (1.99)&apos; =&gt; -1.99</code>).</p>
 <p>Doesn&apos;t throw any errors (<code>NaN</code>s become 0 or provided by fallback value).</p>
+<p><em>Alias</em>: <code>parse(value, decimal, fallback)</code></p>
 <p><strong>Usage:</strong></p>
 <pre><code class="lang-js"><code class="source-code prettyprint">unformat(&apos;&#xA3; 12,345,678.90 GBP&apos;);
 // =&gt; 12345678.9</code>
