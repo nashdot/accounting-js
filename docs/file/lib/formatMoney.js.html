@@ -38,9 +38,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFixed">toFixed</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unformat">unformat</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-settings">settings</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">internal</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-checkCurrencyFormat">checkCurrencyFormat</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-checkPrecision">checkPrecision</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stripInsignificantZeros">stripInsignificantZeros</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -55,30 +52,30 @@ import formatNumber from &apos;./formatNumber&apos;;
 /**
  * Format a number into currency.
  *
- * Usage: accounting.formatMoney(number, symbol, precision, thousandsSep, decimalSep, format)
- * defaults: (0, &apos;$&apos;, 2, &apos;,&apos;, &apos;.&apos;, &apos;%s%v&apos;)
- *
- * Localise by overriding the symbol, precision, thousand / decimal separators and format.
+ * **Usage:**
  *
  * ```js
  * // Default usage
- * accounting.formatMoney(12345678); // $12,345,678.00
+ * formatMoney(12345678);
+ * // =&gt; $12,345,678.00
  *
- * // European formatting (custom symbol and separators), can also use options object as second parameter
- * accounting.formatMoney(4999.99, { symbol: &quot;&#x20AC;&quot;, precision: 2, thousand: &quot;.&quot;, decimal: &quot;,&quot; }); // &#x20AC;4.999,99
+ * // European formatting (custom symbol and separators)
+ * formatMoney(4999.99, { symbol: &quot;&#x20AC;&quot;, precision: 2, thousand: &quot;.&quot;, decimal: &quot;,&quot; });
+ * // =&gt; &#x20AC;4.999,99
  *
- * // Negative values can be formatted nicely:
- * accounting.formatMoney(-500000, { symbol: &quot;&#xA3; &quot;, precision: 0 }); // &#xA3; -500,000
+ * // Negative values can be formatted nicely
+ * formatMoney(-500000, { symbol: &quot;&#xA3; &quot;, precision: 0 });
+ * // =&gt; &#xA3; -500,000
  *
- * // Simple `format` string allows control of symbol position (%v = value, %s = symbol):
- * accounting.formatMoney(5318008, { symbol: &quot;GBP&quot;,  format: &quot;%v %s&quot; }); // 5,318,008.00 GBP
+ * // Simple `format` string allows control of symbol position (%v = value, %s = symbol)
+ * formatMoney(5318008, { symbol: &quot;GBP&quot;,  format: &quot;%v %s&quot; });
+ * // =&gt; 5,318,008.00 GBP
  * ```
  *
- * @method formatMoney
- * @for accounting
- * @param {Number}        number Number to be formatted
- * @param {Object}        [opts={}] Object containing all the options of the method
- * @return {String} The given number properly formatted as money
+ * @access public
+ * @param {Number} number - Number to be formatted
+ * @param {Object} [opts={}] - Object containing all the options of the method
+ * @return {String} - Given number properly formatted as money
  */
 function formatMoney(number, opts = {}) {
   // Resursively format arrays

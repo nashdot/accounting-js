@@ -1,17 +1,5 @@
 window.esdocSearchIndex = [
   [
-    "accounting-js/lib/internal/checkcurrencyformat.js~checkcurrencyformat",
-    "function/index.html#static-function-checkCurrencyFormat",
-    "<span>checkCurrencyFormat</span> <span class=\"search-result-import-path\">accounting-js/lib/internal/checkCurrencyFormat.js</span>",
-    "function"
-  ],
-  [
-    "accounting-js/lib/internal/checkprecision.js~checkprecision",
-    "function/index.html#static-function-checkPrecision",
-    "<span>checkPrecision</span> <span class=\"search-result-import-path\">accounting-js/lib/internal/checkPrecision.js</span>",
-    "function"
-  ],
-  [
     "accounting-js/lib/formatcolumn.js~formatcolumn",
     "function/index.html#static-function-formatColumn",
     "<span>formatColumn</span> <span class=\"search-result-import-path\">accounting-js/lib/formatColumn.js</span>",
@@ -34,12 +22,6 @@ window.esdocSearchIndex = [
     "variable/index.html#static-variable-settings",
     "<span>settings</span> <span class=\"search-result-import-path\">accounting-js/lib/settings.js</span>",
     "variable"
-  ],
-  [
-    "accounting-js/lib/internal/stripinsignificantzeros.js~stripinsignificantzeros",
-    "function/index.html#static-function-stripInsignificantZeros",
-    "<span>stripInsignificantZeros</span> <span class=\"search-result-import-path\">accounting-js/lib/internal/stripInsignificantZeros.js</span>",
-    "function"
   ],
   [
     "accounting-js/lib/tofixed.js~tofixed",
@@ -411,24 +393,6 @@ window.esdocSearchIndex = [
     "lib/index.js",
     "file/lib/index.js.html",
     "lib/index.js",
-    "file"
-  ],
-  [
-    "lib/internal/checkcurrencyformat.js",
-    "file/lib/internal/checkCurrencyFormat.js.html",
-    "lib/internal/checkCurrencyFormat.js",
-    "file"
-  ],
-  [
-    "lib/internal/checkprecision.js",
-    "file/lib/internal/checkPrecision.js.html",
-    "lib/internal/checkPrecision.js",
-    "file"
-  ],
-  [
-    "lib/internal/stripinsignificantzeros.js",
-    "file/lib/internal/stripInsignificantZeros.js.html",
-    "lib/internal/stripInsignificantZeros.js",
     "file"
   ],
   [

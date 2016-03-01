@@ -38,9 +38,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFixed">toFixed</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unformat">unformat</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-settings">settings</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">internal</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-checkCurrencyFormat">checkCurrencyFormat</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-checkPrecision">checkPrecision</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stripInsignificantZeros">stripInsignificantZeros</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -58,27 +55,21 @@ import unformat from &apos;./unformat&apos;;
  * Format a list of numbers into an accounting column, padding with whitespace
  * to line up currency symbols, thousand separators and decimals places.
  *
- * List should be an array of numbers.
- *
  * Returns array of accouting-formatted number strings of same length.
  *
  * NB: `white-space:pre` CSS rule is required on the list container to prevent
  * browsers from collapsing the whitespace in the output strings.
  *
+ * **Usage:**
+ *
  * ```js
- * accounting.formatColumn([123.5, 3456.49, 777888.99, 12345678, -5432], { symbol: &quot;$ &quot; });
+ * formatColumn([123.5, 3456.49, 777888.99, 12345678, -5432], { symbol: &quot;$ &quot; });
  * ```
  *
- * @method formatColumn
- * @for accounting
- * @param {Array&lt;Number&gt;} list An array of numbers to format
- * @param {Object}        [opts={}] Object containing all the options of the method
- * @param {Object|String} [symbol=&quot;$&quot;] String with the currency symbol. For conveniency if can be an object containing all the options of the method
- * @param {Integer}       [precision=2] Number of decimal digits
- * @param {String}        [thousand=&apos;,&apos;] String with the thousands separator
- * @param {String}        [decimal=&quot;.&quot;] String with the decimal separator
- * @param {String}        [format=&quot;%s%v&quot;] String with the format to apply, where %s is the currency symbol and %v is the value
- * @return {Array&lt;String&gt;} array of accouting-formatted number strings of same length
+ * @access public
+ * @param {Array&lt;Number&gt;} list - Array of numbers to format
+ * @param {Object} [opts={}] - Object containing all the options of the method
+ * @return {Array&lt;String&gt;} - Array of accouting-formatted number strings of same length
  */
 function formatColumn(list, opts = {}) {
   if (!list) return [];

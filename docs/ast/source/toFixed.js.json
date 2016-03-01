@@ -149,10 +149,10 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * ```js\n *  (0.615).toFixed(2);           // \"0.61\" (native toFixed has rounding issues)\n *  accounting.toFixed(0.615, 2); // \"0.62\"\n * ```\n *\n * @method toFixed\n * @for accounting\n * @param {Float}   value         The float to be treated as a decimal number\n * @param {Number} [precision=2] The number of decimal digits to keep\n * @return {String} The given number transformed into a string with the given precission\n ",
+          "value": "*\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * **Usage:**\n *\n * ```js\n * // Native toFixed has rounding issues\n * (0.615).toFixed(2);\n * // => '0.61'\n *\n * // With accounting-js\n * toFixed(0.615, 2);\n * // => '0.62'\n * ```\n *\n * @access public\n * @param {Float} value - Float to be treated as a decimal number\n * @param {Number} [precision=settings.precision] - Number of decimal digits to keep\n * @return {String} - Given number transformed into a string with the given precission\n ",
           "range": [
             92,
-            733
+            752
           ],
           "loc": {
             "start": {
@@ -160,7 +160,7 @@
               "column": 0
             },
             "end": {
-              "line": 20,
+              "line": 26,
               "column": 3
             }
           }
@@ -173,16 +173,16 @@
         "type": "Identifier",
         "name": "toFixed",
         "range": [
-          743,
-          750
+          762,
+          769
         ],
         "loc": {
           "start": {
-            "line": 21,
+            "line": 27,
             "column": 9
           },
           "end": {
-            "line": 21,
+            "line": 27,
             "column": 16
           }
         }
@@ -192,16 +192,16 @@
           "type": "Identifier",
           "name": "value",
           "range": [
-            751,
-            756
+            770,
+            775
           ],
           "loc": {
             "start": {
-              "line": 21,
+              "line": 27,
               "column": 17
             },
             "end": {
-              "line": 21,
+              "line": 27,
               "column": 22
             }
           }
@@ -210,16 +210,16 @@
           "type": "Identifier",
           "name": "precision",
           "range": [
-            758,
-            767
+            777,
+            786
           ],
           "loc": {
             "start": {
-              "line": 21,
+              "line": 27,
               "column": 24
             },
             "end": {
-              "line": 21,
+              "line": 27,
               "column": 33
             }
           }
@@ -237,16 +237,16 @@
                 "type": "Identifier",
                 "name": "precision",
                 "range": [
-                  773,
-                  782
+                  792,
+                  801
                 ],
                 "loc": {
                   "start": {
-                    "line": 22,
+                    "line": 28,
                     "column": 2
                   },
                   "end": {
-                    "line": 22,
+                    "line": 28,
                     "column": 11
                   }
                 }
@@ -257,16 +257,16 @@
                   "type": "Identifier",
                   "name": "checkPrecision",
                   "range": [
-                    785,
-                    799
+                    804,
+                    818
                   ],
                   "loc": {
                     "start": {
-                      "line": 22,
+                      "line": 28,
                       "column": 14
                     },
                     "end": {
-                      "line": 22,
+                      "line": 28,
                       "column": 28
                     }
                   }
@@ -276,16 +276,16 @@
                     "type": "Identifier",
                     "name": "precision",
                     "range": [
-                      800,
-                      809
+                      819,
+                      828
                     ],
                     "loc": {
                       "start": {
-                        "line": 22,
+                        "line": 28,
                         "column": 29
                       },
                       "end": {
-                        "line": 22,
+                        "line": 28,
                         "column": 38
                       }
                     }
@@ -297,16 +297,16 @@
                       "type": "Identifier",
                       "name": "settings",
                       "range": [
-                        811,
-                        819
+                        830,
+                        838
                       ],
                       "loc": {
                         "start": {
-                          "line": 22,
+                          "line": 28,
                           "column": 40
                         },
                         "end": {
-                          "line": 22,
+                          "line": 28,
                           "column": 48
                         }
                       }
@@ -315,77 +315,77 @@
                       "type": "Identifier",
                       "name": "precision",
                       "range": [
-                        820,
-                        829
+                        839,
+                        848
                       ],
                       "loc": {
                         "start": {
-                          "line": 22,
+                          "line": 28,
                           "column": 49
                         },
                         "end": {
-                          "line": 22,
+                          "line": 28,
                           "column": 58
                         }
                       }
                     },
                     "range": [
-                      811,
-                      829
+                      830,
+                      848
                     ],
                     "loc": {
                       "start": {
-                        "line": 22,
+                        "line": 28,
                         "column": 40
                       },
                       "end": {
-                        "line": 22,
+                        "line": 28,
                         "column": 58
                       }
                     }
                   }
                 ],
                 "range": [
-                  785,
-                  830
+                  804,
+                  849
                 ],
                 "loc": {
                   "start": {
-                    "line": 22,
+                    "line": 28,
                     "column": 14
                   },
                   "end": {
-                    "line": 22,
+                    "line": 28,
                     "column": 59
                   }
                 }
               },
               "range": [
-                773,
-                830
+                792,
+                849
               ],
               "loc": {
                 "start": {
-                  "line": 22,
+                  "line": 28,
                   "column": 2
                 },
                 "end": {
-                  "line": 22,
+                  "line": 28,
                   "column": 59
                 }
               }
             },
             "range": [
-              773,
-              831
+              792,
+              850
             ],
             "loc": {
               "start": {
-                "line": 22,
+                "line": 28,
                 "column": 2
               },
               "end": {
-                "line": 22,
+                "line": 28,
                 "column": 60
               }
             }
@@ -399,16 +399,16 @@
                   "type": "Identifier",
                   "name": "power",
                   "range": [
-                    840,
-                    845
+                    859,
+                    864
                   ],
                   "loc": {
                     "start": {
-                      "line": 23,
+                      "line": 29,
                       "column": 8
                     },
                     "end": {
-                      "line": 23,
+                      "line": 29,
                       "column": 13
                     }
                   }
@@ -422,16 +422,16 @@
                       "type": "Identifier",
                       "name": "Math",
                       "range": [
-                        848,
-                        852
+                        867,
+                        871
                       ],
                       "loc": {
                         "start": {
-                          "line": 23,
+                          "line": 29,
                           "column": 16
                         },
                         "end": {
-                          "line": 23,
+                          "line": 29,
                           "column": 20
                         }
                       }
@@ -440,31 +440,31 @@
                       "type": "Identifier",
                       "name": "pow",
                       "range": [
-                        853,
-                        856
+                        872,
+                        875
                       ],
                       "loc": {
                         "start": {
-                          "line": 23,
+                          "line": 29,
                           "column": 21
                         },
                         "end": {
-                          "line": 23,
+                          "line": 29,
                           "column": 24
                         }
                       }
                     },
                     "range": [
-                      848,
-                      856
+                      867,
+                      875
                     ],
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 29,
                         "column": 16
                       },
                       "end": {
-                        "line": 23,
+                        "line": 29,
                         "column": 24
                       }
                     }
@@ -475,16 +475,16 @@
                       "value": 10,
                       "raw": "10",
                       "range": [
-                        857,
-                        859
+                        876,
+                        878
                       ],
                       "loc": {
                         "start": {
-                          "line": 23,
+                          "line": 29,
                           "column": 25
                         },
                         "end": {
-                          "line": 23,
+                          "line": 29,
                           "column": 27
                         }
                       }
@@ -493,47 +493,47 @@
                       "type": "Identifier",
                       "name": "precision",
                       "range": [
-                        861,
-                        870
+                        880,
+                        889
                       ],
                       "loc": {
                         "start": {
-                          "line": 23,
+                          "line": 29,
                           "column": 29
                         },
                         "end": {
-                          "line": 23,
+                          "line": 29,
                           "column": 38
                         }
                       }
                     }
                   ],
                   "range": [
-                    848,
-                    871
+                    867,
+                    890
                   ],
                   "loc": {
                     "start": {
-                      "line": 23,
+                      "line": 29,
                       "column": 16
                     },
                     "end": {
-                      "line": 23,
+                      "line": 29,
                       "column": 39
                     }
                   }
                 },
                 "range": [
-                  840,
-                  871
+                  859,
+                  890
                 ],
                 "loc": {
                   "start": {
-                    "line": 23,
+                    "line": 29,
                     "column": 8
                   },
                   "end": {
-                    "line": 23,
+                    "line": 29,
                     "column": 39
                   }
                 }
@@ -541,16 +541,16 @@
             ],
             "kind": "const",
             "range": [
-              834,
-              872
+              853,
+              891
             ],
             "loc": {
               "start": {
-                "line": 23,
+                "line": 29,
                 "column": 2
               },
               "end": {
-                "line": 23,
+                "line": 29,
                 "column": 40
               }
             },
@@ -559,16 +559,16 @@
                 "type": "Line",
                 "value": " Multiply up by precision, round accurately, then divide and use native toFixed()",
                 "range": [
-                  876,
-                  959
+                  895,
+                  978
                 ],
                 "loc": {
                   "start": {
-                    "line": 25,
+                    "line": 31,
                     "column": 2
                   },
                   "end": {
-                    "line": 25,
+                    "line": 31,
                     "column": 85
                   }
                 }
@@ -594,16 +594,16 @@
                         "type": "Identifier",
                         "name": "Math",
                         "range": [
-                          970,
-                          974
+                          989,
+                          993
                         ],
                         "loc": {
                           "start": {
-                            "line": 26,
+                            "line": 32,
                             "column": 10
                           },
                           "end": {
-                            "line": 26,
+                            "line": 32,
                             "column": 14
                           }
                         }
@@ -612,31 +612,31 @@
                         "type": "Identifier",
                         "name": "round",
                         "range": [
-                          975,
-                          980
+                          994,
+                          999
                         ],
                         "loc": {
                           "start": {
-                            "line": 26,
+                            "line": 32,
                             "column": 15
                           },
                           "end": {
-                            "line": 26,
+                            "line": 32,
                             "column": 20
                           }
                         }
                       },
                       "range": [
-                        970,
-                        980
+                        989,
+                        999
                       ],
                       "loc": {
                         "start": {
-                          "line": 26,
+                          "line": 32,
                           "column": 10
                         },
                         "end": {
-                          "line": 26,
+                          "line": 32,
                           "column": 20
                         }
                       }
@@ -652,16 +652,16 @@
                             "type": "Identifier",
                             "name": "value",
                             "range": [
-                              982,
-                              987
+                              1001,
+                              1006
                             ],
                             "loc": {
                               "start": {
-                                "line": 26,
+                                "line": 32,
                                 "column": 22
                               },
                               "end": {
-                                "line": 26,
+                                "line": 32,
                                 "column": 27
                               }
                             }
@@ -671,31 +671,31 @@
                             "value": 1e-8,
                             "raw": "1e-8",
                             "range": [
-                              990,
-                              994
+                              1009,
+                              1013
                             ],
                             "loc": {
                               "start": {
-                                "line": 26,
+                                "line": 32,
                                 "column": 30
                               },
                               "end": {
-                                "line": 26,
+                                "line": 32,
                                 "column": 34
                               }
                             }
                           },
                           "range": [
-                            982,
-                            994
+                            1001,
+                            1013
                           ],
                           "loc": {
                             "start": {
-                              "line": 26,
+                              "line": 32,
                               "column": 22
                             },
                             "end": {
-                              "line": 26,
+                              "line": 32,
                               "column": 34
                             }
                           }
@@ -704,47 +704,47 @@
                           "type": "Identifier",
                           "name": "power",
                           "range": [
-                            998,
-                            1003
+                            1017,
+                            1022
                           ],
                           "loc": {
                             "start": {
-                              "line": 26,
+                              "line": 32,
                               "column": 38
                             },
                             "end": {
-                              "line": 26,
+                              "line": 32,
                               "column": 43
                             }
                           }
                         },
                         "range": [
-                          981,
-                          1003
+                          1000,
+                          1022
                         ],
                         "loc": {
                           "start": {
-                            "line": 26,
+                            "line": 32,
                             "column": 21
                           },
                           "end": {
-                            "line": 26,
+                            "line": 32,
                             "column": 43
                           }
                         }
                       }
                     ],
                     "range": [
-                      970,
-                      1004
+                      989,
+                      1023
                     ],
                     "loc": {
                       "start": {
-                        "line": 26,
+                        "line": 32,
                         "column": 10
                       },
                       "end": {
-                        "line": 26,
+                        "line": 32,
                         "column": 44
                       }
                     }
@@ -753,31 +753,31 @@
                     "type": "Identifier",
                     "name": "power",
                     "range": [
-                      1007,
-                      1012
+                      1026,
+                      1031
                     ],
                     "loc": {
                       "start": {
-                        "line": 26,
+                        "line": 32,
                         "column": 47
                       },
                       "end": {
-                        "line": 26,
+                        "line": 32,
                         "column": 52
                       }
                     }
                   },
                   "range": [
-                    970,
-                    1012
+                    989,
+                    1031
                   ],
                   "loc": {
                     "start": {
-                      "line": 26,
+                      "line": 32,
                       "column": 10
                     },
                     "end": {
-                      "line": 26,
+                      "line": 32,
                       "column": 52
                     }
                   }
@@ -786,31 +786,31 @@
                   "type": "Identifier",
                   "name": "toFixed",
                   "range": [
-                    1014,
-                    1021
+                    1033,
+                    1040
                   ],
                   "loc": {
                     "start": {
-                      "line": 26,
+                      "line": 32,
                       "column": 54
                     },
                     "end": {
-                      "line": 26,
+                      "line": 32,
                       "column": 61
                     }
                   }
                 },
                 "range": [
-                  969,
-                  1021
+                  988,
+                  1040
                 ],
                 "loc": {
                   "start": {
-                    "line": 26,
+                    "line": 32,
                     "column": 9
                   },
                   "end": {
-                    "line": 26,
+                    "line": 32,
                     "column": 61
                   }
                 }
@@ -820,47 +820,47 @@
                   "type": "Identifier",
                   "name": "precision",
                   "range": [
-                    1022,
-                    1031
+                    1041,
+                    1050
                   ],
                   "loc": {
                     "start": {
-                      "line": 26,
+                      "line": 32,
                       "column": 62
                     },
                     "end": {
-                      "line": 26,
+                      "line": 32,
                       "column": 71
                     }
                   }
                 }
               ],
               "range": [
-                969,
-                1032
+                988,
+                1051
               ],
               "loc": {
                 "start": {
-                  "line": 26,
+                  "line": 32,
                   "column": 9
                 },
                 "end": {
-                  "line": 26,
+                  "line": 32,
                   "column": 72
                 }
               }
             },
             "range": [
-              962,
-              1033
+              981,
+              1052
             ],
             "loc": {
               "start": {
-                "line": 26,
+                "line": 32,
                 "column": 2
               },
               "end": {
-                "line": 26,
+                "line": 32,
                 "column": 73
               }
             },
@@ -869,16 +869,16 @@
                 "type": "Line",
                 "value": " Multiply up by precision, round accurately, then divide and use native toFixed()",
                 "range": [
-                  876,
-                  959
+                  895,
+                  978
                 ],
                 "loc": {
                   "start": {
-                    "line": 25,
+                    "line": 31,
                     "column": 2
                   },
                   "end": {
-                    "line": 25,
+                    "line": 31,
                     "column": 85
                   }
                 }
@@ -887,16 +887,16 @@
           }
         ],
         "range": [
-          769,
-          1035
+          788,
+          1054
         ],
         "loc": {
           "start": {
-            "line": 21,
+            "line": 27,
             "column": 35
           },
           "end": {
-            "line": 27,
+            "line": 33,
             "column": 1
           }
         }
@@ -904,16 +904,16 @@
       "generator": false,
       "expression": false,
       "range": [
-        734,
-        1035
+        753,
+        1054
       ],
       "loc": {
         "start": {
-          "line": 21,
+          "line": 27,
           "column": 0
         },
         "end": {
-          "line": 27,
+          "line": 33,
           "column": 1
         }
       },
@@ -927,31 +927,31 @@
         "type": "Identifier",
         "name": "toFixed",
         "range": [
-          1052,
-          1059
+          1071,
+          1078
         ],
         "loc": {
           "start": {
-            "line": 29,
+            "line": 35,
             "column": 15
           },
           "end": {
-            "line": 29,
+            "line": 35,
             "column": 22
           }
         }
       },
       "range": [
-        1037,
-        1060
+        1056,
+        1079
       ],
       "loc": {
         "start": {
-          "line": 29,
+          "line": 35,
           "column": 0
         },
         "end": {
-          "line": 29,
+          "line": 35,
           "column": 23
         }
       },
@@ -967,16 +967,16 @@
           "type": "Identifier",
           "name": "toFixed",
           "range": [
-            743,
-            750
+            762,
+            769
           ],
           "loc": {
             "start": {
-              "line": 21,
+              "line": 27,
               "column": 9
             },
             "end": {
-              "line": 21,
+              "line": 27,
               "column": 16
             }
           }
@@ -986,16 +986,16 @@
             "type": "Identifier",
             "name": "value",
             "range": [
-              751,
-              756
+              770,
+              775
             ],
             "loc": {
               "start": {
-                "line": 21,
+                "line": 27,
                 "column": 17
               },
               "end": {
-                "line": 21,
+                "line": 27,
                 "column": 22
               }
             }
@@ -1004,16 +1004,16 @@
             "type": "Identifier",
             "name": "precision",
             "range": [
-              758,
-              767
+              777,
+              786
             ],
             "loc": {
               "start": {
-                "line": 21,
+                "line": 27,
                 "column": 24
               },
               "end": {
-                "line": 21,
+                "line": 27,
                 "column": 33
               }
             }
@@ -1031,16 +1031,16 @@
                   "type": "Identifier",
                   "name": "precision",
                   "range": [
-                    773,
-                    782
+                    792,
+                    801
                   ],
                   "loc": {
                     "start": {
-                      "line": 22,
+                      "line": 28,
                       "column": 2
                     },
                     "end": {
-                      "line": 22,
+                      "line": 28,
                       "column": 11
                     }
                   }
@@ -1051,16 +1051,16 @@
                     "type": "Identifier",
                     "name": "checkPrecision",
                     "range": [
-                      785,
-                      799
+                      804,
+                      818
                     ],
                     "loc": {
                       "start": {
-                        "line": 22,
+                        "line": 28,
                         "column": 14
                       },
                       "end": {
-                        "line": 22,
+                        "line": 28,
                         "column": 28
                       }
                     }
@@ -1070,16 +1070,16 @@
                       "type": "Identifier",
                       "name": "precision",
                       "range": [
-                        800,
-                        809
+                        819,
+                        828
                       ],
                       "loc": {
                         "start": {
-                          "line": 22,
+                          "line": 28,
                           "column": 29
                         },
                         "end": {
-                          "line": 22,
+                          "line": 28,
                           "column": 38
                         }
                       }
@@ -1091,16 +1091,16 @@
                         "type": "Identifier",
                         "name": "settings",
                         "range": [
-                          811,
-                          819
+                          830,
+                          838
                         ],
                         "loc": {
                           "start": {
-                            "line": 22,
+                            "line": 28,
                             "column": 40
                           },
                           "end": {
-                            "line": 22,
+                            "line": 28,
                             "column": 48
                           }
                         }
@@ -1109,77 +1109,77 @@
                         "type": "Identifier",
                         "name": "precision",
                         "range": [
-                          820,
-                          829
+                          839,
+                          848
                         ],
                         "loc": {
                           "start": {
-                            "line": 22,
+                            "line": 28,
                             "column": 49
                           },
                           "end": {
-                            "line": 22,
+                            "line": 28,
                             "column": 58
                           }
                         }
                       },
                       "range": [
-                        811,
-                        829
+                        830,
+                        848
                       ],
                       "loc": {
                         "start": {
-                          "line": 22,
+                          "line": 28,
                           "column": 40
                         },
                         "end": {
-                          "line": 22,
+                          "line": 28,
                           "column": 58
                         }
                       }
                     }
                   ],
                   "range": [
-                    785,
-                    830
+                    804,
+                    849
                   ],
                   "loc": {
                     "start": {
-                      "line": 22,
+                      "line": 28,
                       "column": 14
                     },
                     "end": {
-                      "line": 22,
+                      "line": 28,
                       "column": 59
                     }
                   }
                 },
                 "range": [
-                  773,
-                  830
+                  792,
+                  849
                 ],
                 "loc": {
                   "start": {
-                    "line": 22,
+                    "line": 28,
                     "column": 2
                   },
                   "end": {
-                    "line": 22,
+                    "line": 28,
                     "column": 59
                   }
                 }
               },
               "range": [
-                773,
-                831
+                792,
+                850
               ],
               "loc": {
                 "start": {
-                  "line": 22,
+                  "line": 28,
                   "column": 2
                 },
                 "end": {
-                  "line": 22,
+                  "line": 28,
                   "column": 60
                 }
               }
@@ -1193,16 +1193,16 @@
                     "type": "Identifier",
                     "name": "power",
                     "range": [
-                      840,
-                      845
+                      859,
+                      864
                     ],
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 29,
                         "column": 8
                       },
                       "end": {
-                        "line": 23,
+                        "line": 29,
                         "column": 13
                       }
                     }
@@ -1216,16 +1216,16 @@
                         "type": "Identifier",
                         "name": "Math",
                         "range": [
-                          848,
-                          852
+                          867,
+                          871
                         ],
                         "loc": {
                           "start": {
-                            "line": 23,
+                            "line": 29,
                             "column": 16
                           },
                           "end": {
-                            "line": 23,
+                            "line": 29,
                             "column": 20
                           }
                         }
@@ -1234,31 +1234,31 @@
                         "type": "Identifier",
                         "name": "pow",
                         "range": [
-                          853,
-                          856
+                          872,
+                          875
                         ],
                         "loc": {
                           "start": {
-                            "line": 23,
+                            "line": 29,
                             "column": 21
                           },
                           "end": {
-                            "line": 23,
+                            "line": 29,
                             "column": 24
                           }
                         }
                       },
                       "range": [
-                        848,
-                        856
+                        867,
+                        875
                       ],
                       "loc": {
                         "start": {
-                          "line": 23,
+                          "line": 29,
                           "column": 16
                         },
                         "end": {
-                          "line": 23,
+                          "line": 29,
                           "column": 24
                         }
                       }
@@ -1269,16 +1269,16 @@
                         "value": 10,
                         "raw": "10",
                         "range": [
-                          857,
-                          859
+                          876,
+                          878
                         ],
                         "loc": {
                           "start": {
-                            "line": 23,
+                            "line": 29,
                             "column": 25
                           },
                           "end": {
-                            "line": 23,
+                            "line": 29,
                             "column": 27
                           }
                         }
@@ -1287,47 +1287,47 @@
                         "type": "Identifier",
                         "name": "precision",
                         "range": [
-                          861,
-                          870
+                          880,
+                          889
                         ],
                         "loc": {
                           "start": {
-                            "line": 23,
+                            "line": 29,
                             "column": 29
                           },
                           "end": {
-                            "line": 23,
+                            "line": 29,
                             "column": 38
                           }
                         }
                       }
                     ],
                     "range": [
-                      848,
-                      871
+                      867,
+                      890
                     ],
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 29,
                         "column": 16
                       },
                       "end": {
-                        "line": 23,
+                        "line": 29,
                         "column": 39
                       }
                     }
                   },
                   "range": [
-                    840,
-                    871
+                    859,
+                    890
                   ],
                   "loc": {
                     "start": {
-                      "line": 23,
+                      "line": 29,
                       "column": 8
                     },
                     "end": {
-                      "line": 23,
+                      "line": 29,
                       "column": 39
                     }
                   }
@@ -1335,16 +1335,16 @@
               ],
               "kind": "const",
               "range": [
-                834,
-                872
+                853,
+                891
               ],
               "loc": {
                 "start": {
-                  "line": 23,
+                  "line": 29,
                   "column": 2
                 },
                 "end": {
-                  "line": 23,
+                  "line": 29,
                   "column": 40
                 }
               },
@@ -1353,16 +1353,16 @@
                   "type": "Line",
                   "value": " Multiply up by precision, round accurately, then divide and use native toFixed()",
                   "range": [
-                    876,
-                    959
+                    895,
+                    978
                   ],
                   "loc": {
                     "start": {
-                      "line": 25,
+                      "line": 31,
                       "column": 2
                     },
                     "end": {
-                      "line": 25,
+                      "line": 31,
                       "column": 85
                     }
                   }
@@ -1388,16 +1388,16 @@
                           "type": "Identifier",
                           "name": "Math",
                           "range": [
-                            970,
-                            974
+                            989,
+                            993
                           ],
                           "loc": {
                             "start": {
-                              "line": 26,
+                              "line": 32,
                               "column": 10
                             },
                             "end": {
-                              "line": 26,
+                              "line": 32,
                               "column": 14
                             }
                           }
@@ -1406,31 +1406,31 @@
                           "type": "Identifier",
                           "name": "round",
                           "range": [
-                            975,
-                            980
+                            994,
+                            999
                           ],
                           "loc": {
                             "start": {
-                              "line": 26,
+                              "line": 32,
                               "column": 15
                             },
                             "end": {
-                              "line": 26,
+                              "line": 32,
                               "column": 20
                             }
                           }
                         },
                         "range": [
-                          970,
-                          980
+                          989,
+                          999
                         ],
                         "loc": {
                           "start": {
-                            "line": 26,
+                            "line": 32,
                             "column": 10
                           },
                           "end": {
-                            "line": 26,
+                            "line": 32,
                             "column": 20
                           }
                         }
@@ -1446,16 +1446,16 @@
                               "type": "Identifier",
                               "name": "value",
                               "range": [
-                                982,
-                                987
+                                1001,
+                                1006
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 26,
+                                  "line": 32,
                                   "column": 22
                                 },
                                 "end": {
-                                  "line": 26,
+                                  "line": 32,
                                   "column": 27
                                 }
                               }
@@ -1465,31 +1465,31 @@
                               "value": 1e-8,
                               "raw": "1e-8",
                               "range": [
-                                990,
-                                994
+                                1009,
+                                1013
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 26,
+                                  "line": 32,
                                   "column": 30
                                 },
                                 "end": {
-                                  "line": 26,
+                                  "line": 32,
                                   "column": 34
                                 }
                               }
                             },
                             "range": [
-                              982,
-                              994
+                              1001,
+                              1013
                             ],
                             "loc": {
                               "start": {
-                                "line": 26,
+                                "line": 32,
                                 "column": 22
                               },
                               "end": {
-                                "line": 26,
+                                "line": 32,
                                 "column": 34
                               }
                             }
@@ -1498,47 +1498,47 @@
                             "type": "Identifier",
                             "name": "power",
                             "range": [
-                              998,
-                              1003
+                              1017,
+                              1022
                             ],
                             "loc": {
                               "start": {
-                                "line": 26,
+                                "line": 32,
                                 "column": 38
                               },
                               "end": {
-                                "line": 26,
+                                "line": 32,
                                 "column": 43
                               }
                             }
                           },
                           "range": [
-                            981,
-                            1003
+                            1000,
+                            1022
                           ],
                           "loc": {
                             "start": {
-                              "line": 26,
+                              "line": 32,
                               "column": 21
                             },
                             "end": {
-                              "line": 26,
+                              "line": 32,
                               "column": 43
                             }
                           }
                         }
                       ],
                       "range": [
-                        970,
-                        1004
+                        989,
+                        1023
                       ],
                       "loc": {
                         "start": {
-                          "line": 26,
+                          "line": 32,
                           "column": 10
                         },
                         "end": {
-                          "line": 26,
+                          "line": 32,
                           "column": 44
                         }
                       }
@@ -1547,31 +1547,31 @@
                       "type": "Identifier",
                       "name": "power",
                       "range": [
-                        1007,
-                        1012
+                        1026,
+                        1031
                       ],
                       "loc": {
                         "start": {
-                          "line": 26,
+                          "line": 32,
                           "column": 47
                         },
                         "end": {
-                          "line": 26,
+                          "line": 32,
                           "column": 52
                         }
                       }
                     },
                     "range": [
-                      970,
-                      1012
+                      989,
+                      1031
                     ],
                     "loc": {
                       "start": {
-                        "line": 26,
+                        "line": 32,
                         "column": 10
                       },
                       "end": {
-                        "line": 26,
+                        "line": 32,
                         "column": 52
                       }
                     }
@@ -1580,31 +1580,31 @@
                     "type": "Identifier",
                     "name": "toFixed",
                     "range": [
-                      1014,
-                      1021
+                      1033,
+                      1040
                     ],
                     "loc": {
                       "start": {
-                        "line": 26,
+                        "line": 32,
                         "column": 54
                       },
                       "end": {
-                        "line": 26,
+                        "line": 32,
                         "column": 61
                       }
                     }
                   },
                   "range": [
-                    969,
-                    1021
+                    988,
+                    1040
                   ],
                   "loc": {
                     "start": {
-                      "line": 26,
+                      "line": 32,
                       "column": 9
                     },
                     "end": {
-                      "line": 26,
+                      "line": 32,
                       "column": 61
                     }
                   }
@@ -1614,47 +1614,47 @@
                     "type": "Identifier",
                     "name": "precision",
                     "range": [
-                      1022,
-                      1031
+                      1041,
+                      1050
                     ],
                     "loc": {
                       "start": {
-                        "line": 26,
+                        "line": 32,
                         "column": 62
                       },
                       "end": {
-                        "line": 26,
+                        "line": 32,
                         "column": 71
                       }
                     }
                   }
                 ],
                 "range": [
-                  969,
-                  1032
+                  988,
+                  1051
                 ],
                 "loc": {
                   "start": {
-                    "line": 26,
+                    "line": 32,
                     "column": 9
                   },
                   "end": {
-                    "line": 26,
+                    "line": 32,
                     "column": 72
                   }
                 }
               },
               "range": [
-                962,
-                1033
+                981,
+                1052
               ],
               "loc": {
                 "start": {
-                  "line": 26,
+                  "line": 32,
                   "column": 2
                 },
                 "end": {
-                  "line": 26,
+                  "line": 32,
                   "column": 73
                 }
               },
@@ -1663,16 +1663,16 @@
                   "type": "Line",
                   "value": " Multiply up by precision, round accurately, then divide and use native toFixed()",
                   "range": [
-                    876,
-                    959
+                    895,
+                    978
                   ],
                   "loc": {
                     "start": {
-                      "line": 25,
+                      "line": 31,
                       "column": 2
                     },
                     "end": {
-                      "line": 25,
+                      "line": 31,
                       "column": 85
                     }
                   }
@@ -1681,16 +1681,16 @@
             }
           ],
           "range": [
-            769,
-            1035
+            788,
+            1054
           ],
           "loc": {
             "start": {
-              "line": 21,
+              "line": 27,
               "column": 35
             },
             "end": {
-              "line": 27,
+              "line": 33,
               "column": 1
             }
           }
@@ -1698,26 +1698,26 @@
         "generator": false,
         "expression": false,
         "range": [
-          734,
-          1035
+          753,
+          1054
         ],
         "loc": {
           "start": {
-            "line": 21,
+            "line": 27,
             "column": 0
           },
           "end": {
-            "line": 27,
+            "line": 33,
             "column": 1
           }
         },
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * ```js\n *  (0.615).toFixed(2);           // \"0.61\" (native toFixed has rounding issues)\n *  accounting.toFixed(0.615, 2); // \"0.62\"\n * ```\n *\n * @method toFixed\n * @for accounting\n * @param {Float}   value         The float to be treated as a decimal number\n * @param {Number} [precision=2] The number of decimal digits to keep\n * @return {String} The given number transformed into a string with the given precission\n ",
+            "value": "*\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * **Usage:**\n *\n * ```js\n * // Native toFixed has rounding issues\n * (0.615).toFixed(2);\n * // => '0.61'\n *\n * // With accounting-js\n * toFixed(0.615, 2);\n * // => '0.62'\n * ```\n *\n * @access public\n * @param {Float} value - Float to be treated as a decimal number\n * @param {Number} [precision=settings.precision] - Number of decimal digits to keep\n * @return {String} - Given number transformed into a string with the given precission\n ",
             "range": [
               92,
-              733
+              752
             ],
             "loc": {
               "start": {
@@ -1725,7 +1725,7 @@
                 "column": 0
               },
               "end": {
-                "line": 20,
+                "line": 26,
                 "column": 3
               }
             }
@@ -1734,16 +1734,16 @@
         "trailingComments": []
       },
       "range": [
-        1037,
-        1060
+        1056,
+        1079
       ],
       "loc": {
         "start": {
-          "line": 29,
+          "line": 35,
           "column": 0
         },
         "end": {
-          "line": 29,
+          "line": 35,
           "column": 23
         }
       }
@@ -1752,7 +1752,7 @@
   "sourceType": "module",
   "range": [
     0,
-    1060
+    1079
   ],
   "loc": {
     "start": {
@@ -1760,17 +1760,17 @@
       "column": 0
     },
     "end": {
-      "line": 29,
+      "line": 35,
       "column": 23
     }
   },
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * ```js\n *  (0.615).toFixed(2);           // \"0.61\" (native toFixed has rounding issues)\n *  accounting.toFixed(0.615, 2); // \"0.62\"\n * ```\n *\n * @method toFixed\n * @for accounting\n * @param {Float}   value         The float to be treated as a decimal number\n * @param {Number} [precision=2] The number of decimal digits to keep\n * @return {String} The given number transformed into a string with the given precission\n ",
+      "value": "*\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * **Usage:**\n *\n * ```js\n * // Native toFixed has rounding issues\n * (0.615).toFixed(2);\n * // => '0.61'\n *\n * // With accounting-js\n * toFixed(0.615, 2);\n * // => '0.62'\n * ```\n *\n * @access public\n * @param {Float} value - Float to be treated as a decimal number\n * @param {Number} [precision=settings.precision] - Number of decimal digits to keep\n * @return {String} - Given number transformed into a string with the given precission\n ",
       "range": [
         92,
-        733
+        752
       ],
       "loc": {
         "start": {
@@ -1778,7 +1778,7 @@
           "column": 0
         },
         "end": {
-          "line": 20,
+          "line": 26,
           "column": 3
         }
       }
@@ -1787,16 +1787,16 @@
       "type": "Line",
       "value": " Multiply up by precision, round accurately, then divide and use native toFixed()",
       "range": [
-        876,
-        959
+        895,
+        978
       ],
       "loc": {
         "start": {
-          "line": 25,
+          "line": 31,
           "column": 2
         },
         "end": {
-          "line": 25,
+          "line": 31,
           "column": 85
         }
       }

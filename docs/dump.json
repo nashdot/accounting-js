@@ -23,7 +23,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import objectAssign from 'object-assign';\nimport isString from 'is-string';\n\nimport checkCurrencyFormat from './internal/checkCurrencyFormat';\nimport settings from './settings';\nimport formatNumber from './formatNumber';\nimport unformat from './unformat';\n\n/**\n * Format a list of numbers into an accounting column, padding with whitespace\n * to line up currency symbols, thousand separators and decimals places.\n *\n * List should be an array of numbers.\n *\n * Returns array of accouting-formatted number strings of same length.\n *\n * NB: `white-space:pre` CSS rule is required on the list container to prevent\n * browsers from collapsing the whitespace in the output strings.\n *\n * ```js\n * accounting.formatColumn([123.5, 3456.49, 777888.99, 12345678, -5432], { symbol: \"$ \" });\n * ```\n *\n * @method formatColumn\n * @for accounting\n * @param {Array<Number>} list An array of numbers to format\n * @param {Object}        [opts={}] Object containing all the options of the method\n * @param {Object|String} [symbol=\"$\"] String with the currency symbol. For conveniency if can be an object containing all the options of the method\n * @param {Integer}       [precision=2] Number of decimal digits\n * @param {String}        [thousand=','] String with the thousands separator\n * @param {String}        [decimal=\".\"] String with the decimal separator\n * @param {String}        [format=\"%s%v\"] String with the format to apply, where %s is the currency symbol and %v is the value\n * @return {Array<String>} array of accouting-formatted number strings of same length\n */\nfunction formatColumn(list, opts = {}) {\n  if (!list) return [];\n\n  // Build options object from second param (if object) or all params, extending defaults\n  opts = objectAssign({},\n    settings,\n    opts\n  );\n\n  // Check format (returns object with pos, neg and zero), only need pos for now\n  const formats = checkCurrencyFormat(opts.format);\n\n  // Whether to pad at start of string or after currency symbol\n  const padAfterSymbol = formats.pos.indexOf('%s') < formats.pos.indexOf('%v');\n\n  // Store value for the length of the longest string in the column\n  let maxLength = 0;\n\n  // Format the list according to options, store the length of the longest string\n  const formatted = list.map((val) => {\n    if (Array.isArray(val)) {\n      // Recursively format columns if list is a multi-dimensional array\n      return formatColumn(val, opts);\n    }\n    // Clean up the value\n    val = unformat(val, opts.decimal);\n\n    // Choose which format to use for this value (pos, neg or zero)\n    let useFormat;\n\n    if (val > 0) {\n      useFormat = formats.pos;\n    } else if (val < 0) {\n      useFormat = formats.neg;\n    } else {\n      useFormat = formats.zero;\n    }\n\n    // Format this value, push into formatted list and save the length\n    const fVal = useFormat\n      .replace('%s', opts.symbol)\n      .replace('%v', formatNumber(Math.abs(val), opts));\n\n    if (fVal.length > maxLength) {\n      maxLength = fVal.length;\n    }\n\n    return fVal;\n  });\n\n  // Pad each number in the list and send back the column of numbers\n  return formatted.map((val) => {\n    // Only if this is a string (not a nested array, which would have already been padded)\n    if (isString(val) && val.length < maxLength) {\n      // Depending on symbol position, pad after symbol or at index 0\n      return padAfterSymbol ?\n        val.replace(opts.symbol, opts.symbol + (new Array(maxLength - val.length + 1).join(' '))) :\n        (new Array(maxLength - val.length + 1).join(' ')) + val;\n    }\n    return val;\n  });\n}\n\nexport default formatColumn;\n"
+    "content": "import objectAssign from 'object-assign';\nimport isString from 'is-string';\n\nimport checkCurrencyFormat from './internal/checkCurrencyFormat';\nimport settings from './settings';\nimport formatNumber from './formatNumber';\nimport unformat from './unformat';\n\n/**\n * Format a list of numbers into an accounting column, padding with whitespace\n * to line up currency symbols, thousand separators and decimals places.\n *\n * Returns array of accouting-formatted number strings of same length.\n *\n * NB: `white-space:pre` CSS rule is required on the list container to prevent\n * browsers from collapsing the whitespace in the output strings.\n *\n * **Usage:**\n *\n * ```js\n * formatColumn([123.5, 3456.49, 777888.99, 12345678, -5432], { symbol: \"$ \" });\n * ```\n *\n * @access public\n * @param {Array<Number>} list - Array of numbers to format\n * @param {Object} [opts={}] - Object containing all the options of the method\n * @return {Array<String>} - Array of accouting-formatted number strings of same length\n */\nfunction formatColumn(list, opts = {}) {\n  if (!list) return [];\n\n  // Build options object from second param (if object) or all params, extending defaults\n  opts = objectAssign({},\n    settings,\n    opts\n  );\n\n  // Check format (returns object with pos, neg and zero), only need pos for now\n  const formats = checkCurrencyFormat(opts.format);\n\n  // Whether to pad at start of string or after currency symbol\n  const padAfterSymbol = formats.pos.indexOf('%s') < formats.pos.indexOf('%v');\n\n  // Store value for the length of the longest string in the column\n  let maxLength = 0;\n\n  // Format the list according to options, store the length of the longest string\n  const formatted = list.map((val) => {\n    if (Array.isArray(val)) {\n      // Recursively format columns if list is a multi-dimensional array\n      return formatColumn(val, opts);\n    }\n    // Clean up the value\n    val = unformat(val, opts.decimal);\n\n    // Choose which format to use for this value (pos, neg or zero)\n    let useFormat;\n\n    if (val > 0) {\n      useFormat = formats.pos;\n    } else if (val < 0) {\n      useFormat = formats.neg;\n    } else {\n      useFormat = formats.zero;\n    }\n\n    // Format this value, push into formatted list and save the length\n    const fVal = useFormat\n      .replace('%s', opts.symbol)\n      .replace('%v', formatNumber(Math.abs(val), opts));\n\n    if (fVal.length > maxLength) {\n      maxLength = fVal.length;\n    }\n\n    return fVal;\n  });\n\n  // Pad each number in the list and send back the column of numbers\n  return formatted.map((val) => {\n    // Only if this is a string (not a nested array, which would have already been padded)\n    if (isString(val) && val.length < maxLength) {\n      // Depending on symbol position, pad after symbol or at index 0\n      return padAfterSymbol ?\n        val.replace(opts.symbol, opts.symbol + (new Array(maxLength - val.length + 1).join(' '))) :\n        (new Array(maxLength - val.length + 1).join(' ')) + val;\n    }\n    return val;\n  });\n}\n\nexport default formatColumn;\n"
   },
   {
     "__docId__": 2,
@@ -33,22 +33,12 @@
     "name": "formatColumn",
     "memberof": "lib/formatColumn.js",
     "longname": "lib/formatColumn.js~formatColumn",
-    "access": null,
+    "access": "public",
     "export": true,
     "importPath": "accounting-js/lib/formatColumn.js",
     "importStyle": "formatColumn",
-    "description": "Format a list of numbers into an accounting column, padding with whitespace\nto line up currency symbols, thousand separators and decimals places.\n\nList should be an array of numbers.\n\nReturns array of accouting-formatted number strings of same length.\n\nNB: `white-space:pre` CSS rule is required on the list container to prevent\nbrowsers from collapsing the whitespace in the output strings.\n\n```js\naccounting.formatColumn([123.5, 3456.49, 777888.99, 12345678, -5432], { symbol: \"$ \" });\n```",
-    "lineNumber": 35,
-    "unknown": [
-      {
-        "tagName": "@method",
-        "tagValue": "formatColumn"
-      },
-      {
-        "tagName": "@for",
-        "tagValue": "accounting"
-      }
-    ],
+    "description": "Format a list of numbers into an accounting column, padding with whitespace\nto line up currency symbols, thousand separators and decimals places.\n\nReturns array of accouting-formatted number strings of same length.\n\nNB: `white-space:pre` CSS rule is required on the list container to prevent\nbrowsers from collapsing the whitespace in the output strings.\n\n**Usage:**\n\n```js\nformatColumn([123.5, 3456.49, 777888.99, 12345678, -5432], { symbol: \"$ \" });\n```",
+    "lineNumber": 29,
     "params": [
       {
         "nullable": null,
@@ -58,7 +48,7 @@
         "spread": false,
         "optional": false,
         "name": "list",
-        "description": "An array of numbers to format"
+        "description": "Array of numbers to format"
       },
       {
         "nullable": null,
@@ -71,67 +61,6 @@
         "defaultRaw": {},
         "name": "opts",
         "description": "Object containing all the options of the method"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "Object",
-          "String"
-        ],
-        "spread": false,
-        "optional": true,
-        "defaultValue": "\"$\"",
-        "defaultRaw": "$",
-        "name": "symbol",
-        "description": "String with the currency symbol. For conveniency if can be an object containing all the options of the method"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "Integer"
-        ],
-        "spread": false,
-        "optional": true,
-        "defaultValue": "2",
-        "defaultRaw": 2,
-        "name": "precision",
-        "description": "Number of decimal digits"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "String"
-        ],
-        "spread": false,
-        "optional": true,
-        "defaultValue": "','",
-        "defaultRaw": "','",
-        "name": "thousand",
-        "description": "String with the thousands separator"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "String"
-        ],
-        "spread": false,
-        "optional": true,
-        "defaultValue": "\".\"",
-        "defaultRaw": ".",
-        "name": "decimal",
-        "description": "String with the decimal separator"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "String"
-        ],
-        "spread": false,
-        "optional": true,
-        "defaultValue": "\"%s%v\"",
-        "defaultRaw": "%s%v",
-        "name": "format",
-        "description": "String with the format to apply, where %s is the currency symbol and %v is the value"
       }
     ],
     "return": {
@@ -140,7 +69,7 @@
         "Array<String>"
       ],
       "spread": false,
-      "description": "array of accouting-formatted number strings of same length"
+      "description": "Array of accouting-formatted number strings of same length"
     },
     "generator": false
   },
@@ -155,7 +84,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import objectAssign from 'object-assign';\n\nimport checkCurrencyFormat from './internal/checkCurrencyFormat';\nimport settings from './settings';\nimport formatNumber from './formatNumber';\n\n/**\n * Format a number into currency.\n *\n * Usage: accounting.formatMoney(number, symbol, precision, thousandsSep, decimalSep, format)\n * defaults: (0, '$', 2, ',', '.', '%s%v')\n *\n * Localise by overriding the symbol, precision, thousand / decimal separators and format.\n *\n * ```js\n * // Default usage\n * accounting.formatMoney(12345678); // $12,345,678.00\n *\n * // European formatting (custom symbol and separators), can also use options object as second parameter\n * accounting.formatMoney(4999.99, { symbol: \"€\", precision: 2, thousand: \".\", decimal: \",\" }); // €4.999,99\n *\n * // Negative values can be formatted nicely:\n * accounting.formatMoney(-500000, { symbol: \"£ \", precision: 0 }); // £ -500,000\n *\n * // Simple `format` string allows control of symbol position (%v = value, %s = symbol):\n * accounting.formatMoney(5318008, { symbol: \"GBP\",  format: \"%v %s\" }); // 5,318,008.00 GBP\n * ```\n *\n * @method formatMoney\n * @for accounting\n * @param {Number}        number Number to be formatted\n * @param {Object}        [opts={}] Object containing all the options of the method\n * @return {String} The given number properly formatted as money\n */\nfunction formatMoney(number, opts = {}) {\n  // Resursively format arrays\n  if (Array.isArray(number)) {\n    return number.map((val) => formatMoney(val, opts));\n  }\n\n  // Build options object from second param (if object) or all params, extending defaults\n  opts = objectAssign({},\n    settings,\n    opts\n  );\n\n  // Check format (returns object with pos, neg and zero)\n  const formats = checkCurrencyFormat(opts.format);\n\n  // Choose which format to use for this value\n  let useFormat;\n\n  if (number > 0) {\n    useFormat = formats.pos;\n  } else if (number < 0) {\n    useFormat = formats.neg;\n  } else {\n    useFormat = formats.zero;\n  }\n\n  // Return with currency symbol added\n  return useFormat\n    .replace('%s', opts.symbol)\n    .replace('%v', formatNumber(Math.abs(number), opts));\n}\n\nexport default formatMoney;\n"
+    "content": "import objectAssign from 'object-assign';\n\nimport checkCurrencyFormat from './internal/checkCurrencyFormat';\nimport settings from './settings';\nimport formatNumber from './formatNumber';\n\n/**\n * Format a number into currency.\n *\n * **Usage:**\n *\n * ```js\n * // Default usage\n * formatMoney(12345678);\n * // => $12,345,678.00\n *\n * // European formatting (custom symbol and separators)\n * formatMoney(4999.99, { symbol: \"€\", precision: 2, thousand: \".\", decimal: \",\" });\n * // => €4.999,99\n *\n * // Negative values can be formatted nicely\n * formatMoney(-500000, { symbol: \"£ \", precision: 0 });\n * // => £ -500,000\n *\n * // Simple `format` string allows control of symbol position (%v = value, %s = symbol)\n * formatMoney(5318008, { symbol: \"GBP\",  format: \"%v %s\" });\n * // => 5,318,008.00 GBP\n * ```\n *\n * @access public\n * @param {Number} number - Number to be formatted\n * @param {Object} [opts={}] - Object containing all the options of the method\n * @return {String} - Given number properly formatted as money\n */\nfunction formatMoney(number, opts = {}) {\n  // Resursively format arrays\n  if (Array.isArray(number)) {\n    return number.map((val) => formatMoney(val, opts));\n  }\n\n  // Build options object from second param (if object) or all params, extending defaults\n  opts = objectAssign({},\n    settings,\n    opts\n  );\n\n  // Check format (returns object with pos, neg and zero)\n  const formats = checkCurrencyFormat(opts.format);\n\n  // Choose which format to use for this value\n  let useFormat;\n\n  if (number > 0) {\n    useFormat = formats.pos;\n  } else if (number < 0) {\n    useFormat = formats.neg;\n  } else {\n    useFormat = formats.zero;\n  }\n\n  // Return with currency symbol added\n  return useFormat\n    .replace('%s', opts.symbol)\n    .replace('%v', formatNumber(Math.abs(number), opts));\n}\n\nexport default formatMoney;\n"
   },
   {
     "__docId__": 4,
@@ -165,22 +94,12 @@
     "name": "formatMoney",
     "memberof": "lib/formatMoney.js",
     "longname": "lib/formatMoney.js~formatMoney",
-    "access": null,
+    "access": "public",
     "export": true,
     "importPath": "accounting-js/lib/formatMoney.js",
     "importStyle": "formatMoney",
-    "description": "Format a number into currency.\n\nUsage: accounting.formatMoney(number, symbol, precision, thousandsSep, decimalSep, format)\ndefaults: (0, '$', 2, ',', '.', '%s%v')\n\nLocalise by overriding the symbol, precision, thousand / decimal separators and format.\n\n```js\n// Default usage\naccounting.formatMoney(12345678); // $12,345,678.00\n\n// European formatting (custom symbol and separators), can also use options object as second parameter\naccounting.formatMoney(4999.99, { symbol: \"€\", precision: 2, thousand: \".\", decimal: \",\" }); // €4.999,99\n\n// Negative values can be formatted nicely:\naccounting.formatMoney(-500000, { symbol: \"£ \", precision: 0 }); // £ -500,000\n\n// Simple `format` string allows control of symbol position (%v = value, %s = symbol):\naccounting.formatMoney(5318008, { symbol: \"GBP\",  format: \"%v %s\" }); // 5,318,008.00 GBP\n```",
+    "description": "Format a number into currency.\n\n**Usage:**\n\n```js\n// Default usage\nformatMoney(12345678);\n// => $12,345,678.00\n\n// European formatting (custom symbol and separators)\nformatMoney(4999.99, { symbol: \"€\", precision: 2, thousand: \".\", decimal: \",\" });\n// => €4.999,99\n\n// Negative values can be formatted nicely\nformatMoney(-500000, { symbol: \"£ \", precision: 0 });\n// => £ -500,000\n\n// Simple `format` string allows control of symbol position (%v = value, %s = symbol)\nformatMoney(5318008, { symbol: \"GBP\",  format: \"%v %s\" });\n// => 5,318,008.00 GBP\n```",
     "lineNumber": 35,
-    "unknown": [
-      {
-        "tagName": "@method",
-        "tagValue": "formatMoney"
-      },
-      {
-        "tagName": "@for",
-        "tagValue": "accounting"
-      }
-    ],
     "params": [
       {
         "nullable": null,
@@ -211,7 +130,7 @@
         "String"
       ],
       "spread": false,
-      "description": "The given number properly formatted as money"
+      "description": "Given number properly formatted as money"
     },
     "generator": false
   },
@@ -226,7 +145,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import objectAssign from 'object-assign';\n\nimport stripInsignificantZeros from './internal/stripInsignificantZeros';\nimport settings from './settings';\nimport toFixed from './toFixed';\n\n/**\n * Format a number, with comma-separated thousands and custom precision/decimal places.\n * Alias: `accounting.format()`\n *\n * Localise by overriding the precision and thousand / decimal separators.\n *\n * ```js\n * accounting.formatNumber(5318008);              // 5,318,008\n * accounting.formatNumber(9876543.21, { precision: 3, thousand: \" \" }); // 9 876 543.210\n * ```\n *\n * @method formatNumber\n * @for accounting\n * @param {Number}        number The number to be formatted\n * @param {Object}        [opts={}] Object containing all the options of the method\n * @return {String} The given number properly formatted\n  */\nfunction formatNumber(number, opts = {}) {\n  // Resursively format arrays:\n  if (Array.isArray(number)) {\n    return number.map((val) => formatNumber(val, opts));\n  }\n\n  // Build options object from second param (if object) or all params, extending defaults\n  opts = objectAssign({},\n    settings,\n    opts\n  );\n\n  // Do some calc\n  const negative = number < 0 ? '-' : '';\n  const base = parseInt(toFixed(Math.abs(number), opts.precision), 10) + '';\n  const mod = base.length > 3 ? base.length % 3 : 0;\n\n  // Format the number\n  const formatted = negative +\n    (mod ? base.substr(0, mod) + opts.thousand : '') +\n      base.substr(mod).replace(/(\\d{3})(?=\\d)/g, '$1' + opts.thousand) +\n        (opts.precision > 0 ? opts.decimal + toFixed(Math.abs(number), opts.precision).split('.')[1] : '');\n\n  return opts.stripZeros ? stripInsignificantZeros(formatted, opts.decimal) : formatted;\n}\n\nexport default formatNumber;\n"
+    "content": "import objectAssign from 'object-assign';\n\nimport stripInsignificantZeros from './internal/stripInsignificantZeros';\nimport settings from './settings';\nimport toFixed from './toFixed';\n\n/**\n * _Alias_: `format(number, opts)`\n *\n * Format a number, with comma-separated thousands and custom precision/decimal places.\n *\n * **Usage:**\n *\n * ```js\n * // Default usage\n * formatNumber(5318008);\n * // => 5,318,008\n *\n * // Custom format\n * formatNumber(9876543.21, { precision: 3, thousand: \" \" });\n * // => 9 876 543.210\n * ```\n *\n * @access public\n * @param {Number} number - Number to be formatted\n * @param {Object} [opts={}] - Object containing all the options of the method\n * @return {String} - Given number properly formatted\n  */\nfunction formatNumber(number, opts = {}) {\n  // Resursively format arrays:\n  if (Array.isArray(number)) {\n    return number.map((val) => formatNumber(val, opts));\n  }\n\n  // Build options object from second param (if object) or all params, extending defaults\n  opts = objectAssign({},\n    settings,\n    opts\n  );\n\n  // Do some calc\n  const negative = number < 0 ? '-' : '';\n  const base = parseInt(toFixed(Math.abs(number), opts.precision), 10) + '';\n  const mod = base.length > 3 ? base.length % 3 : 0;\n\n  // Format the number\n  const formatted = negative +\n    (mod ? base.substr(0, mod) + opts.thousand : '') +\n      base.substr(mod).replace(/(\\d{3})(?=\\d)/g, '$1' + opts.thousand) +\n        (opts.precision > 0 ? opts.decimal + toFixed(Math.abs(number), opts.precision).split('.')[1] : '');\n\n  return opts.stripZeros ? stripInsignificantZeros(formatted, opts.decimal) : formatted;\n}\n\nexport default formatNumber;\n"
   },
   {
     "__docId__": 6,
@@ -236,22 +155,12 @@
     "name": "formatNumber",
     "memberof": "lib/formatNumber.js",
     "longname": "lib/formatNumber.js~formatNumber",
-    "access": null,
+    "access": "public",
     "export": true,
     "importPath": "accounting-js/lib/formatNumber.js",
     "importStyle": "formatNumber",
-    "description": "Format a number, with comma-separated thousands and custom precision/decimal places.\nAlias: `accounting.format()`\n\nLocalise by overriding the precision and thousand / decimal separators.\n\n```js\naccounting.formatNumber(5318008);              // 5,318,008\naccounting.formatNumber(9876543.21, { precision: 3, thousand: \" \" }); // 9 876 543.210\n```",
-    "lineNumber": 24,
-    "unknown": [
-      {
-        "tagName": "@method",
-        "tagValue": "formatNumber"
-      },
-      {
-        "tagName": "@for",
-        "tagValue": "accounting"
-      }
-    ],
+    "description": "_Alias_: `format(number, opts)`\n\nFormat a number, with comma-separated thousands and custom precision/decimal places.\n\n**Usage:**\n\n```js\n// Default usage\nformatNumber(5318008);\n// => 5,318,008\n\n// Custom format\nformatNumber(9876543.21, { precision: 3, thousand: \" \" });\n// => 9 876 543.210\n```",
+    "lineNumber": 29,
     "params": [
       {
         "nullable": null,
@@ -261,7 +170,7 @@
         "spread": false,
         "optional": false,
         "name": "number",
-        "description": "The number to be formatted"
+        "description": "Number to be formatted"
       },
       {
         "nullable": null,
@@ -282,7 +191,7 @@
         "String"
       ],
       "spread": false,
-      "description": "The given number properly formatted"
+      "description": "Given number properly formatted"
     },
     "generator": false
   },
@@ -304,164 +213,6 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "lib/internal/checkCurrencyFormat.js",
-    "memberof": null,
-    "longname": "lib/internal/checkCurrencyFormat.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import isString from 'is-string';\n\n/**\n * Parses a format string or object and returns format obj for use in rendering.\n *\n * `format` is either a string with the default (positive) format, or object\n * containing `pos` (required), `neg` and `zero` values.\n *\n * Either string or format.pos must contain \"%v\" (value) to be valid.\n *\n * @method _checkCurrencyFormat\n * @for accounting\n * @param {String}        [format=\"%s%v\"] String with the format to apply, where %s is the currency symbol and %v is the value\n * @return {Object} object represnting format (with pos, neg and zero attributes)\n */\nfunction checkCurrencyFormat(format) {\n  // Format should be a string, in which case `value` ('%v') must be present\n  if (isString(format) && format.match('%v')) {\n    // Create and return positive, negative and zero formats\n    return {\n      pos: format,\n      neg: format.replace('-', '').replace('%v', '-%v'),\n      zero: format\n    };\n  }\n\n  // Otherwise, assume format was fine\n  return format;\n}\n\nexport default checkCurrencyFormat;\n"
-  },
-  {
-    "__docId__": 9,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "checkCurrencyFormat",
-    "memberof": "lib/internal/checkCurrencyFormat.js",
-    "longname": "lib/internal/checkCurrencyFormat.js~checkCurrencyFormat",
-    "access": null,
-    "export": true,
-    "importPath": "accounting-js/lib/internal/checkCurrencyFormat.js",
-    "importStyle": "checkCurrencyFormat",
-    "description": "Parses a format string or object and returns format obj for use in rendering.\n\n`format` is either a string with the default (positive) format, or object\ncontaining `pos` (required), `neg` and `zero` values.\n\nEither string or format.pos must contain \"%v\" (value) to be valid.",
-    "lineNumber": 16,
-    "unknown": [
-      {
-        "tagName": "@method",
-        "tagValue": "_checkCurrencyFormat"
-      },
-      {
-        "tagName": "@for",
-        "tagValue": "accounting"
-      }
-    ],
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "String"
-        ],
-        "spread": false,
-        "optional": true,
-        "defaultValue": "\"%s%v\"",
-        "defaultRaw": "%s%v",
-        "name": "format",
-        "description": "String with the format to apply, where %s is the currency symbol and %v is the value"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "Object"
-      ],
-      "spread": false,
-      "description": "object represnting format (with pos, neg and zero attributes)"
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 10,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "lib/internal/checkPrecision.js",
-    "memberof": null,
-    "longname": "lib/internal/checkPrecision.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 4,
-    "content": "/**\n * Check and normalise the value of precision (must be positive integer).\n */\nfunction checkPrecision(val, base) {\n  val = Math.round(Math.abs(val));\n  return isNaN(val) ? base : val;\n}\n\nexport default checkPrecision;\n"
-  },
-  {
-    "__docId__": 11,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "checkPrecision",
-    "memberof": "lib/internal/checkPrecision.js",
-    "longname": "lib/internal/checkPrecision.js~checkPrecision",
-    "access": null,
-    "export": true,
-    "importPath": "accounting-js/lib/internal/checkPrecision.js",
-    "importStyle": "checkPrecision",
-    "description": "Check and normalise the value of precision (must be positive integer).",
-    "lineNumber": 4,
-    "params": [
-      {
-        "name": "val",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "base",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 12,
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "lib/internal/stripInsignificantZeros.js",
-    "memberof": null,
-    "longname": "lib/internal/stripInsignificantZeros.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 2,
-    "content": "\nfunction stripInsignificantZeros(str, decimal) {\n  const parts = str.split(decimal);\n  const integerPart = parts[0];\n  const decimalPart = parts[1].replace(/0+$/, '');\n\n  if (decimalPart.length > 0) {\n    return integerPart + decimal + decimalPart;\n  }\n\n  return integerPart;\n}\n\nexport default stripInsignificantZeros;\n"
-  },
-  {
-    "__docId__": 13,
-    "kind": "function",
-    "static": true,
-    "variation": null,
-    "name": "stripInsignificantZeros",
-    "memberof": "lib/internal/stripInsignificantZeros.js",
-    "longname": "lib/internal/stripInsignificantZeros.js~stripInsignificantZeros",
-    "access": null,
-    "export": true,
-    "importPath": "accounting-js/lib/internal/stripInsignificantZeros.js",
-    "importStyle": "stripInsignificantZeros",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "params": [
-      {
-        "name": "str",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "decimal",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "__docId__": 14,
-    "kind": "file",
-    "static": true,
-    "variation": null,
     "name": "lib/parse.js",
     "memberof": null,
     "longname": "lib/parse.js",
@@ -471,7 +222,7 @@
     "content": "import unformat from './unformat';\n\nexport default unformat;\n"
   },
   {
-    "__docId__": 15,
+    "__docId__": 9,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -480,11 +231,11 @@
     "longname": "lib/settings.js",
     "access": null,
     "description": null,
-    "lineNumber": 6,
-    "content": "/**\n * The library's settings configuration object.\n *\n * Contains default parameters for currency and number formatting.\n */\nconst settings = {\n  symbol: '$',        // default currency symbol is '$'\n  format: '%s%v',     // controls output: %s = symbol, %v = value (can be object, see docs)\n  decimal: '.',       // decimal point separator\n  thousand: ',',      // thousands separator\n  precision: 2,       // decimal places\n  grouping: 3,        // digit grouping (not implemented yet)\n  stripZeros: false,  // strip insignificant zeros from decimal part\n  fallback: 0         // value returned on unformat() failure\n};\n\nexport default settings;\n"
+    "lineNumber": 8,
+    "content": "/**\n * The library's settings configuration object.\n *\n * Contains default parameters for currency and number formatting.\n *\n * @type Object\n */\nconst settings = {\n  /**\n   * Currency symbol\n   *\n   * @type {String}\n   */\n  symbol: '$',\n  /**\n   * Controls output: %s = symbol, %v = value (can be object, see docs)\n   *\n   * @type {String|Object}\n   */\n  format: '%s%v',\n  /**\n   * Decimal point separator\n   *\n   * @type {String}\n   */\n  decimal: '.',\n  /**\n   * Thousands separator\n   *\n   * @type {String}\n   */\n  thousand: ',',\n  /**\n   * Decimal places\n   *\n   * @type {Number}\n   */\n  precision: 2,\n  /**\n   * Digit grouping (not implemented yet)\n   *\n   * @type {Number}\n   */\n  grouping: 3,\n  /**\n   * Strip insignificant zeros from decimal part\n   *\n   * @type {Boolean}\n   */\n  stripZeros: false,\n  /**\n   * Value returned on unformat() failure\n   *\n   * @type {Float}\n   */\n  fallback: 0\n};\n\nexport default settings;\n"
   },
   {
-    "__docId__": 16,
+    "__docId__": 10,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -496,15 +247,18 @@
     "importPath": "accounting-js/lib/settings.js",
     "importStyle": "settings",
     "description": "The library's settings configuration object.\n\nContains default parameters for currency and number formatting.",
-    "lineNumber": 6,
+    "lineNumber": 8,
     "type": {
+      "nullable": null,
       "types": [
         "*"
-      ]
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
-    "__docId__": 17,
+    "__docId__": 11,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -514,32 +268,22 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import checkPrecision from './internal/checkPrecision';\nimport settings from './settings';\n\n/**\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * ```js\n *  (0.615).toFixed(2);           // \"0.61\" (native toFixed has rounding issues)\n *  accounting.toFixed(0.615, 2); // \"0.62\"\n * ```\n *\n * @method toFixed\n * @for accounting\n * @param {Float}   value         The float to be treated as a decimal number\n * @param {Number} [precision=2] The number of decimal digits to keep\n * @return {String} The given number transformed into a string with the given precission\n */\nfunction toFixed(value, precision) {\n  precision = checkPrecision(precision, settings.precision);\n  const power = Math.pow(10, precision);\n\n  // Multiply up by precision, round accurately, then divide and use native toFixed()\n  return (Math.round((value + 1e-8) * power) / power).toFixed(precision);\n}\n\nexport default toFixed;\n"
+    "content": "import checkPrecision from './internal/checkPrecision';\nimport settings from './settings';\n\n/**\n * Implementation of toFixed() that treats floats more like decimals.\n *\n * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\n * problems for accounting- and finance-related software.\n *\n * **Usage:**\n *\n * ```js\n * // Native toFixed has rounding issues\n * (0.615).toFixed(2);\n * // => '0.61'\n *\n * // With accounting-js\n * toFixed(0.615, 2);\n * // => '0.62'\n * ```\n *\n * @access public\n * @param {Float} value - Float to be treated as a decimal number\n * @param {Number} [precision=settings.precision] - Number of decimal digits to keep\n * @return {String} - Given number transformed into a string with the given precission\n */\nfunction toFixed(value, precision) {\n  precision = checkPrecision(precision, settings.precision);\n  const power = Math.pow(10, precision);\n\n  // Multiply up by precision, round accurately, then divide and use native toFixed()\n  return (Math.round((value + 1e-8) * power) / power).toFixed(precision);\n}\n\nexport default toFixed;\n"
   },
   {
-    "__docId__": 18,
+    "__docId__": 12,
     "kind": "function",
     "static": true,
     "variation": null,
     "name": "toFixed",
     "memberof": "lib/toFixed.js",
     "longname": "lib/toFixed.js~toFixed",
-    "access": null,
+    "access": "public",
     "export": true,
     "importPath": "accounting-js/lib/toFixed.js",
     "importStyle": "toFixed",
-    "description": "Implementation of toFixed() that treats floats more like decimals.\n\nFixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\nproblems for accounting- and finance-related software.\n\n```js\n (0.615).toFixed(2);           // \"0.61\" (native toFixed has rounding issues)\n accounting.toFixed(0.615, 2); // \"0.62\"\n```",
-    "lineNumber": 21,
-    "unknown": [
-      {
-        "tagName": "@method",
-        "tagValue": "toFixed"
-      },
-      {
-        "tagName": "@for",
-        "tagValue": "accounting"
-      }
-    ],
+    "description": "Implementation of toFixed() that treats floats more like decimals.\n\nFixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present\nproblems for accounting- and finance-related software.\n\n**Usage:**\n\n```js\n// Native toFixed has rounding issues\n(0.615).toFixed(2);\n// => '0.61'\n\n// With accounting-js\ntoFixed(0.615, 2);\n// => '0.62'\n```",
+    "lineNumber": 27,
     "params": [
       {
         "nullable": null,
@@ -549,7 +293,7 @@
         "spread": false,
         "optional": false,
         "name": "value",
-        "description": "The float to be treated as a decimal number"
+        "description": "Float to be treated as a decimal number"
       },
       {
         "nullable": null,
@@ -558,10 +302,10 @@
         ],
         "spread": false,
         "optional": true,
-        "defaultValue": "2",
-        "defaultRaw": 2,
+        "defaultValue": "settings.precision",
+        "defaultRaw": "settings.precision",
         "name": "precision",
-        "description": "The number of decimal digits to keep"
+        "description": "Number of decimal digits to keep"
       }
     ],
     "return": {
@@ -570,12 +314,12 @@
         "String"
       ],
       "spread": false,
-      "description": "The given number transformed into a string with the given precission"
+      "description": "Given number transformed into a string with the given precission"
     },
     "generator": false
   },
   {
-    "__docId__": 19,
+    "__docId__": 13,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -585,32 +329,22 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import settings from './settings';\n\n/**\n * Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.\n * Alias: `accounting.parse(string)`\n *\n * Decimal must be included in the regular expression to match floats (defaults to\n * accounting.settings.decimal), so if the number uses a non-standard decimal\n * separator, provide it as the second argument.\n *\n * Also matches bracketed negatives (eg. '$ (1.99)' => -1.99).\n *\n * Doesn't throw any errors (`NaN`s become 0) but this may change in future.\n *\n * ```js\n *  accounting.unformat(\"£ 12,345,678.90 GBP\"); // 12345678.9\n * ```\n *\n * @method unformat\n * @for accounting\n * @param {String|Array<String>} value The string or array of strings containing the number/s to parse\n * @param {Number}               decimal Number of decimal digits of the resultant number\n * @return {Float} The parsed number\n */\nfunction unformat(value, decimal = settings.decimal, fallback = settings.fallback) {\n  // Recursively unformat arrays:\n  if (Array.isArray(value)) {\n    return value.map((val) => unformat(val, decimal, fallback));\n  }\n\n  // Return the value as-is if it's already a number\n  if (typeof value === 'number') return value;\n\n   // Build regex to strip out everything except digits, decimal point and minus sign\n  const regex = new RegExp('[^0-9-(-)-' + decimal + ']', ['g']);\n  const unformattedValueString =\n      ('' + value)\n      .replace(regex, '')         // strip out any cruft\n      .replace(decimal, '.')      // make sure decimal point is standard\n      .replace(/\\(([-]*\\d*[^)]?\\d+)\\)/g, '-$1') // replace bracketed values with negatives\n      .replace(/\\((.*)\\)/, '');   // remove any brackets that do not have numeric value\n\n  /**\n   * Handling -ve number and bracket, eg.\n   * (-100) = 100, -(100) = 100, --100 = 100\n   */\n  const negative = (unformattedValueString.match(/-/g) || 2).length % 2,\n    absUnformatted = parseFloat(unformattedValueString.replace(/-/g, '')),\n    unformatted = absUnformatted * ((negative) ? -1 : 1);\n\n  // This will fail silently which may cause trouble, let's wait and see\n  return !isNaN(unformatted) ? unformatted : fallback;\n}\n\nexport default unformat;\n"
+    "content": "import settings from './settings';\n\n/**\n * _Alias_: `parse(value, decimal, fallback)`\n *\n * Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.\n *\n * Decimal must be included in the regular expression to match floats (defaults to\n * `settings.decimal`), so if the number uses a non-standard decimal\n * separator, provide it as the second argument.\n *\n * Also matches bracketed negatives (eg. `'$ (1.99)' => -1.99`).\n *\n * Doesn't throw any errors (`NaN`s become 0 or provided by fallback value).\n *\n * **Usage:**\n *\n * ```js\n * unformat('£ 12,345,678.90 GBP');\n * // => 12345678.9\n * ```\n *\n * @access public\n * @param {String|Array<String>} value - String or array of strings containing the number/s to parse\n * @param {Number} [decimal=settings.decimal] - Number of decimal digits of the resultant number\n * @param {Float} [fallback=settings.fallback] - Value returned on unformat() failure\n * @return {Float} - Parsed number\n */\nfunction unformat(value, decimal = settings.decimal, fallback = settings.fallback) {\n  // Recursively unformat arrays:\n  if (Array.isArray(value)) {\n    return value.map((val) => unformat(val, decimal, fallback));\n  }\n\n  // Return the value as-is if it's already a number\n  if (typeof value === 'number') return value;\n\n   // Build regex to strip out everything except digits, decimal point and minus sign\n  const regex = new RegExp('[^0-9-(-)-' + decimal + ']', ['g']);\n  const unformattedValueString =\n      ('' + value)\n      .replace(regex, '')         // strip out any cruft\n      .replace(decimal, '.')      // make sure decimal point is standard\n      .replace(/\\(([-]*\\d*[^)]?\\d+)\\)/g, '-$1') // replace bracketed values with negatives\n      .replace(/\\((.*)\\)/, '');   // remove any brackets that do not have numeric value\n\n  /**\n   * Handling -ve number and bracket, eg.\n   * (-100) = 100, -(100) = 100, --100 = 100\n   */\n  const negative = (unformattedValueString.match(/-/g) || 2).length % 2,\n    absUnformatted = parseFloat(unformattedValueString.replace(/-/g, '')),\n    unformatted = absUnformatted * ((negative) ? -1 : 1);\n\n  // This will fail silently which may cause trouble, let's wait and see\n  return !isNaN(unformatted) ? unformatted : fallback;\n}\n\nexport default unformat;\n"
   },
   {
-    "__docId__": 20,
+    "__docId__": 14,
     "kind": "function",
     "static": true,
     "variation": null,
     "name": "unformat",
     "memberof": "lib/unformat.js",
     "longname": "lib/unformat.js~unformat",
-    "access": null,
+    "access": "public",
     "export": true,
     "importPath": "accounting-js/lib/unformat.js",
     "importStyle": "unformat",
-    "description": "Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.\nAlias: `accounting.parse(string)`\n\nDecimal must be included in the regular expression to match floats (defaults to\naccounting.settings.decimal), so if the number uses a non-standard decimal\nseparator, provide it as the second argument.\n\nAlso matches bracketed negatives (eg. '$ (1.99)' => -1.99).\n\nDoesn't throw any errors (`NaN`s become 0) but this may change in future.\n\n```js\n accounting.unformat(\"£ 12,345,678.90 GBP\"); // 12345678.9\n```",
-    "lineNumber": 25,
-    "unknown": [
-      {
-        "tagName": "@method",
-        "tagValue": "unformat"
-      },
-      {
-        "tagName": "@for",
-        "tagValue": "accounting"
-      }
-    ],
+    "description": "_Alias_: `parse(value, decimal, fallback)`\n\nTakes a string/array of strings, removes all formatting/cruft and returns the raw float value.\n\nDecimal must be included in the regular expression to match floats (defaults to\n`settings.decimal`), so if the number uses a non-standard decimal\nseparator, provide it as the second argument.\n\nAlso matches bracketed negatives (eg. `'$ (1.99)' => -1.99`).\n\nDoesn't throw any errors (`NaN`s become 0 or provided by fallback value).\n\n**Usage:**\n\n```js\nunformat('£ 12,345,678.90 GBP');\n// => 12345678.9\n```",
+    "lineNumber": 29,
     "params": [
       {
         "nullable": null,
@@ -621,7 +355,7 @@
         "spread": false,
         "optional": false,
         "name": "value",
-        "description": "The string or array of strings containing the number/s to parse"
+        "description": "String or array of strings containing the number/s to parse"
       },
       {
         "nullable": null,
@@ -629,9 +363,23 @@
           "Number"
         ],
         "spread": false,
-        "optional": false,
+        "optional": true,
+        "defaultValue": "settings.decimal",
+        "defaultRaw": "settings.decimal",
         "name": "decimal",
         "description": "Number of decimal digits of the resultant number"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Float"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "settings.fallback",
+        "defaultRaw": "settings.fallback",
+        "name": "fallback",
+        "description": "Value returned on unformat() failure"
       }
     ],
     "return": {
@@ -640,12 +388,12 @@
         "Float"
       ],
       "spread": false,
-      "description": "The parsed number"
+      "description": "Parsed number"
     },
     "generator": false
   },
   {
-    "__docId__": 22,
+    "__docId__": 16,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -658,7 +406,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 23,
+    "__docId__": 17,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -671,7 +419,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 24,
+    "__docId__": 18,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -684,7 +432,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 25,
+    "__docId__": 19,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -697,7 +445,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 26,
+    "__docId__": 20,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -710,7 +458,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 27,
+    "__docId__": 21,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -723,7 +471,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 28,
+    "__docId__": 22,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -736,7 +484,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 29,
+    "__docId__": 23,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -749,7 +497,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 30,
+    "__docId__": 24,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -762,7 +510,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 31,
+    "__docId__": 25,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -775,7 +523,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 32,
+    "__docId__": 26,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -788,7 +536,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 33,
+    "__docId__": 27,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -801,7 +549,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 34,
+    "__docId__": 28,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -814,7 +562,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 35,
+    "__docId__": 29,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -827,7 +575,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 36,
+    "__docId__": 30,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -840,7 +588,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 37,
+    "__docId__": 31,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -853,7 +601,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 38,
+    "__docId__": 32,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -866,7 +614,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 39,
+    "__docId__": 33,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -879,7 +627,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 40,
+    "__docId__": 34,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -892,7 +640,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 41,
+    "__docId__": 35,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -905,7 +653,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 42,
+    "__docId__": 36,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -918,7 +666,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 43,
+    "__docId__": 37,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -931,7 +679,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 44,
+    "__docId__": 38,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -944,7 +692,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 45,
+    "__docId__": 39,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -957,7 +705,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 46,
+    "__docId__": 40,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -970,7 +718,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 47,
+    "__docId__": 41,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -983,7 +731,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 48,
+    "__docId__": 42,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -996,7 +744,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 49,
+    "__docId__": 43,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1009,7 +757,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 50,
+    "__docId__": 44,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1022,7 +770,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 51,
+    "__docId__": 45,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1035,7 +783,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 52,
+    "__docId__": 46,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1048,7 +796,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 53,
+    "__docId__": 47,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1061,7 +809,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 54,
+    "__docId__": 48,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1074,7 +822,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 55,
+    "__docId__": 49,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1087,7 +835,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 56,
+    "__docId__": 50,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1100,7 +848,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 57,
+    "__docId__": 51,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1113,7 +861,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 58,
+    "__docId__": 52,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1126,7 +874,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 59,
+    "__docId__": 53,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1139,7 +887,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 60,
+    "__docId__": 54,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1152,7 +900,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 61,
+    "__docId__": 55,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1165,7 +913,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 62,
+    "__docId__": 56,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1178,7 +926,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 63,
+    "__docId__": 57,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1191,7 +939,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 64,
+    "__docId__": 58,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1204,7 +952,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 65,
+    "__docId__": 59,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1217,7 +965,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 60,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1230,7 +978,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 67,
+    "__docId__": 61,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1243,7 +991,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 68,
+    "__docId__": 62,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1256,7 +1004,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 70,
+    "__docId__": 64,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1269,7 +1017,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 71,
+    "__docId__": 65,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1282,7 +1030,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 72,
+    "__docId__": 66,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1295,7 +1043,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 73,
+    "__docId__": 67,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1308,7 +1056,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 74,
+    "__docId__": 68,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1321,7 +1069,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 75,
+    "__docId__": 69,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1334,7 +1082,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 76,
+    "__docId__": 70,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1347,7 +1095,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 77,
+    "__docId__": 71,
     "kind": "external",
     "static": true,
     "variation": null,

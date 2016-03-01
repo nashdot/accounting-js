@@ -38,9 +38,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFixed">toFixed</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unformat">unformat</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-settings">settings</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">internal</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-checkCurrencyFormat">checkCurrencyFormat</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-checkPrecision">checkPrecision</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stripInsignificantZeros">stripInsignificantZeros</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -50,16 +47,58 @@
  * The library&apos;s settings configuration object.
  *
  * Contains default parameters for currency and number formatting.
+ *
+ * @type Object
  */
 const settings = {
-  symbol: &apos;$&apos;,        // default currency symbol is &apos;$&apos;
-  format: &apos;%s%v&apos;,     // controls output: %s = symbol, %v = value (can be object, see docs)
-  decimal: &apos;.&apos;,       // decimal point separator
-  thousand: &apos;,&apos;,      // thousands separator
-  precision: 2,       // decimal places
-  grouping: 3,        // digit grouping (not implemented yet)
-  stripZeros: false,  // strip insignificant zeros from decimal part
-  fallback: 0         // value returned on unformat() failure
+  /**
+   * Currency symbol
+   *
+   * @type {String}
+   */
+  symbol: &apos;$&apos;,
+  /**
+   * Controls output: %s = symbol, %v = value (can be object, see docs)
+   *
+   * @type {String|Object}
+   */
+  format: &apos;%s%v&apos;,
+  /**
+   * Decimal point separator
+   *
+   * @type {String}
+   */
+  decimal: &apos;.&apos;,
+  /**
+   * Thousands separator
+   *
+   * @type {String}
+   */
+  thousand: &apos;,&apos;,
+  /**
+   * Decimal places
+   *
+   * @type {Number}
+   */
+  precision: 2,
+  /**
+   * Digit grouping (not implemented yet)
+   *
+   * @type {Number}
+   */
+  grouping: 3,
+  /**
+   * Strip insignificant zeros from decimal part
+   *
+   * @type {Boolean}
+   */
+  stripZeros: false,
+  /**
+   * Value returned on unformat() failure
+   *
+   * @type {Float}
+   */
+  fallback: 0
 };
 
 export default settings;

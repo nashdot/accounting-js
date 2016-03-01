@@ -1,18 +1,8 @@
 {
-  "coverage": "88.88%",
-  "expectCount": 9,
-  "actualCount": 8,
+  "coverage": "100%",
+  "expectCount": 6,
+  "actualCount": 6,
   "files": {
-    "lib/internal/checkCurrencyFormat.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "lib/internal/checkPrecision.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
     "lib/formatColumn.js": {
       "expectCount": 1,
       "actualCount": 1,
@@ -32,13 +22,6 @@
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
-    },
-    "lib/internal/stripInsignificantZeros.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        2
-      ]
     },
     "lib/toFixed.js": {
       "expectCount": 1,

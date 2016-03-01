@@ -295,10 +295,10 @@
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * Format a number into currency.\n *\n * Usage: accounting.formatMoney(number, symbol, precision, thousandsSep, decimalSep, format)\n * defaults: (0, '$', 2, ',', '.', '%s%v')\n *\n * Localise by overriding the symbol, precision, thousand / decimal separators and format.\n *\n * ```js\n * // Default usage\n * accounting.formatMoney(12345678); // $12,345,678.00\n *\n * // European formatting (custom symbol and separators), can also use options object as second parameter\n * accounting.formatMoney(4999.99, { symbol: \"€\", precision: 2, thousand: \".\", decimal: \",\" }); // €4.999,99\n *\n * // Negative values can be formatted nicely:\n * accounting.formatMoney(-500000, { symbol: \"£ \", precision: 0 }); // £ -500,000\n *\n * // Simple `format` string allows control of symbol position (%v = value, %s = symbol):\n * accounting.formatMoney(5318008, { symbol: \"GBP\",  format: \"%v %s\" }); // 5,318,008.00 GBP\n * ```\n *\n * @method formatMoney\n * @for accounting\n * @param {Number}        number Number to be formatted\n * @param {Object}        [opts={}] Object containing all the options of the method\n * @return {String} The given number properly formatted as money\n ",
+          "value": "*\n * Format a number into currency.\n *\n * **Usage:**\n *\n * ```js\n * // Default usage\n * formatMoney(12345678);\n * // => $12,345,678.00\n *\n * // European formatting (custom symbol and separators)\n * formatMoney(4999.99, { symbol: \"€\", precision: 2, thousand: \".\", decimal: \",\" });\n * // => €4.999,99\n *\n * // Negative values can be formatted nicely\n * formatMoney(-500000, { symbol: \"£ \", precision: 0 });\n * // => £ -500,000\n *\n * // Simple `format` string allows control of symbol position (%v = value, %s = symbol)\n * formatMoney(5318008, { symbol: \"GBP\",  format: \"%v %s\" });\n * // => 5,318,008.00 GBP\n * ```\n *\n * @access public\n * @param {Number} number - Number to be formatted\n * @param {Object} [opts={}] - Object containing all the options of the method\n * @return {String} - Given number properly formatted as money\n ",
           "range": [
             188,
-            1343
+            1019
           ],
           "loc": {
             "start": {
@@ -319,8 +319,8 @@
         "type": "Identifier",
         "name": "formatMoney",
         "range": [
-          1353,
-          1364
+          1029,
+          1040
         ],
         "loc": {
           "start": {
@@ -338,8 +338,8 @@
           "type": "Identifier",
           "name": "number",
           "range": [
-            1365,
-            1371
+            1041,
+            1047
           ],
           "loc": {
             "start": {
@@ -358,8 +358,8 @@
             "type": "Identifier",
             "name": "opts",
             "range": [
-              1373,
-              1377
+              1049,
+              1053
             ],
             "loc": {
               "start": {
@@ -376,8 +376,8 @@
             "type": "ObjectExpression",
             "properties": [],
             "range": [
-              1380,
-              1382
+              1056,
+              1058
             ],
             "loc": {
               "start": {
@@ -391,8 +391,8 @@
             }
           },
           "range": [
-            1373,
-            1382
+            1049,
+            1058
           ],
           "loc": {
             "start": {
@@ -420,8 +420,8 @@
                   "type": "Identifier",
                   "name": "Array",
                   "range": [
-                    1423,
-                    1428
+                    1099,
+                    1104
                   ],
                   "loc": {
                     "start": {
@@ -438,8 +438,8 @@
                   "type": "Identifier",
                   "name": "isArray",
                   "range": [
-                    1429,
-                    1436
+                    1105,
+                    1112
                   ],
                   "loc": {
                     "start": {
@@ -453,8 +453,8 @@
                   }
                 },
                 "range": [
-                  1423,
-                  1436
+                  1099,
+                  1112
                 ],
                 "loc": {
                   "start": {
@@ -472,8 +472,8 @@
                   "type": "Identifier",
                   "name": "number",
                   "range": [
-                    1437,
-                    1443
+                    1113,
+                    1119
                   ],
                   "loc": {
                     "start": {
@@ -488,8 +488,8 @@
                 }
               ],
               "range": [
-                1423,
-                1444
+                1099,
+                1120
               ],
               "loc": {
                 "start": {
@@ -516,8 +516,8 @@
                         "type": "Identifier",
                         "name": "number",
                         "range": [
-                          1459,
-                          1465
+                          1135,
+                          1141
                         ],
                         "loc": {
                           "start": {
@@ -534,8 +534,8 @@
                         "type": "Identifier",
                         "name": "map",
                         "range": [
-                          1466,
-                          1469
+                          1142,
+                          1145
                         ],
                         "loc": {
                           "start": {
@@ -549,8 +549,8 @@
                         }
                       },
                       "range": [
-                        1459,
-                        1469
+                        1135,
+                        1145
                       ],
                       "loc": {
                         "start": {
@@ -572,8 +572,8 @@
                             "type": "Identifier",
                             "name": "val",
                             "range": [
-                              1471,
-                              1474
+                              1147,
+                              1150
                             ],
                             "loc": {
                               "start": {
@@ -593,8 +593,8 @@
                             "type": "Identifier",
                             "name": "formatMoney",
                             "range": [
-                              1479,
-                              1490
+                              1155,
+                              1166
                             ],
                             "loc": {
                               "start": {
@@ -612,8 +612,8 @@
                               "type": "Identifier",
                               "name": "val",
                               "range": [
-                                1491,
-                                1494
+                                1167,
+                                1170
                               ],
                               "loc": {
                                 "start": {
@@ -630,8 +630,8 @@
                               "type": "Identifier",
                               "name": "opts",
                               "range": [
-                                1496,
-                                1500
+                                1172,
+                                1176
                               ],
                               "loc": {
                                 "start": {
@@ -646,8 +646,8 @@
                             }
                           ],
                           "range": [
-                            1479,
-                            1501
+                            1155,
+                            1177
                           ],
                           "loc": {
                             "start": {
@@ -663,8 +663,8 @@
                         "generator": false,
                         "expression": true,
                         "range": [
-                          1470,
-                          1501
+                          1146,
+                          1177
                         ],
                         "loc": {
                           "start": {
@@ -679,8 +679,8 @@
                       }
                     ],
                     "range": [
-                      1459,
-                      1502
+                      1135,
+                      1178
                     ],
                     "loc": {
                       "start": {
@@ -694,8 +694,8 @@
                     }
                   },
                   "range": [
-                    1452,
-                    1503
+                    1128,
+                    1179
                   ],
                   "loc": {
                     "start": {
@@ -710,8 +710,8 @@
                 }
               ],
               "range": [
-                1446,
-                1507
+                1122,
+                1183
               ],
               "loc": {
                 "start": {
@@ -726,8 +726,8 @@
             },
             "alternate": null,
             "range": [
-              1419,
-              1507
+              1095,
+              1183
             ],
             "loc": {
               "start": {
@@ -744,8 +744,8 @@
                 "type": "Line",
                 "value": " Resursively format arrays",
                 "range": [
-                  1388,
-                  1416
+                  1064,
+                  1092
                 ],
                 "loc": {
                   "start": {
@@ -764,8 +764,8 @@
                 "type": "Line",
                 "value": " Build options object from second param (if object) or all params, extending defaults",
                 "range": [
-                  1511,
-                  1598
+                  1187,
+                  1274
                 ],
                 "loc": {
                   "start": {
@@ -789,8 +789,8 @@
                 "type": "Identifier",
                 "name": "opts",
                 "range": [
-                  1601,
-                  1605
+                  1277,
+                  1281
                 ],
                 "loc": {
                   "start": {
@@ -809,8 +809,8 @@
                   "type": "Identifier",
                   "name": "objectAssign",
                   "range": [
-                    1608,
-                    1620
+                    1284,
+                    1296
                   ],
                   "loc": {
                     "start": {
@@ -828,8 +828,8 @@
                     "type": "ObjectExpression",
                     "properties": [],
                     "range": [
-                      1621,
-                      1623
+                      1297,
+                      1299
                     ],
                     "loc": {
                       "start": {
@@ -846,8 +846,8 @@
                     "type": "Identifier",
                     "name": "settings",
                     "range": [
-                      1629,
-                      1637
+                      1305,
+                      1313
                     ],
                     "loc": {
                       "start": {
@@ -864,8 +864,8 @@
                     "type": "Identifier",
                     "name": "opts",
                     "range": [
-                      1643,
-                      1647
+                      1319,
+                      1323
                     ],
                     "loc": {
                       "start": {
@@ -880,8 +880,8 @@
                   }
                 ],
                 "range": [
-                  1608,
-                  1651
+                  1284,
+                  1327
                 ],
                 "loc": {
                   "start": {
@@ -895,8 +895,8 @@
                 }
               },
               "range": [
-                1601,
-                1651
+                1277,
+                1327
               ],
               "loc": {
                 "start": {
@@ -910,8 +910,8 @@
               }
             },
             "range": [
-              1601,
-              1652
+              1277,
+              1328
             ],
             "loc": {
               "start": {
@@ -928,8 +928,8 @@
                 "type": "Line",
                 "value": " Build options object from second param (if object) or all params, extending defaults",
                 "range": [
-                  1511,
-                  1598
+                  1187,
+                  1274
                 ],
                 "loc": {
                   "start": {
@@ -948,8 +948,8 @@
                 "type": "Line",
                 "value": " Check format (returns object with pos, neg and zero)",
                 "range": [
-                  1656,
-                  1711
+                  1332,
+                  1387
                 ],
                 "loc": {
                   "start": {
@@ -973,8 +973,8 @@
                   "type": "Identifier",
                   "name": "formats",
                   "range": [
-                    1720,
-                    1727
+                    1396,
+                    1403
                   ],
                   "loc": {
                     "start": {
@@ -993,8 +993,8 @@
                     "type": "Identifier",
                     "name": "checkCurrencyFormat",
                     "range": [
-                      1730,
-                      1749
+                      1406,
+                      1425
                     ],
                     "loc": {
                       "start": {
@@ -1015,8 +1015,8 @@
                         "type": "Identifier",
                         "name": "opts",
                         "range": [
-                          1750,
-                          1754
+                          1426,
+                          1430
                         ],
                         "loc": {
                           "start": {
@@ -1033,8 +1033,8 @@
                         "type": "Identifier",
                         "name": "format",
                         "range": [
-                          1755,
-                          1761
+                          1431,
+                          1437
                         ],
                         "loc": {
                           "start": {
@@ -1048,8 +1048,8 @@
                         }
                       },
                       "range": [
-                        1750,
-                        1761
+                        1426,
+                        1437
                       ],
                       "loc": {
                         "start": {
@@ -1064,8 +1064,8 @@
                     }
                   ],
                   "range": [
-                    1730,
-                    1762
+                    1406,
+                    1438
                   ],
                   "loc": {
                     "start": {
@@ -1079,8 +1079,8 @@
                   }
                 },
                 "range": [
-                  1720,
-                  1762
+                  1396,
+                  1438
                 ],
                 "loc": {
                   "start": {
@@ -1096,8 +1096,8 @@
             ],
             "kind": "const",
             "range": [
-              1714,
-              1763
+              1390,
+              1439
             ],
             "loc": {
               "start": {
@@ -1114,8 +1114,8 @@
                 "type": "Line",
                 "value": " Check format (returns object with pos, neg and zero)",
                 "range": [
-                  1656,
-                  1711
+                  1332,
+                  1387
                 ],
                 "loc": {
                   "start": {
@@ -1134,8 +1134,8 @@
                 "type": "Line",
                 "value": " Choose which format to use for this value",
                 "range": [
-                  1767,
-                  1811
+                  1443,
+                  1487
                 ],
                 "loc": {
                   "start": {
@@ -1159,8 +1159,8 @@
                   "type": "Identifier",
                   "name": "useFormat",
                   "range": [
-                    1818,
-                    1827
+                    1494,
+                    1503
                   ],
                   "loc": {
                     "start": {
@@ -1175,8 +1175,8 @@
                 },
                 "init": null,
                 "range": [
-                  1818,
-                  1827
+                  1494,
+                  1503
                 ],
                 "loc": {
                   "start": {
@@ -1192,8 +1192,8 @@
             ],
             "kind": "let",
             "range": [
-              1814,
-              1828
+              1490,
+              1504
             ],
             "loc": {
               "start": {
@@ -1210,8 +1210,8 @@
                 "type": "Line",
                 "value": " Choose which format to use for this value",
                 "range": [
-                  1767,
-                  1811
+                  1443,
+                  1487
                 ],
                 "loc": {
                   "start": {
@@ -1235,8 +1235,8 @@
                 "type": "Identifier",
                 "name": "number",
                 "range": [
-                  1836,
-                  1842
+                  1512,
+                  1518
                 ],
                 "loc": {
                   "start": {
@@ -1254,8 +1254,8 @@
                 "value": 0,
                 "raw": "0",
                 "range": [
-                  1845,
-                  1846
+                  1521,
+                  1522
                 ],
                 "loc": {
                   "start": {
@@ -1269,8 +1269,8 @@
                 }
               },
               "range": [
-                1836,
-                1846
+                1512,
+                1522
               ],
               "loc": {
                 "start": {
@@ -1295,8 +1295,8 @@
                       "type": "Identifier",
                       "name": "useFormat",
                       "range": [
-                        1854,
-                        1863
+                        1530,
+                        1539
                       ],
                       "loc": {
                         "start": {
@@ -1316,8 +1316,8 @@
                         "type": "Identifier",
                         "name": "formats",
                         "range": [
-                          1866,
-                          1873
+                          1542,
+                          1549
                         ],
                         "loc": {
                           "start": {
@@ -1334,8 +1334,8 @@
                         "type": "Identifier",
                         "name": "pos",
                         "range": [
-                          1874,
-                          1877
+                          1550,
+                          1553
                         ],
                         "loc": {
                           "start": {
@@ -1349,8 +1349,8 @@
                         }
                       },
                       "range": [
-                        1866,
-                        1877
+                        1542,
+                        1553
                       ],
                       "loc": {
                         "start": {
@@ -1364,8 +1364,8 @@
                       }
                     },
                     "range": [
-                      1854,
-                      1877
+                      1530,
+                      1553
                     ],
                     "loc": {
                       "start": {
@@ -1379,8 +1379,8 @@
                     }
                   },
                   "range": [
-                    1854,
-                    1878
+                    1530,
+                    1554
                   ],
                   "loc": {
                     "start": {
@@ -1395,8 +1395,8 @@
                 }
               ],
               "range": [
-                1848,
-                1882
+                1524,
+                1558
               ],
               "loc": {
                 "start": {
@@ -1418,8 +1418,8 @@
                   "type": "Identifier",
                   "name": "number",
                   "range": [
-                    1892,
-                    1898
+                    1568,
+                    1574
                   ],
                   "loc": {
                     "start": {
@@ -1437,8 +1437,8 @@
                   "value": 0,
                   "raw": "0",
                   "range": [
-                    1901,
-                    1902
+                    1577,
+                    1578
                   ],
                   "loc": {
                     "start": {
@@ -1452,8 +1452,8 @@
                   }
                 },
                 "range": [
-                  1892,
-                  1902
+                  1568,
+                  1578
                 ],
                 "loc": {
                   "start": {
@@ -1478,8 +1478,8 @@
                         "type": "Identifier",
                         "name": "useFormat",
                         "range": [
-                          1910,
-                          1919
+                          1586,
+                          1595
                         ],
                         "loc": {
                           "start": {
@@ -1499,8 +1499,8 @@
                           "type": "Identifier",
                           "name": "formats",
                           "range": [
-                            1922,
-                            1929
+                            1598,
+                            1605
                           ],
                           "loc": {
                             "start": {
@@ -1517,8 +1517,8 @@
                           "type": "Identifier",
                           "name": "neg",
                           "range": [
-                            1930,
-                            1933
+                            1606,
+                            1609
                           ],
                           "loc": {
                             "start": {
@@ -1532,8 +1532,8 @@
                           }
                         },
                         "range": [
-                          1922,
-                          1933
+                          1598,
+                          1609
                         ],
                         "loc": {
                           "start": {
@@ -1547,8 +1547,8 @@
                         }
                       },
                       "range": [
-                        1910,
-                        1933
+                        1586,
+                        1609
                       ],
                       "loc": {
                         "start": {
@@ -1562,8 +1562,8 @@
                       }
                     },
                     "range": [
-                      1910,
-                      1934
+                      1586,
+                      1610
                     ],
                     "loc": {
                       "start": {
@@ -1578,8 +1578,8 @@
                   }
                 ],
                 "range": [
-                  1904,
-                  1938
+                  1580,
+                  1614
                 ],
                 "loc": {
                   "start": {
@@ -1604,8 +1604,8 @@
                         "type": "Identifier",
                         "name": "useFormat",
                         "range": [
-                          1950,
-                          1959
+                          1626,
+                          1635
                         ],
                         "loc": {
                           "start": {
@@ -1625,8 +1625,8 @@
                           "type": "Identifier",
                           "name": "formats",
                           "range": [
-                            1962,
-                            1969
+                            1638,
+                            1645
                           ],
                           "loc": {
                             "start": {
@@ -1643,8 +1643,8 @@
                           "type": "Identifier",
                           "name": "zero",
                           "range": [
-                            1970,
-                            1974
+                            1646,
+                            1650
                           ],
                           "loc": {
                             "start": {
@@ -1658,8 +1658,8 @@
                           }
                         },
                         "range": [
-                          1962,
-                          1974
+                          1638,
+                          1650
                         ],
                         "loc": {
                           "start": {
@@ -1673,8 +1673,8 @@
                         }
                       },
                       "range": [
-                        1950,
-                        1974
+                        1626,
+                        1650
                       ],
                       "loc": {
                         "start": {
@@ -1688,8 +1688,8 @@
                       }
                     },
                     "range": [
-                      1950,
-                      1975
+                      1626,
+                      1651
                     ],
                     "loc": {
                       "start": {
@@ -1704,8 +1704,8 @@
                   }
                 ],
                 "range": [
-                  1944,
-                  1979
+                  1620,
+                  1655
                 ],
                 "loc": {
                   "start": {
@@ -1719,8 +1719,8 @@
                 }
               },
               "range": [
-                1888,
-                1979
+                1564,
+                1655
               ],
               "loc": {
                 "start": {
@@ -1734,8 +1734,8 @@
               }
             },
             "range": [
-              1832,
-              1979
+              1508,
+              1655
             ],
             "loc": {
               "start": {
@@ -1752,8 +1752,8 @@
                 "type": "Line",
                 "value": " Return with currency symbol added",
                 "range": [
-                  1983,
-                  2019
+                  1659,
+                  1695
                 ],
                 "loc": {
                   "start": {
@@ -1784,8 +1784,8 @@
                       "type": "Identifier",
                       "name": "useFormat",
                       "range": [
-                        2029,
-                        2038
+                        1705,
+                        1714
                       ],
                       "loc": {
                         "start": {
@@ -1802,8 +1802,8 @@
                       "type": "Identifier",
                       "name": "replace",
                       "range": [
-                        2044,
-                        2051
+                        1720,
+                        1727
                       ],
                       "loc": {
                         "start": {
@@ -1817,8 +1817,8 @@
                       }
                     },
                     "range": [
-                      2029,
-                      2051
+                      1705,
+                      1727
                     ],
                     "loc": {
                       "start": {
@@ -1837,8 +1837,8 @@
                       "value": "%s",
                       "raw": "'%s'",
                       "range": [
-                        2052,
-                        2056
+                        1728,
+                        1732
                       ],
                       "loc": {
                         "start": {
@@ -1858,8 +1858,8 @@
                         "type": "Identifier",
                         "name": "opts",
                         "range": [
-                          2058,
-                          2062
+                          1734,
+                          1738
                         ],
                         "loc": {
                           "start": {
@@ -1876,8 +1876,8 @@
                         "type": "Identifier",
                         "name": "symbol",
                         "range": [
-                          2063,
-                          2069
+                          1739,
+                          1745
                         ],
                         "loc": {
                           "start": {
@@ -1891,8 +1891,8 @@
                         }
                       },
                       "range": [
-                        2058,
-                        2069
+                        1734,
+                        1745
                       ],
                       "loc": {
                         "start": {
@@ -1907,8 +1907,8 @@
                     }
                   ],
                   "range": [
-                    2029,
-                    2070
+                    1705,
+                    1746
                   ],
                   "loc": {
                     "start": {
@@ -1925,8 +1925,8 @@
                   "type": "Identifier",
                   "name": "replace",
                   "range": [
-                    2076,
-                    2083
+                    1752,
+                    1759
                   ],
                   "loc": {
                     "start": {
@@ -1940,8 +1940,8 @@
                   }
                 },
                 "range": [
-                  2029,
-                  2083
+                  1705,
+                  1759
                 ],
                 "loc": {
                   "start": {
@@ -1960,8 +1960,8 @@
                   "value": "%v",
                   "raw": "'%v'",
                   "range": [
-                    2084,
-                    2088
+                    1760,
+                    1764
                   ],
                   "loc": {
                     "start": {
@@ -1980,8 +1980,8 @@
                     "type": "Identifier",
                     "name": "formatNumber",
                     "range": [
-                      2090,
-                      2102
+                      1766,
+                      1778
                     ],
                     "loc": {
                       "start": {
@@ -2004,8 +2004,8 @@
                           "type": "Identifier",
                           "name": "Math",
                           "range": [
-                            2103,
-                            2107
+                            1779,
+                            1783
                           ],
                           "loc": {
                             "start": {
@@ -2022,8 +2022,8 @@
                           "type": "Identifier",
                           "name": "abs",
                           "range": [
-                            2108,
-                            2111
+                            1784,
+                            1787
                           ],
                           "loc": {
                             "start": {
@@ -2037,8 +2037,8 @@
                           }
                         },
                         "range": [
-                          2103,
-                          2111
+                          1779,
+                          1787
                         ],
                         "loc": {
                           "start": {
@@ -2056,8 +2056,8 @@
                           "type": "Identifier",
                           "name": "number",
                           "range": [
-                            2112,
-                            2118
+                            1788,
+                            1794
                           ],
                           "loc": {
                             "start": {
@@ -2072,8 +2072,8 @@
                         }
                       ],
                       "range": [
-                        2103,
-                        2119
+                        1779,
+                        1795
                       ],
                       "loc": {
                         "start": {
@@ -2090,8 +2090,8 @@
                       "type": "Identifier",
                       "name": "opts",
                       "range": [
-                        2121,
-                        2125
+                        1797,
+                        1801
                       ],
                       "loc": {
                         "start": {
@@ -2106,8 +2106,8 @@
                     }
                   ],
                   "range": [
-                    2090,
-                    2126
+                    1766,
+                    1802
                   ],
                   "loc": {
                     "start": {
@@ -2122,8 +2122,8 @@
                 }
               ],
               "range": [
-                2029,
-                2127
+                1705,
+                1803
               ],
               "loc": {
                 "start": {
@@ -2137,8 +2137,8 @@
               }
             },
             "range": [
-              2022,
-              2128
+              1698,
+              1804
             ],
             "loc": {
               "start": {
@@ -2155,8 +2155,8 @@
                 "type": "Line",
                 "value": " Return with currency symbol added",
                 "range": [
-                  1983,
-                  2019
+                  1659,
+                  1695
                 ],
                 "loc": {
                   "start": {
@@ -2173,8 +2173,8 @@
           }
         ],
         "range": [
-          1384,
-          2130
+          1060,
+          1806
         ],
         "loc": {
           "start": {
@@ -2190,8 +2190,8 @@
       "generator": false,
       "expression": false,
       "range": [
-        1344,
-        2130
+        1020,
+        1806
       ],
       "loc": {
         "start": {
@@ -2213,8 +2213,8 @@
         "type": "Identifier",
         "name": "formatMoney",
         "range": [
-          2147,
-          2158
+          1823,
+          1834
         ],
         "loc": {
           "start": {
@@ -2228,8 +2228,8 @@
         }
       },
       "range": [
-        2132,
-        2159
+        1808,
+        1835
       ],
       "loc": {
         "start": {
@@ -2253,8 +2253,8 @@
           "type": "Identifier",
           "name": "formatMoney",
           "range": [
-            1353,
-            1364
+            1029,
+            1040
           ],
           "loc": {
             "start": {
@@ -2272,8 +2272,8 @@
             "type": "Identifier",
             "name": "number",
             "range": [
-              1365,
-              1371
+              1041,
+              1047
             ],
             "loc": {
               "start": {
@@ -2292,8 +2292,8 @@
               "type": "Identifier",
               "name": "opts",
               "range": [
-                1373,
-                1377
+                1049,
+                1053
               ],
               "loc": {
                 "start": {
@@ -2310,8 +2310,8 @@
               "type": "ObjectExpression",
               "properties": [],
               "range": [
-                1380,
-                1382
+                1056,
+                1058
               ],
               "loc": {
                 "start": {
@@ -2325,8 +2325,8 @@
               }
             },
             "range": [
-              1373,
-              1382
+              1049,
+              1058
             ],
             "loc": {
               "start": {
@@ -2354,8 +2354,8 @@
                     "type": "Identifier",
                     "name": "Array",
                     "range": [
-                      1423,
-                      1428
+                      1099,
+                      1104
                     ],
                     "loc": {
                       "start": {
@@ -2372,8 +2372,8 @@
                     "type": "Identifier",
                     "name": "isArray",
                     "range": [
-                      1429,
-                      1436
+                      1105,
+                      1112
                     ],
                     "loc": {
                       "start": {
@@ -2387,8 +2387,8 @@
                     }
                   },
                   "range": [
-                    1423,
-                    1436
+                    1099,
+                    1112
                   ],
                   "loc": {
                     "start": {
@@ -2406,8 +2406,8 @@
                     "type": "Identifier",
                     "name": "number",
                     "range": [
-                      1437,
-                      1443
+                      1113,
+                      1119
                     ],
                     "loc": {
                       "start": {
@@ -2422,8 +2422,8 @@
                   }
                 ],
                 "range": [
-                  1423,
-                  1444
+                  1099,
+                  1120
                 ],
                 "loc": {
                   "start": {
@@ -2450,8 +2450,8 @@
                           "type": "Identifier",
                           "name": "number",
                           "range": [
-                            1459,
-                            1465
+                            1135,
+                            1141
                           ],
                           "loc": {
                             "start": {
@@ -2468,8 +2468,8 @@
                           "type": "Identifier",
                           "name": "map",
                           "range": [
-                            1466,
-                            1469
+                            1142,
+                            1145
                           ],
                           "loc": {
                             "start": {
@@ -2483,8 +2483,8 @@
                           }
                         },
                         "range": [
-                          1459,
-                          1469
+                          1135,
+                          1145
                         ],
                         "loc": {
                           "start": {
@@ -2506,8 +2506,8 @@
                               "type": "Identifier",
                               "name": "val",
                               "range": [
-                                1471,
-                                1474
+                                1147,
+                                1150
                               ],
                               "loc": {
                                 "start": {
@@ -2527,8 +2527,8 @@
                               "type": "Identifier",
                               "name": "formatMoney",
                               "range": [
-                                1479,
-                                1490
+                                1155,
+                                1166
                               ],
                               "loc": {
                                 "start": {
@@ -2546,8 +2546,8 @@
                                 "type": "Identifier",
                                 "name": "val",
                                 "range": [
-                                  1491,
-                                  1494
+                                  1167,
+                                  1170
                                 ],
                                 "loc": {
                                   "start": {
@@ -2564,8 +2564,8 @@
                                 "type": "Identifier",
                                 "name": "opts",
                                 "range": [
-                                  1496,
-                                  1500
+                                  1172,
+                                  1176
                                 ],
                                 "loc": {
                                   "start": {
@@ -2580,8 +2580,8 @@
                               }
                             ],
                             "range": [
-                              1479,
-                              1501
+                              1155,
+                              1177
                             ],
                             "loc": {
                               "start": {
@@ -2597,8 +2597,8 @@
                           "generator": false,
                           "expression": true,
                           "range": [
-                            1470,
-                            1501
+                            1146,
+                            1177
                           ],
                           "loc": {
                             "start": {
@@ -2613,8 +2613,8 @@
                         }
                       ],
                       "range": [
-                        1459,
-                        1502
+                        1135,
+                        1178
                       ],
                       "loc": {
                         "start": {
@@ -2628,8 +2628,8 @@
                       }
                     },
                     "range": [
-                      1452,
-                      1503
+                      1128,
+                      1179
                     ],
                     "loc": {
                       "start": {
@@ -2644,8 +2644,8 @@
                   }
                 ],
                 "range": [
-                  1446,
-                  1507
+                  1122,
+                  1183
                 ],
                 "loc": {
                   "start": {
@@ -2660,8 +2660,8 @@
               },
               "alternate": null,
               "range": [
-                1419,
-                1507
+                1095,
+                1183
               ],
               "loc": {
                 "start": {
@@ -2678,8 +2678,8 @@
                   "type": "Line",
                   "value": " Resursively format arrays",
                   "range": [
-                    1388,
-                    1416
+                    1064,
+                    1092
                   ],
                   "loc": {
                     "start": {
@@ -2698,8 +2698,8 @@
                   "type": "Line",
                   "value": " Build options object from second param (if object) or all params, extending defaults",
                   "range": [
-                    1511,
-                    1598
+                    1187,
+                    1274
                   ],
                   "loc": {
                     "start": {
@@ -2723,8 +2723,8 @@
                   "type": "Identifier",
                   "name": "opts",
                   "range": [
-                    1601,
-                    1605
+                    1277,
+                    1281
                   ],
                   "loc": {
                     "start": {
@@ -2743,8 +2743,8 @@
                     "type": "Identifier",
                     "name": "objectAssign",
                     "range": [
-                      1608,
-                      1620
+                      1284,
+                      1296
                     ],
                     "loc": {
                       "start": {
@@ -2762,8 +2762,8 @@
                       "type": "ObjectExpression",
                       "properties": [],
                       "range": [
-                        1621,
-                        1623
+                        1297,
+                        1299
                       ],
                       "loc": {
                         "start": {
@@ -2780,8 +2780,8 @@
                       "type": "Identifier",
                       "name": "settings",
                       "range": [
-                        1629,
-                        1637
+                        1305,
+                        1313
                       ],
                       "loc": {
                         "start": {
@@ -2798,8 +2798,8 @@
                       "type": "Identifier",
                       "name": "opts",
                       "range": [
-                        1643,
-                        1647
+                        1319,
+                        1323
                       ],
                       "loc": {
                         "start": {
@@ -2814,8 +2814,8 @@
                     }
                   ],
                   "range": [
-                    1608,
-                    1651
+                    1284,
+                    1327
                   ],
                   "loc": {
                     "start": {
@@ -2829,8 +2829,8 @@
                   }
                 },
                 "range": [
-                  1601,
-                  1651
+                  1277,
+                  1327
                 ],
                 "loc": {
                   "start": {
@@ -2844,8 +2844,8 @@
                 }
               },
               "range": [
-                1601,
-                1652
+                1277,
+                1328
               ],
               "loc": {
                 "start": {
@@ -2862,8 +2862,8 @@
                   "type": "Line",
                   "value": " Build options object from second param (if object) or all params, extending defaults",
                   "range": [
-                    1511,
-                    1598
+                    1187,
+                    1274
                   ],
                   "loc": {
                     "start": {
@@ -2882,8 +2882,8 @@
                   "type": "Line",
                   "value": " Check format (returns object with pos, neg and zero)",
                   "range": [
-                    1656,
-                    1711
+                    1332,
+                    1387
                   ],
                   "loc": {
                     "start": {
@@ -2907,8 +2907,8 @@
                     "type": "Identifier",
                     "name": "formats",
                     "range": [
-                      1720,
-                      1727
+                      1396,
+                      1403
                     ],
                     "loc": {
                       "start": {
@@ -2927,8 +2927,8 @@
                       "type": "Identifier",
                       "name": "checkCurrencyFormat",
                       "range": [
-                        1730,
-                        1749
+                        1406,
+                        1425
                       ],
                       "loc": {
                         "start": {
@@ -2949,8 +2949,8 @@
                           "type": "Identifier",
                           "name": "opts",
                           "range": [
-                            1750,
-                            1754
+                            1426,
+                            1430
                           ],
                           "loc": {
                             "start": {
@@ -2967,8 +2967,8 @@
                           "type": "Identifier",
                           "name": "format",
                           "range": [
-                            1755,
-                            1761
+                            1431,
+                            1437
                           ],
                           "loc": {
                             "start": {
@@ -2982,8 +2982,8 @@
                           }
                         },
                         "range": [
-                          1750,
-                          1761
+                          1426,
+                          1437
                         ],
                         "loc": {
                           "start": {
@@ -2998,8 +2998,8 @@
                       }
                     ],
                     "range": [
-                      1730,
-                      1762
+                      1406,
+                      1438
                     ],
                     "loc": {
                       "start": {
@@ -3013,8 +3013,8 @@
                     }
                   },
                   "range": [
-                    1720,
-                    1762
+                    1396,
+                    1438
                   ],
                   "loc": {
                     "start": {
@@ -3030,8 +3030,8 @@
               ],
               "kind": "const",
               "range": [
-                1714,
-                1763
+                1390,
+                1439
               ],
               "loc": {
                 "start": {
@@ -3048,8 +3048,8 @@
                   "type": "Line",
                   "value": " Check format (returns object with pos, neg and zero)",
                   "range": [
-                    1656,
-                    1711
+                    1332,
+                    1387
                   ],
                   "loc": {
                     "start": {
@@ -3068,8 +3068,8 @@
                   "type": "Line",
                   "value": " Choose which format to use for this value",
                   "range": [
-                    1767,
-                    1811
+                    1443,
+                    1487
                   ],
                   "loc": {
                     "start": {
@@ -3093,8 +3093,8 @@
                     "type": "Identifier",
                     "name": "useFormat",
                     "range": [
-                      1818,
-                      1827
+                      1494,
+                      1503
                     ],
                     "loc": {
                       "start": {
@@ -3109,8 +3109,8 @@
                   },
                   "init": null,
                   "range": [
-                    1818,
-                    1827
+                    1494,
+                    1503
                   ],
                   "loc": {
                     "start": {
@@ -3126,8 +3126,8 @@
               ],
               "kind": "let",
               "range": [
-                1814,
-                1828
+                1490,
+                1504
               ],
               "loc": {
                 "start": {
@@ -3144,8 +3144,8 @@
                   "type": "Line",
                   "value": " Choose which format to use for this value",
                   "range": [
-                    1767,
-                    1811
+                    1443,
+                    1487
                   ],
                   "loc": {
                     "start": {
@@ -3169,8 +3169,8 @@
                   "type": "Identifier",
                   "name": "number",
                   "range": [
-                    1836,
-                    1842
+                    1512,
+                    1518
                   ],
                   "loc": {
                     "start": {
@@ -3188,8 +3188,8 @@
                   "value": 0,
                   "raw": "0",
                   "range": [
-                    1845,
-                    1846
+                    1521,
+                    1522
                   ],
                   "loc": {
                     "start": {
@@ -3203,8 +3203,8 @@
                   }
                 },
                 "range": [
-                  1836,
-                  1846
+                  1512,
+                  1522
                 ],
                 "loc": {
                   "start": {
@@ -3229,8 +3229,8 @@
                         "type": "Identifier",
                         "name": "useFormat",
                         "range": [
-                          1854,
-                          1863
+                          1530,
+                          1539
                         ],
                         "loc": {
                           "start": {
@@ -3250,8 +3250,8 @@
                           "type": "Identifier",
                           "name": "formats",
                           "range": [
-                            1866,
-                            1873
+                            1542,
+                            1549
                           ],
                           "loc": {
                             "start": {
@@ -3268,8 +3268,8 @@
                           "type": "Identifier",
                           "name": "pos",
                           "range": [
-                            1874,
-                            1877
+                            1550,
+                            1553
                           ],
                           "loc": {
                             "start": {
@@ -3283,8 +3283,8 @@
                           }
                         },
                         "range": [
-                          1866,
-                          1877
+                          1542,
+                          1553
                         ],
                         "loc": {
                           "start": {
@@ -3298,8 +3298,8 @@
                         }
                       },
                       "range": [
-                        1854,
-                        1877
+                        1530,
+                        1553
                       ],
                       "loc": {
                         "start": {
@@ -3313,8 +3313,8 @@
                       }
                     },
                     "range": [
-                      1854,
-                      1878
+                      1530,
+                      1554
                     ],
                     "loc": {
                       "start": {
@@ -3329,8 +3329,8 @@
                   }
                 ],
                 "range": [
-                  1848,
-                  1882
+                  1524,
+                  1558
                 ],
                 "loc": {
                   "start": {
@@ -3352,8 +3352,8 @@
                     "type": "Identifier",
                     "name": "number",
                     "range": [
-                      1892,
-                      1898
+                      1568,
+                      1574
                     ],
                     "loc": {
                       "start": {
@@ -3371,8 +3371,8 @@
                     "value": 0,
                     "raw": "0",
                     "range": [
-                      1901,
-                      1902
+                      1577,
+                      1578
                     ],
                     "loc": {
                       "start": {
@@ -3386,8 +3386,8 @@
                     }
                   },
                   "range": [
-                    1892,
-                    1902
+                    1568,
+                    1578
                   ],
                   "loc": {
                     "start": {
@@ -3412,8 +3412,8 @@
                           "type": "Identifier",
                           "name": "useFormat",
                           "range": [
-                            1910,
-                            1919
+                            1586,
+                            1595
                           ],
                           "loc": {
                             "start": {
@@ -3433,8 +3433,8 @@
                             "type": "Identifier",
                             "name": "formats",
                             "range": [
-                              1922,
-                              1929
+                              1598,
+                              1605
                             ],
                             "loc": {
                               "start": {
@@ -3451,8 +3451,8 @@
                             "type": "Identifier",
                             "name": "neg",
                             "range": [
-                              1930,
-                              1933
+                              1606,
+                              1609
                             ],
                             "loc": {
                               "start": {
@@ -3466,8 +3466,8 @@
                             }
                           },
                           "range": [
-                            1922,
-                            1933
+                            1598,
+                            1609
                           ],
                           "loc": {
                             "start": {
@@ -3481,8 +3481,8 @@
                           }
                         },
                         "range": [
-                          1910,
-                          1933
+                          1586,
+                          1609
                         ],
                         "loc": {
                           "start": {
@@ -3496,8 +3496,8 @@
                         }
                       },
                       "range": [
-                        1910,
-                        1934
+                        1586,
+                        1610
                       ],
                       "loc": {
                         "start": {
@@ -3512,8 +3512,8 @@
                     }
                   ],
                   "range": [
-                    1904,
-                    1938
+                    1580,
+                    1614
                   ],
                   "loc": {
                     "start": {
@@ -3538,8 +3538,8 @@
                           "type": "Identifier",
                           "name": "useFormat",
                           "range": [
-                            1950,
-                            1959
+                            1626,
+                            1635
                           ],
                           "loc": {
                             "start": {
@@ -3559,8 +3559,8 @@
                             "type": "Identifier",
                             "name": "formats",
                             "range": [
-                              1962,
-                              1969
+                              1638,
+                              1645
                             ],
                             "loc": {
                               "start": {
@@ -3577,8 +3577,8 @@
                             "type": "Identifier",
                             "name": "zero",
                             "range": [
-                              1970,
-                              1974
+                              1646,
+                              1650
                             ],
                             "loc": {
                               "start": {
@@ -3592,8 +3592,8 @@
                             }
                           },
                           "range": [
-                            1962,
-                            1974
+                            1638,
+                            1650
                           ],
                           "loc": {
                             "start": {
@@ -3607,8 +3607,8 @@
                           }
                         },
                         "range": [
-                          1950,
-                          1974
+                          1626,
+                          1650
                         ],
                         "loc": {
                           "start": {
@@ -3622,8 +3622,8 @@
                         }
                       },
                       "range": [
-                        1950,
-                        1975
+                        1626,
+                        1651
                       ],
                       "loc": {
                         "start": {
@@ -3638,8 +3638,8 @@
                     }
                   ],
                   "range": [
-                    1944,
-                    1979
+                    1620,
+                    1655
                   ],
                   "loc": {
                     "start": {
@@ -3653,8 +3653,8 @@
                   }
                 },
                 "range": [
-                  1888,
-                  1979
+                  1564,
+                  1655
                 ],
                 "loc": {
                   "start": {
@@ -3668,8 +3668,8 @@
                 }
               },
               "range": [
-                1832,
-                1979
+                1508,
+                1655
               ],
               "loc": {
                 "start": {
@@ -3686,8 +3686,8 @@
                   "type": "Line",
                   "value": " Return with currency symbol added",
                   "range": [
-                    1983,
-                    2019
+                    1659,
+                    1695
                   ],
                   "loc": {
                     "start": {
@@ -3718,8 +3718,8 @@
                         "type": "Identifier",
                         "name": "useFormat",
                         "range": [
-                          2029,
-                          2038
+                          1705,
+                          1714
                         ],
                         "loc": {
                           "start": {
@@ -3736,8 +3736,8 @@
                         "type": "Identifier",
                         "name": "replace",
                         "range": [
-                          2044,
-                          2051
+                          1720,
+                          1727
                         ],
                         "loc": {
                           "start": {
@@ -3751,8 +3751,8 @@
                         }
                       },
                       "range": [
-                        2029,
-                        2051
+                        1705,
+                        1727
                       ],
                       "loc": {
                         "start": {
@@ -3771,8 +3771,8 @@
                         "value": "%s",
                         "raw": "'%s'",
                         "range": [
-                          2052,
-                          2056
+                          1728,
+                          1732
                         ],
                         "loc": {
                           "start": {
@@ -3792,8 +3792,8 @@
                           "type": "Identifier",
                           "name": "opts",
                           "range": [
-                            2058,
-                            2062
+                            1734,
+                            1738
                           ],
                           "loc": {
                             "start": {
@@ -3810,8 +3810,8 @@
                           "type": "Identifier",
                           "name": "symbol",
                           "range": [
-                            2063,
-                            2069
+                            1739,
+                            1745
                           ],
                           "loc": {
                             "start": {
@@ -3825,8 +3825,8 @@
                           }
                         },
                         "range": [
-                          2058,
-                          2069
+                          1734,
+                          1745
                         ],
                         "loc": {
                           "start": {
@@ -3841,8 +3841,8 @@
                       }
                     ],
                     "range": [
-                      2029,
-                      2070
+                      1705,
+                      1746
                     ],
                     "loc": {
                       "start": {
@@ -3859,8 +3859,8 @@
                     "type": "Identifier",
                     "name": "replace",
                     "range": [
-                      2076,
-                      2083
+                      1752,
+                      1759
                     ],
                     "loc": {
                       "start": {
@@ -3874,8 +3874,8 @@
                     }
                   },
                   "range": [
-                    2029,
-                    2083
+                    1705,
+                    1759
                   ],
                   "loc": {
                     "start": {
@@ -3894,8 +3894,8 @@
                     "value": "%v",
                     "raw": "'%v'",
                     "range": [
-                      2084,
-                      2088
+                      1760,
+                      1764
                     ],
                     "loc": {
                       "start": {
@@ -3914,8 +3914,8 @@
                       "type": "Identifier",
                       "name": "formatNumber",
                       "range": [
-                        2090,
-                        2102
+                        1766,
+                        1778
                       ],
                       "loc": {
                         "start": {
@@ -3938,8 +3938,8 @@
                             "type": "Identifier",
                             "name": "Math",
                             "range": [
-                              2103,
-                              2107
+                              1779,
+                              1783
                             ],
                             "loc": {
                               "start": {
@@ -3956,8 +3956,8 @@
                             "type": "Identifier",
                             "name": "abs",
                             "range": [
-                              2108,
-                              2111
+                              1784,
+                              1787
                             ],
                             "loc": {
                               "start": {
@@ -3971,8 +3971,8 @@
                             }
                           },
                           "range": [
-                            2103,
-                            2111
+                            1779,
+                            1787
                           ],
                           "loc": {
                             "start": {
@@ -3990,8 +3990,8 @@
                             "type": "Identifier",
                             "name": "number",
                             "range": [
-                              2112,
-                              2118
+                              1788,
+                              1794
                             ],
                             "loc": {
                               "start": {
@@ -4006,8 +4006,8 @@
                           }
                         ],
                         "range": [
-                          2103,
-                          2119
+                          1779,
+                          1795
                         ],
                         "loc": {
                           "start": {
@@ -4024,8 +4024,8 @@
                         "type": "Identifier",
                         "name": "opts",
                         "range": [
-                          2121,
-                          2125
+                          1797,
+                          1801
                         ],
                         "loc": {
                           "start": {
@@ -4040,8 +4040,8 @@
                       }
                     ],
                     "range": [
-                      2090,
-                      2126
+                      1766,
+                      1802
                     ],
                     "loc": {
                       "start": {
@@ -4056,8 +4056,8 @@
                   }
                 ],
                 "range": [
-                  2029,
-                  2127
+                  1705,
+                  1803
                 ],
                 "loc": {
                   "start": {
@@ -4071,8 +4071,8 @@
                 }
               },
               "range": [
-                2022,
-                2128
+                1698,
+                1804
               ],
               "loc": {
                 "start": {
@@ -4089,8 +4089,8 @@
                   "type": "Line",
                   "value": " Return with currency symbol added",
                   "range": [
-                    1983,
-                    2019
+                    1659,
+                    1695
                   ],
                   "loc": {
                     "start": {
@@ -4107,8 +4107,8 @@
             }
           ],
           "range": [
-            1384,
-            2130
+            1060,
+            1806
           ],
           "loc": {
             "start": {
@@ -4124,8 +4124,8 @@
         "generator": false,
         "expression": false,
         "range": [
-          1344,
-          2130
+          1020,
+          1806
         ],
         "loc": {
           "start": {
@@ -4140,10 +4140,10 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * Format a number into currency.\n *\n * Usage: accounting.formatMoney(number, symbol, precision, thousandsSep, decimalSep, format)\n * defaults: (0, '$', 2, ',', '.', '%s%v')\n *\n * Localise by overriding the symbol, precision, thousand / decimal separators and format.\n *\n * ```js\n * // Default usage\n * accounting.formatMoney(12345678); // $12,345,678.00\n *\n * // European formatting (custom symbol and separators), can also use options object as second parameter\n * accounting.formatMoney(4999.99, { symbol: \"€\", precision: 2, thousand: \".\", decimal: \",\" }); // €4.999,99\n *\n * // Negative values can be formatted nicely:\n * accounting.formatMoney(-500000, { symbol: \"£ \", precision: 0 }); // £ -500,000\n *\n * // Simple `format` string allows control of symbol position (%v = value, %s = symbol):\n * accounting.formatMoney(5318008, { symbol: \"GBP\",  format: \"%v %s\" }); // 5,318,008.00 GBP\n * ```\n *\n * @method formatMoney\n * @for accounting\n * @param {Number}        number Number to be formatted\n * @param {Object}        [opts={}] Object containing all the options of the method\n * @return {String} The given number properly formatted as money\n ",
+            "value": "*\n * Format a number into currency.\n *\n * **Usage:**\n *\n * ```js\n * // Default usage\n * formatMoney(12345678);\n * // => $12,345,678.00\n *\n * // European formatting (custom symbol and separators)\n * formatMoney(4999.99, { symbol: \"€\", precision: 2, thousand: \".\", decimal: \",\" });\n * // => €4.999,99\n *\n * // Negative values can be formatted nicely\n * formatMoney(-500000, { symbol: \"£ \", precision: 0 });\n * // => £ -500,000\n *\n * // Simple `format` string allows control of symbol position (%v = value, %s = symbol)\n * formatMoney(5318008, { symbol: \"GBP\",  format: \"%v %s\" });\n * // => 5,318,008.00 GBP\n * ```\n *\n * @access public\n * @param {Number} number - Number to be formatted\n * @param {Object} [opts={}] - Object containing all the options of the method\n * @return {String} - Given number properly formatted as money\n ",
             "range": [
               188,
-              1343
+              1019
             ],
             "loc": {
               "start": {
@@ -4160,8 +4160,8 @@
         "trailingComments": []
       },
       "range": [
-        2132,
-        2159
+        1808,
+        1835
       ],
       "loc": {
         "start": {
@@ -4178,7 +4178,7 @@
   "sourceType": "module",
   "range": [
     0,
-    2159
+    1835
   ],
   "loc": {
     "start": {
@@ -4193,10 +4193,10 @@
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * Format a number into currency.\n *\n * Usage: accounting.formatMoney(number, symbol, precision, thousandsSep, decimalSep, format)\n * defaults: (0, '$', 2, ',', '.', '%s%v')\n *\n * Localise by overriding the symbol, precision, thousand / decimal separators and format.\n *\n * ```js\n * // Default usage\n * accounting.formatMoney(12345678); // $12,345,678.00\n *\n * // European formatting (custom symbol and separators), can also use options object as second parameter\n * accounting.formatMoney(4999.99, { symbol: \"€\", precision: 2, thousand: \".\", decimal: \",\" }); // €4.999,99\n *\n * // Negative values can be formatted nicely:\n * accounting.formatMoney(-500000, { symbol: \"£ \", precision: 0 }); // £ -500,000\n *\n * // Simple `format` string allows control of symbol position (%v = value, %s = symbol):\n * accounting.formatMoney(5318008, { symbol: \"GBP\",  format: \"%v %s\" }); // 5,318,008.00 GBP\n * ```\n *\n * @method formatMoney\n * @for accounting\n * @param {Number}        number Number to be formatted\n * @param {Object}        [opts={}] Object containing all the options of the method\n * @return {String} The given number properly formatted as money\n ",
+      "value": "*\n * Format a number into currency.\n *\n * **Usage:**\n *\n * ```js\n * // Default usage\n * formatMoney(12345678);\n * // => $12,345,678.00\n *\n * // European formatting (custom symbol and separators)\n * formatMoney(4999.99, { symbol: \"€\", precision: 2, thousand: \".\", decimal: \",\" });\n * // => €4.999,99\n *\n * // Negative values can be formatted nicely\n * formatMoney(-500000, { symbol: \"£ \", precision: 0 });\n * // => £ -500,000\n *\n * // Simple `format` string allows control of symbol position (%v = value, %s = symbol)\n * formatMoney(5318008, { symbol: \"GBP\",  format: \"%v %s\" });\n * // => 5,318,008.00 GBP\n * ```\n *\n * @access public\n * @param {Number} number - Number to be formatted\n * @param {Object} [opts={}] - Object containing all the options of the method\n * @return {String} - Given number properly formatted as money\n ",
       "range": [
         188,
-        1343
+        1019
       ],
       "loc": {
         "start": {
@@ -4213,8 +4213,8 @@
       "type": "Line",
       "value": " Resursively format arrays",
       "range": [
-        1388,
-        1416
+        1064,
+        1092
       ],
       "loc": {
         "start": {
@@ -4231,8 +4231,8 @@
       "type": "Line",
       "value": " Build options object from second param (if object) or all params, extending defaults",
       "range": [
-        1511,
-        1598
+        1187,
+        1274
       ],
       "loc": {
         "start": {
@@ -4249,8 +4249,8 @@
       "type": "Line",
       "value": " Check format (returns object with pos, neg and zero)",
       "range": [
-        1656,
-        1711
+        1332,
+        1387
       ],
       "loc": {
         "start": {
@@ -4267,8 +4267,8 @@
       "type": "Line",
       "value": " Choose which format to use for this value",
       "range": [
-        1767,
-        1811
+        1443,
+        1487
       ],
       "loc": {
         "start": {
@@ -4285,8 +4285,8 @@
       "type": "Line",
       "value": " Return with currency symbol added",
       "range": [
-        1983,
-        2019
+        1659,
+        1695
       ],
       "loc": {
         "start": {

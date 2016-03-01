@@ -38,9 +38,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFixed">toFixed</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unformat">unformat</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-settings">settings</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">internal</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-checkCurrencyFormat">checkCurrencyFormat</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-checkPrecision">checkPrecision</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stripInsignificantZeros">stripInsignificantZeros</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -49,26 +46,30 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import settings from &apos;./settings&apos;;
 
 /**
+ * _Alias_: `parse(value, decimal, fallback)`
+ *
  * Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.
- * Alias: `accounting.parse(string)`
  *
  * Decimal must be included in the regular expression to match floats (defaults to
- * accounting.settings.decimal), so if the number uses a non-standard decimal
+ * `settings.decimal`), so if the number uses a non-standard decimal
  * separator, provide it as the second argument.
  *
- * Also matches bracketed negatives (eg. &apos;$ (1.99)&apos; =&gt; -1.99).
+ * Also matches bracketed negatives (eg. `&apos;$ (1.99)&apos; =&gt; -1.99`).
  *
- * Doesn&apos;t throw any errors (`NaN`s become 0) but this may change in future.
+ * Doesn&apos;t throw any errors (`NaN`s become 0 or provided by fallback value).
+ *
+ * **Usage:**
  *
  * ```js
- *  accounting.unformat(&quot;&#xA3; 12,345,678.90 GBP&quot;); // 12345678.9
+ * unformat(&apos;&#xA3; 12,345,678.90 GBP&apos;);
+ * // =&gt; 12345678.9
  * ```
  *
- * @method unformat
- * @for accounting
- * @param {String|Array&lt;String&gt;} value The string or array of strings containing the number/s to parse
- * @param {Number}               decimal Number of decimal digits of the resultant number
- * @return {Float} The parsed number
+ * @access public
+ * @param {String|Array&lt;String&gt;} value - String or array of strings containing the number/s to parse
+ * @param {Number} [decimal=settings.decimal] - Number of decimal digits of the resultant number
+ * @param {Float} [fallback=settings.fallback] - Value returned on unformat() failure
+ * @return {Float} - Parsed number
  */
 function unformat(value, decimal = settings.decimal, fallback = settings.fallback) {
   // Recursively unformat arrays:
