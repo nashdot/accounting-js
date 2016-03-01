@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/nashdot/accounting-js.svg?branch=master)](https://travis-ci.org/nashdot/accounting-js)
 [![NPM version](https://img.shields.io/npm/v/accounting-js.svg)](https://www.npmjs.com/package/accounting-js)
-[![Docs](https://doc.esdoc.org/github.com/nashdot/accounting-js/badge.svg)](https://doc.esdoc.org/github.com/nashdot/accounting-js)
+[![Docs](http://nashdot.github.io/accounting-js/docs/badge.svg)](http://nashdot.github.io/accounting-js/docs)
 
 **accounting-js** is a tiny JavaScript library for number, money and currency parsing/formatting. It's lightweight, fully localisable, has no dependencies, and works great client-side or server-side. Use standalone or as a nodeJS/npm and AMD/requireJS module.
 
