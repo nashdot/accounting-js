@@ -38,6 +38,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFixed">toFixed</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unformat">unformat</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-settings">settings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CurrencyFormat">CurrencyFormat</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Settings">Settings</a></span></span></li>
 </ul>
 </div>
@@ -74,14 +75,14 @@ import formatNumber from &apos;./formatNumber&apos;;
  * ```
  *
  * @access public
- * @param {Number} number - Number to be formatted
+ * @param {Number} amount - Amount to be formatted
  * @param {Object} [opts={}] - Object containing all the options of the method
  * @return {String} - Given number properly formatted as money
  */
-function formatMoney(number, opts = {}) {
+function formatMoney(amount, opts = {}) {
   // Resursively format arrays
-  if (Array.isArray(number)) {
-    return number.map((val) =&gt; formatMoney(val, opts));
+  if (Array.isArray(amount)) {
+    return amount.map((value) =&gt; formatMoney(value, opts));
   }
 
   // Build options object from second param (if object) or all params, extending defaults
@@ -96,9 +97,9 @@ function formatMoney(number, opts = {}) {
   // Choose which format to use for this value
   let useFormat;
 
-  if (number &gt; 0) {
+  if (amount &gt; 0) {
     useFormat = formats.pos;
-  } else if (number &lt; 0) {
+  } else if (amount &lt; 0) {
     useFormat = formats.neg;
   } else {
     useFormat = formats.zero;
@@ -107,7 +108,7 @@ function formatMoney(number, opts = {}) {
   // Return with currency symbol added
   return useFormat
     .replace(&apos;%s&apos;, opts.symbol)
-    .replace(&apos;%v&apos;, formatNumber(Math.abs(number), opts));
+    .replace(&apos;%v&apos;, formatNumber(Math.abs(amount), opts));
 }
 
 export default formatMoney;

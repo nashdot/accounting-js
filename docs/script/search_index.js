@@ -408,6 +408,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "lib/settings.js~currencyformat",
+    "typedef/index.html#static-typedef-CurrencyFormat",
+    "lib/settings.js~CurrencyFormat",
+    "typedef"
+  ],
+  [
     "lib/settings.js~settings",
     "typedef/index.html#static-typedef-Settings",
     "lib/settings.js~Settings",

@@ -38,6 +38,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-toFixed">toFixed</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-unformat">unformat</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-settings">settings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-CurrencyFormat">CurrencyFormat</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Settings">Settings</a></span></span></li>
 </ul>
 </div>
@@ -49,13 +50,35 @@
  *
  * @typedef {Object} Settings
  * @property {String} [symbol=&apos;$&apos;] - Currency symbol
- * @property {String|Object} [format=&apos;%s%v&apos;] - Controls output: %s = symbol, %v = value (can be object, see docs)
+ * @property {String|CurrencyFormat} [format=&apos;%s%v&apos;] - Controls output: %s = symbol, %v = value (can be object, see docs)
  * @property {String} [decimal=&apos;.&apos;] - Decimal point separator
  * @property {String} [thousand=&apos;,] - Thousands separator
- * @property {Number} [precision=2] - Decimal places
+ * @property {Number} [precision=2] - Number of decimal places to round the amount to
  * @property {Number} [grouping=3] - Digit grouping (not implemented yet)
  * @property {Boolean} [stripZeros=false] - Strip insignificant zeros from decimal part
  * @property {Float} [fallback=0] - Value returned on unformat() failure
+ */
+
+/**
+ * Currency format interface.
+ *
+ * Each property represents template string used by formatMoney.
+ * Inside this template you can use these patterns:
+ * - **%s** - Currency symbol
+ * - **%v** - Amount
+ *
+ * **Examples**:
+ * ```js
+ * &apos;%s %v&apos;   =&gt; &apos;$ 1.00&apos;
+ * &apos;%s (%v)&apos; =&gt; &apos;$ (1.00)&apos;
+ * &apos;%s  -- &apos; =&gt; &apos;$  --&apos;
+ * ```
+ *
+ * @typedef {Format} CurrencyFormat
+ * @property {String} pos - Currency format for positive values
+ * @property {String} [neg=pos] - Currency format for positive values
+ * @property {String} [zero=pos] - Currency format for positive values
+ *
  */
 
 /**
