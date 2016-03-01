@@ -7,42 +7,61 @@
 	function __commonjs(fn, module) { return module = { exports: {} }, fn(module, module.exports), module.exports; }
 
 	/**
-	 * The library's settings configuration object.
+	 * The library's settings configuration interface.
 	 *
+	 * @typedef {Object} Settings
+	 * @property {String} [symbol='$'] - Currency symbol
+	 * @property {String|Object} [format='%s%v'] - Controls output: %s = symbol, %v = value (can be object, see docs)
+	 * @property {String} [decimal='.'] - Decimal point separator
+	 * @property {String} [thousand=',] - Thousands separator
+	 * @property {Number} [precision=2] - Decimal places
+	 * @property {Number} [grouping=3] - Digit grouping (not implemented yet)
+	 * @property {Boolean} [stripZeros=false] - Strip insignificant zeros from decimal part
+	 * @property {Float} [fallback=0] - Value returned on unformat() failure
+	 */
+
+	/**
+	 * The library's default settings configuration object.
 	 * Contains default parameters for currency and number formatting.
+	 *
+	 * @type {Settings} settings
 	 */
 	var settings = {
-	  symbol: '$', // default currency symbol is '$'
-	  format: '%s%v', // controls output: %s = symbol, %v = value (can be object, see docs)
-	  decimal: '.', // decimal point separator
-	  thousand: ',', // thousands separator
-	  precision: 2, // decimal places
-	  grouping: 3, // digit grouping (not implemented yet)
-	  stripZeros: false, // strip insignificant zeros from decimal part
-	  fallback: 0 // value returned on unformat() failure
+	  symbol: '$',
+	  format: '%s%v',
+	  decimal: '.',
+	  thousand: ',',
+	  precision: 2,
+	  grouping: 3,
+	  stripZeros: false,
+	  fallback: 0
 	};
 
 	/**
 	 * Takes a string/array of strings, removes all formatting/cruft and returns the raw float value.
-	 * Alias: `accounting.parse(string)`
 	 *
 	 * Decimal must be included in the regular expression to match floats (defaults to
-	 * accounting.settings.decimal), so if the number uses a non-standard decimal
+	 * `settings.decimal`), so if the number uses a non-standard decimal
 	 * separator, provide it as the second argument.
 	 *
-	 * Also matches bracketed negatives (eg. '$ (1.99)' => -1.99).
+	 * Also matches bracketed negatives (eg. `'$ (1.99)' => -1.99`).
 	 *
-	 * Doesn't throw any errors (`NaN`s become 0) but this may change in future.
+	 * Doesn't throw any errors (`NaN`s become 0 or provided by fallback value).
+	 *
+	 * _Alias_: `parse(value, decimal, fallback)`
+	 *
+	 * **Usage:**
 	 *
 	 * ```js
-	 *  accounting.unformat("£ 12,345,678.90 GBP"); // 12345678.9
+	 * unformat('£ 12,345,678.90 GBP');
+	 * // => 12345678.9
 	 * ```
 	 *
-	 * @method unformat
-	 * @for accounting
-	 * @param {String|Array<String>} value The string or array of strings containing the number/s to parse
-	 * @param {Number}               decimal Number of decimal digits of the resultant number
-	 * @return {Float} The parsed number
+	 * @access public
+	 * @param {String|Array<String>} value - String or array of strings containing the number/s to parse
+	 * @param {Number} [decimal=settings.decimal] - Number of decimal digits of the resultant number
+	 * @param {Float} [fallback=settings.fallback] - Value returned on unformat() failure
+	 * @return {Float} - Parsed number
 	 */
 	function unformat(value) {
 	  var decimal = arguments.length <= 1 || arguments[1] === undefined ? settings.decimal : arguments[1];
@@ -91,16 +110,22 @@
 	 * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present
 	 * problems for accounting- and finance-related software.
 	 *
+	 * **Usage:**
+	 *
 	 * ```js
-	 *  (0.615).toFixed(2);           // "0.61" (native toFixed has rounding issues)
-	 *  accounting.toFixed(0.615, 2); // "0.62"
+	 * // Native toFixed has rounding issues
+	 * (0.615).toFixed(2);
+	 * // => '0.61'
+	 *
+	 * // With accounting-js
+	 * toFixed(0.615, 2);
+	 * // => '0.62'
 	 * ```
 	 *
-	 * @method toFixed
-	 * @for accounting
-	 * @param {Float}   value         The float to be treated as a decimal number
-	 * @param {Number} [precision=2] The number of decimal digits to keep
-	 * @return {String} The given number transformed into a string with the given precission
+	 * @access public
+	 * @param {Float} value - Float to be treated as a decimal number
+	 * @param {Number} [precision=settings.precision] - Number of decimal digits to keep
+	 * @return {String} - Given number transformed into a string with the given precission
 	 */
 	function toFixed(value, precision) {
 	  precision = checkPrecision(precision, settings.precision);
@@ -168,20 +193,25 @@
 
 	/**
 	 * Format a number, with comma-separated thousands and custom precision/decimal places.
-	 * Alias: `accounting.format()`
 	 *
-	 * Localise by overriding the precision and thousand / decimal separators.
+	 * _Alias_: `format(number, opts)`
+	 *
+	 * **Usage:**
 	 *
 	 * ```js
-	 * accounting.formatNumber(5318008);              // 5,318,008
-	 * accounting.formatNumber(9876543.21, { precision: 3, thousand: " " }); // 9 876 543.210
+	 * // Default usage
+	 * formatNumber(5318008);
+	 * // => 5,318,008
+	 *
+	 * // Custom format
+	 * formatNumber(9876543.21, { precision: 3, thousand: " " });
+	 * // => 9 876 543.210
 	 * ```
 	 *
-	 * @method formatNumber
-	 * @for accounting
-	 * @param {Number}        number The number to be formatted
-	 * @param {Object}        [opts={}] Object containing all the options of the method
-	 * @return {String} The given number properly formatted
+	 * @access public
+	 * @param {Number} number - Number to be formatted
+	 * @param {Object} [opts={}] - Object containing all the options of the method
+	 * @return {String} - Given number properly formatted
 	  */
 	function formatNumber(number) {
 	  var opts = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
@@ -238,11 +268,10 @@
 	 * `format` is either a string with the default (positive) format, or object
 	 * containing `pos` (required), `neg` and `zero` values.
 	 *
-	 * Either string or format.pos must contain "%v" (value) to be valid.
+	 * Either string or format.pos must contain '%v' (value) to be valid.
 	 *
-	 * @method _checkCurrencyFormat
-	 * @for accounting
-	 * @param {String}        [format="%s%v"] String with the format to apply, where %s is the currency symbol and %v is the value
+	 * @private
+	 * @param {String} [format='%s%v'] - String with the format to apply, where %s is the currency symbol and %v is the value
 	 * @return {Object} object represnting format (with pos, neg and zero attributes)
 	 */
 	function checkCurrencyFormat(format) {
@@ -263,30 +292,30 @@
 	/**
 	 * Format a number into currency.
 	 *
-	 * Usage: accounting.formatMoney(number, symbol, precision, thousandsSep, decimalSep, format)
-	 * defaults: (0, '$', 2, ',', '.', '%s%v')
-	 *
-	 * Localise by overriding the symbol, precision, thousand / decimal separators and format.
+	 * **Usage:**
 	 *
 	 * ```js
 	 * // Default usage
-	 * accounting.formatMoney(12345678); // $12,345,678.00
+	 * formatMoney(12345678);
+	 * // => $12,345,678.00
 	 *
-	 * // European formatting (custom symbol and separators), can also use options object as second parameter
-	 * accounting.formatMoney(4999.99, { symbol: "€", precision: 2, thousand: ".", decimal: "," }); // €4.999,99
+	 * // European formatting (custom symbol and separators)
+	 * formatMoney(4999.99, { symbol: "€", precision: 2, thousand: ".", decimal: "," });
+	 * // => €4.999,99
 	 *
-	 * // Negative values can be formatted nicely:
-	 * accounting.formatMoney(-500000, { symbol: "£ ", precision: 0 }); // £ -500,000
+	 * // Negative values can be formatted nicely
+	 * formatMoney(-500000, { symbol: "£ ", precision: 0 });
+	 * // => £ -500,000
 	 *
-	 * // Simple `format` string allows control of symbol position (%v = value, %s = symbol):
-	 * accounting.formatMoney(5318008, { symbol: "GBP",  format: "%v %s" }); // 5,318,008.00 GBP
+	 * // Simple `format` string allows control of symbol position (%v = value, %s = symbol)
+	 * formatMoney(5318008, { symbol: "GBP",  format: "%v %s" });
+	 * // => 5,318,008.00 GBP
 	 * ```
 	 *
-	 * @method formatMoney
-	 * @for accounting
-	 * @param {Number}        number Number to be formatted
-	 * @param {Object}        [opts={}] Object containing all the options of the method
-	 * @return {String} The given number properly formatted as money
+	 * @access public
+	 * @param {Number} number - Number to be formatted
+	 * @param {Object} [opts={}] - Object containing all the options of the method
+	 * @return {String} - Given number properly formatted as money
 	 */
 	function formatMoney(number) {
 	  var opts = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
@@ -323,27 +352,21 @@
 	 * Format a list of numbers into an accounting column, padding with whitespace
 	 * to line up currency symbols, thousand separators and decimals places.
 	 *
-	 * List should be an array of numbers.
-	 *
 	 * Returns array of accouting-formatted number strings of same length.
 	 *
 	 * NB: `white-space:pre` CSS rule is required on the list container to prevent
 	 * browsers from collapsing the whitespace in the output strings.
 	 *
+	 * **Usage:**
+	 *
 	 * ```js
-	 * accounting.formatColumn([123.5, 3456.49, 777888.99, 12345678, -5432], { symbol: "$ " });
+	 * formatColumn([123.5, 3456.49, 777888.99, 12345678, -5432], { symbol: "$ " });
 	 * ```
 	 *
-	 * @method formatColumn
-	 * @for accounting
-	 * @param {Array<Number>} list An array of numbers to format
-	 * @param {Object}        [opts={}] Object containing all the options of the method
-	 * @param {Object|String} [symbol="$"] String with the currency symbol. For conveniency if can be an object containing all the options of the method
-	 * @param {Integer}       [precision=2] Number of decimal digits
-	 * @param {String}        [thousand=','] String with the thousands separator
-	 * @param {String}        [decimal="."] String with the decimal separator
-	 * @param {String}        [format="%s%v"] String with the format to apply, where %s is the currency symbol and %v is the value
-	 * @return {Array<String>} array of accouting-formatted number strings of same length
+	 * @access public
+	 * @param {Array<Number>} list - Array of numbers to format
+	 * @param {Object} [opts={}] - Object containing all the options of the method
+	 * @return {Array<String>} - Array of accouting-formatted number strings of same length
 	 */
 	function formatColumn(list) {
 	  var opts = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
