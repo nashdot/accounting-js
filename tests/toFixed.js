@@ -1,8 +1,8 @@
 import test from 'ava';
-import accounting from '..';
+import { toFixed } from '..';
 
 test('performs basic float zero-padding', t => {
-  t.is(accounting.toFixed(54321, 5), '54321.00000');
+  t.is(toFixed(54321, 5), '54321.00000');
 });
 
 test('should round', t => {

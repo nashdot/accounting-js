@@ -1,11 +1,16 @@
 {
   "parser": "babel-eslint",
-  "extends": "nashdot/base",
+  "extends": "airbnb",
   "rules": {
     "prefer-template": 0,
     "no-param-reassign": 0,
     "one-var": 0,
-    "arrow-body-style": [2, "as-needed"]
+    "arrow-body-style": [2, "as-needed"],
+    "comma-dangle":"off",
+    "no-mixed-operators":"off",
+    "arrow-parens":"off",
+    "max-len": ["error", 130],
+    "no-restricted-properties": "off"
   },
   "env": {
     "node": true

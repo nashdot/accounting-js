@@ -1,15 +1,15 @@
 import test from 'ava';
-import accounting from '..';
+import { settings, formatMoney  } from '..';
 
 test('settings can be changed', t => {
-  accounting.settings.symbol = '¥ ';
-  t.is(accounting.formatMoney(123), '¥ 123.00');
+  settings.symbol = '¥ ';
+  t.is(formatMoney(123), '¥ 123.00');
 
-  Object.assign(accounting.settings, {
+  Object.assign(settings, {
     symbol: '€',
     format: '%s %v',
     decimal: ',',
     thousand: '.'
   });
-  t.is(accounting.formatMoney(1234567), '€ 1.234.567,00');
+  t.is(formatMoney(1234567), '€ 1.234.567,00');
 });
