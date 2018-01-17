@@ -1,6 +1,6 @@
 {
   "name": "accounting-js",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Number, money and currency formatting library.",
   "main": "dist/accounting.umd.js",
   "jsnext:main": "lib/index.js",
