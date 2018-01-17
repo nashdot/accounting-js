@@ -12,3 +12,7 @@ test('should round', t => {
   t.is(toFixed(3.1415, 2, 1), '3.15');
   t.is(toFixed(12.56, 1, -1), '12.5');
 });
+
+test('should handle precision up to 10 decimals', t => {
+  t.is(toFixed(0.0045471301, 10), '0.0045471301');
+});
