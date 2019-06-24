@@ -8,7 +8,7 @@
 
 Same as original [accounting.js](http://openexchangerates.github.io/accounting.js), but
 
-* Rewrited with es6, respecting common style
+* Rewritten with es6, respecting common style
 * Using Rollup to produce UMD version
 * Tested with [Ava](https://github.com/sindresorhus/ava), Coverage with [Nyc](https://github.com/bcoe/nyc)
 * Applied corrections from
