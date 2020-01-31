@@ -46,34 +46,85 @@ test('should work for negative number', t => {
 });
 
 test('should allow setting thousand and decimal separators a flag indicating whether to strip insignificant zeros', t => {
-  t.is(formatNumber(98765432.120, { precision: 3, stripZeros: true }), '98,765,432.12');
-  t.is(formatNumber(98765432.120, { precision: 3, stripZeros: false }), '98,765,432.120');
-  t.is(formatNumber(98765432.0120, { precision: 2, stripZeros: true }), '98,765,432.01');
+  t.is(
+    formatNumber(98765432.12, { precision: 3, stripZeros: true }),
+    '98,765,432.12',
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 3, stripZeros: false }),
+    '98,765,432.120',
+  );
+  t.is(
+    formatNumber(98765432.012, { precision: 2, stripZeros: true }),
+    '98,765,432.01',
+  );
   // t.is(formatNumber(098765432.0120, { precision: 2, stripZeros: true }), '98,765,432.01');
 });
 
 test('should allow setting thousands separator', t => {
-  t.is(formatNumber(98765432.12, { precision: 0, thousand: '|' }), '98|765|432');
-  t.is(formatNumber(98765432.12, { precision: 1, thousand: '>' }), '98>765>432.1');
-  t.is(formatNumber(98765432.12, { precision: 2, thousand: '*' }), '98*765*432.12');
-  t.is(formatNumber(98765432.12, { precision: 3, thousand: '\'' }), '98\'765\'432.120');
-  t.is(formatNumber(98765432.12, { precision: 4, thousand: ']' }), '98]765]432.1200');
+  t.is(
+    formatNumber(98765432.12, { precision: 0, thousand: '|' }),
+    '98|765|432',
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 1, thousand: '>' }),
+    '98>765>432.1',
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 2, thousand: '*' }),
+    '98*765*432.12',
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 3, thousand: "'" }),
+    "98'765'432.120",
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 4, thousand: ']' }),
+    '98]765]432.1200',
+  );
 });
 
 test('should allow setting decimal separator', t => {
   t.is(formatNumber(98765432.12, { precision: 0, decimal: '|' }), '98,765,432');
-  t.is(formatNumber(98765432.12, { precision: 1, decimal: '>' }), '98,765,432>1');
-  t.is(formatNumber(98765432.12, { precision: 2, decimal: '*' }), '98,765,432*12');
-  t.is(formatNumber(98765432.12, { precision: 3, decimal: '\'' }), '98,765,432\'120');
-  t.is(formatNumber(98765432.12, { precision: 4, decimal: ']' }), '98,765,432]1200');
+  t.is(
+    formatNumber(98765432.12, { precision: 1, decimal: '>' }),
+    '98,765,432>1',
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 2, decimal: '*' }),
+    '98,765,432*12',
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 3, decimal: "'" }),
+    "98,765,432'120",
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 4, decimal: ']' }),
+    '98,765,432]1200',
+  );
 });
 
 test('should allow setting thousand and decimal separators', t => {
-  t.is(formatNumber(98765432.12, { precision: 0, thousand: '\\', decimal: '|' }), '98\\765\\432');
-  t.is(formatNumber(98765432.12, { precision: 1, thousand: '<', decimal: '>' }), '98<765<432>1');
-  t.is(formatNumber(98765432.12, { precision: 2, thousand: '&', decimal: '*' }), '98&765&432*12');
-  t.is(formatNumber(98765432.12, { precision: 3, thousand: '"', decimal: '\'' }), '98"765"432\'120');
-  t.is(formatNumber(98765432.12, { precision: 4, thousand: '[', decimal: ']' }), '98[765[432]1200');
+  t.is(
+    formatNumber(98765432.12, { precision: 0, thousand: '\\', decimal: '|' }),
+    '98\\765\\432',
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 1, thousand: '<', decimal: '>' }),
+    '98<765<432>1',
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 2, thousand: '&', decimal: '*' }),
+    '98&765&432*12',
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 3, thousand: '"', decimal: "'" }),
+    '98"765"432\'120',
+  );
+  t.is(
+    formatNumber(98765432.12, { precision: 4, thousand: '[', decimal: ']' }),
+    '98[765[432]1200',
+  );
 });
 
 test('should round 74.725 to "74.73"', t => {
@@ -81,7 +132,10 @@ test('should round 74.725 to "74.73"', t => {
 });
 
 test('should use empty separators if passed as empty string', t => {
-  t.is(formatNumber(12345.12345, { precision: 2, thousand: '', decimal: '' }), '1234512');
+  t.is(
+    formatNumber(12345.12345, { precision: 2, thousand: '', decimal: '' }),
+    '1234512',
+  );
 });
 
 test('should handle an array of numbers', t => {
@@ -96,7 +150,7 @@ test('should accept a properties object', t => {
   const val = formatNumber(123456789.1234, {
     thousand: '.',
     decimal: ',',
-    precision: 3
+    precision: 3,
   });
 
   t.is(val, '123.456.789,123');
