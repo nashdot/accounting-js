@@ -19,7 +19,7 @@ test('should accept different decimal separators', t => {
   t.is(unformat('$ 123,456', ','), 123.456);
   t.is(unformat('$ 123456|78', '|'), 123456.78);
   t.is(unformat('&*()$ 123>456', '>'), 123.456);
-  t.is(unformat(';$@#$%^&123,456\'78', '\''), 123456.78);
+  t.is(unformat(";$@#$%^&123,456'78", "'"), 123456.78);
 });
 
 test('should handle negative numbers and brackets', t => {

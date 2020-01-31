@@ -1,8 +1,12 @@
 {
   "source": "./lib",
   "destination": "./docs",
-  "excludes": ["internal"],
+  "excludes": [
+    "internal"
+  ],
   "manual": {
-    "changelog": ["./CHANGELOG.md"]
+    "changelog": [
+      "./CHANGELOG.md"
+    ]
   }
 }
