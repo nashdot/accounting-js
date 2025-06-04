@@ -2,8 +2,9 @@
   "name": "accounting-js",
   "version": "1.1.1",
   "description": "Number, money and currency formatting library.",
-  "main": "dist/accounting.umd.js",
-  "jsnext:main": "lib/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "predoc": "rimraf docs",
     "doc": "esdoc -c esdoc.json",
