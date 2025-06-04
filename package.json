@@ -48,12 +48,16 @@
   ],
   "homepage": "https://github.com/nashdot/accounting-js#readme",
   "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@stylistic/eslint-plugin": "^4.4.1",
     "ava": "^0.20.0",
     "esdoc": "^0.5.2",
+    "eslint": "^9.28.0",
     "nyc": "^11.0.3",
     "rimraf": "^2.5.2",
     "tsup": "^8.5.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.1"
   },
   "dependencies": {
     "is-string": "^1.0.4",
