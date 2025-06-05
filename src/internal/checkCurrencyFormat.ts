@@ -1,5 +1,3 @@
-import isString from 'is-string';
-
 import { CurrencyFormat } from '../types';
 
 /**
@@ -16,7 +14,7 @@ import { CurrencyFormat } from '../types';
  */
 export function checkCurrencyFormat(format: string | CurrencyFormat): CurrencyFormat {
   // Format could be a string, in which case `value` ('%v') must be present
-  if (isString(format) && format.match('%v')) {
+  if (typeof format === 'string' && format.match('%v')) {
     // Create and return positive, negative and zero formats
     return {
       pos: format,
