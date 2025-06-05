@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "noImplicitAny": true,
+    /* Base Options: */
     "esModuleInterop": true,
-    "strictNullChecks": true,
-    "target": "ES2022",
-    "moduleResolution": "Node10",
-    "module": "CommonJS",
-    "declaration": true,
+    "target": "es2022",
     "isolatedModules": true,
+
+    /* Strictness */
+    "strict": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitAny": true,
+
+    /* Transpilation */
+    "module": "NodeNext",
     "noEmit": true,
-    "outDir": "dist"
+
+    /* Misc */
+    "lib": ["es2022"]
   },
   "include": ["src"],
   "exclude": ["node_modules"]
