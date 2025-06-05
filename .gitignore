@@ -27,3 +27,6 @@ coverage/
 
 # Miscellaneous
 /tmp
+
+# Generated docs
+/docs
