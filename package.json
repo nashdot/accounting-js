@@ -21,7 +21,7 @@
     "doc": "esdoc -c esdoc.json",
     "build": "tsup",
     "lint": "eslint . --ext .js,.ts,.mjs",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run ci",
     "test": "vitest run",
     "precoverage": "rimraf coverage",
     "coverage": "vitest run --coverage",
