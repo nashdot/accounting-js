@@ -56,9 +56,5 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.33.1",
     "vitest": "^3.2.1"
-  },
-  "dependencies": {
-    "is-string": "^1.0.4",
-    "object-assign": "^4.0.1"
   }
 }
