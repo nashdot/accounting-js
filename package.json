@@ -66,6 +66,7 @@
     "eslint": "^9.28.0",
     "rimraf": "^6.0.1",
     "tsup": "^8.5.0",
+    "typedoc": "^0.28.5",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.33.1",
     "vitest": "^3.2.1"
