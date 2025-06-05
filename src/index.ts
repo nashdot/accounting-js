@@ -1,17 +1,16 @@
-import settings from './settings';
-import unformat from './unformat';
-import toFixed from './toFixed';
-import formatNumber from './formatNumber';
-import formatMoney from './formatMoney';
-import formatColumn from './formatColumn';
+import { settings } from './settings';
+import { unformat, unformatArray } from './unformat';
+import { toFixed } from './toFixed';
+import { formatNumber, formatNumberArray } from './formatNumber';
+import { formatMoney, formatMoneyArray } from './formatMoney';
 
 export {
   settings,
   unformat,
+  unformatArray,
   toFixed,
   formatMoney,
+  formatMoneyArray,
   formatNumber,
-  formatColumn,
-  formatMoney as format,
-  unformat as parse
+  formatNumberArray,
 };

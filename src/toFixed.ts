@@ -1,5 +1,4 @@
-import checkPrecision from './internal/checkPrecision';
-import settings from './settings';
+import { settings } from './settings';
 
 /**
  * Implementation of toFixed() that treats floats more like decimals.
@@ -25,8 +24,9 @@ import settings from './settings';
  * @param {Number} [round=settings.round] - Decide round direction
  * @return {String} - Given number transformed into a string with the given precission
  */
-function toFixed(value, precision, round) {
-  precision = checkPrecision(precision, settings.precision);
+export function toFixed(value: number, precision?: number, round?: number): string {
+  precision ??= settings.precision!;
+  round ??= settings.round!;
   const power = Math.pow(10, precision);
 
   let roundMethod;
@@ -40,5 +40,3 @@ function toFixed(value, precision, round) {
   // Multiply up by precision, round accurately, then divide and use native toFixed()
   return (roundMethod((value + 1e-8) * power) / power).toFixed(precision);
 }
-
-export default toFixed;

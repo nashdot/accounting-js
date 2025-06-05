@@ -1,8 +1,7 @@
-import objectAssign from 'object-assign';
-
-import stripInsignificantZeros from './internal/stripInsignificantZeros';
-import settings from './settings';
-import toFixed from './toFixed';
+import { NestedArray, Settings } from './types';
+import { stripInsignificantZeros } from './internal/stripInsignificantZeros';
+import { settings } from './settings';
+import { toFixed } from './toFixed';
 
 /**
  * Format a number, with comma-separated thousands and custom precision/decimal places.
@@ -26,14 +25,9 @@ import toFixed from './toFixed';
  * @param {Object} [opts={}] - Object containing all the options of the method
  * @return {String} - Given number properly formatted
   */
-function formatNumber(number, opts = {}) {
-  // Resursively format arrays:
-  if (Array.isArray(number)) {
-    return number.map((val) => formatNumber(val, opts));
-  }
-
+export function formatNumber(number: number, opts: Settings = {}): string {
   // Build options object from second param (if object) or all params, extending defaults
-  opts = objectAssign({},
+  opts = Object.assign({},
     settings,
     opts
   );
@@ -47,9 +41,16 @@ function formatNumber(number, opts = {}) {
   const formatted = negative +
     (mod ? base.substr(0, mod) + opts.thousand : '') +
       base.substr(mod).replace(/(\d{3})(?=\d)/g, '$1' + opts.thousand) +
-        (opts.precision > 0 ? opts.decimal + toFixed(Math.abs(number), opts.precision).split('.')[1] : '');
+        (opts.precision! > 0 ? opts.decimal + toFixed(Math.abs(number), opts.precision).split('.')[1] : '');
 
-  return opts.stripZeros ? stripInsignificantZeros(formatted, opts.decimal) : formatted;
+  return opts.stripZeros ? stripInsignificantZeros(formatted, opts.decimal!) : formatted;
 }
 
-export default formatNumber;
+export function formatNumberArray(number: NestedArray<number>, opts: Settings = {}): NestedArray<string> {
+  // Resursively format arrays:
+  if (Array.isArray(number)) {
+    return number.map((val) => formatNumberArray(val, opts));
+  }
+
+  return formatNumber(number, opts);
+}

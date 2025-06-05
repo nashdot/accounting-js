@@ -1,8 +1,7 @@
-import objectAssign from 'object-assign';
-
-import checkCurrencyFormat from './internal/checkCurrencyFormat';
-import settings from './settings';
-import formatNumber from './formatNumber';
+import { NestedArray, Settings } from './types';
+import { checkCurrencyFormat } from './internal/checkCurrencyFormat';
+import { settings } from './settings';
+import { formatNumber } from './formatNumber';
 
 /**
  * Format a number into currency.
@@ -32,20 +31,15 @@ import formatNumber from './formatNumber';
  * @param {Object} [opts={}] - Object containing all the options of the method
  * @return {String} - Given number properly formatted as money
  */
-function formatMoney(amount, opts = {}) {
-  // Resursively format arrays
-  if (Array.isArray(amount)) {
-    return amount.map((value) => formatMoney(value, opts));
-  }
-
+export function formatMoney(amount: number, opts: Settings = {}): string {
   // Build options object from second param (if object) or all params, extending defaults
-  opts = objectAssign({},
+  opts = Object.assign({},
     settings,
     opts
   );
 
   // Check format (returns object with pos, neg and zero)
-  const formats = checkCurrencyFormat(opts.format);
+  const formats = checkCurrencyFormat(opts.format!);
 
   // Choose which format to use for this value
   let useFormat;
@@ -53,15 +47,22 @@ function formatMoney(amount, opts = {}) {
   if (amount > 0) {
     useFormat = formats.pos;
   } else if (amount < 0) {
-    useFormat = formats.neg;
+    useFormat = formats.neg!;
   } else {
-    useFormat = formats.zero;
+    useFormat = formats.zero!;
   }
 
   // Return with currency symbol added
   return useFormat
-    .replace('%s', opts.symbol)
+    .replace('%s', opts.symbol!)
     .replace('%v', formatNumber(Math.abs(amount), opts));
 }
 
-export default formatMoney;
+export function formatMoneyArray(amount: NestedArray<number>, opts: Settings = {}): NestedArray<string> {
+  // Resursively format arrays
+  if (Array.isArray(amount)) {
+    return amount.map((value) => formatMoneyArray(value, opts));
+  }
+
+  return formatMoney(amount, opts);
+}

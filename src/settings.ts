@@ -1,3 +1,5 @@
+import { Settings } from './types';
+
 /**
  * The library's settings configuration interface.
  *
@@ -30,8 +32,8 @@
  *
  * @typedef {Format} CurrencyFormat
  * @property {String} pos - Currency format for positive values
- * @property {String} [neg=pos] - Currency format for positive values
- * @property {String} [zero=pos] - Currency format for positive values
+ * @property {String} [neg=pos] - Currency format for negative values
+ * @property {String} [zero=pos] - Currency format for zero values
  *
  */
 
@@ -41,7 +43,7 @@
  *
  * @type {Settings} settings
  */
-const settings = {
+export const settings: Settings = {
   symbol: '$',
   format: '%s%v',
   decimal: '.',
@@ -50,7 +52,5 @@ const settings = {
   grouping: 3,
   stripZeros: false,
   fallback: 0,
-  round: 0
+  round: 0,
 };
-
-export default settings;

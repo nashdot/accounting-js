@@ -1,5 +1,7 @@
 import isString from 'is-string';
 
+import { CurrencyFormat } from '../types';
+
 /**
  * Parses a format string or object and returns format obj for use in rendering.
  *
@@ -12,19 +14,17 @@ import isString from 'is-string';
  * @param {String} [format='%s%v'] - String with the format to apply, where %s is the currency symbol and %v is the value
  * @return {Object} object represnting format (with pos, neg and zero attributes)
  */
-function checkCurrencyFormat(format) {
-  // Format should be a string, in which case `value` ('%v') must be present
+export function checkCurrencyFormat(format: string | CurrencyFormat): CurrencyFormat {
+  // Format could be a string, in which case `value` ('%v') must be present
   if (isString(format) && format.match('%v')) {
     // Create and return positive, negative and zero formats
     return {
       pos: format,
       neg: format.replace('-', '').replace('%v', '-%v'),
-      zero: format
+      zero: format,
     };
   }
 
   // Otherwise, assume format was fine
-  return format;
+  return format as CurrencyFormat;
 }
-
-export default checkCurrencyFormat;
