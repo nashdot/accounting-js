@@ -14,7 +14,8 @@
     "pretest": "npm run build",
     "test": "vitest run",
     "precoverage": "rimraf coverage",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "check-exports": "attw --pack ."
   },
   "repository": {
     "type": "git",
