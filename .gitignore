@@ -1,6 +1,29 @@
-dist
+# IDE and Editor Files
+.vscode
+.idea
+.tern
+
+# OS and System Files
+.DS_Store
+
+# Node Modules and Dependencies
 node_modules
-coverage
-.nyc_output
-npm-debug.log
-docs
+npm-debug.log*
+
+# Build and Output Directories
+dist/
+
+# Cache and Temporary Files
+.cache
+.tmp
+.eslintcache
+
+# Logs and Reports
+*.log
+reports
+
+# Testing and Coverage
+coverage/
+
+# Miscellaneous
+/tmp
