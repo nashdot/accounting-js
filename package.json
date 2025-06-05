@@ -40,10 +40,7 @@
     "url": "https://github.com/nashdot/accounting-js/issues"
   },
   "files": [
-    "index.js",
-    "README.md",
     "CHANGELOG.md",
-    "lib",
     "dist"
   ],
   "homepage": "https://github.com/nashdot/accounting-js#readme",
