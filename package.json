@@ -8,11 +8,10 @@
   "scripts": {
     "predoc": "rimraf docs",
     "doc": "esdoc -c esdoc.json",
-    "prebuild": "eslint lib",
     "build": "tsup",
     "prepublish": "npm run build",
     "pretest": "npm run build",
-    "test": "vitest",
+    "test": "vitest run",
     "precoverage": "rimraf coverage",
     "coverage": "vitest run --coverage"
   },
