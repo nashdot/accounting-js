@@ -18,7 +18,6 @@ import { toFixed } from './toFixed';
  * // => 9 876 543.210
  * ```
  *
- * @access public
  * @param {Number} number - Number to be formatted
  * @param {Object} [opts={}] - Object containing all the options of the method
  * @return {String} - Given number properly formatted

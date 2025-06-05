@@ -19,7 +19,6 @@ import { settings } from './settings';
  * // => 12345678.9
  * ```
  *
- * @access public
  * @param {String} value - String containing the number to parse
  * @param {String} [decimal=settings.decimal] - The character used to represent the decimal separator
  * @param {Float} [fallback=settings.fallback] - Value returned on unformat() failure

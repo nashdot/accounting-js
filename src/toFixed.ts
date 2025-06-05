@@ -18,7 +18,6 @@ import { settings } from './settings';
  * // => '0.62'
  * ```
  *
- * @access public
  * @param {Float} value - Float to be treated as a decimal number
  * @param {Number} [precision=settings.precision] - Number of decimal digits to keep
  * @param {Number} [round=settings.round] - Decide round direction

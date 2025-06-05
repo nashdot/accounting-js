@@ -26,7 +26,6 @@ import { formatNumber } from './formatNumber';
  * // => 5,318,008.00 GBP
  * ```
  *
- * @access public
  * @param {Number} amount - Amount to be formatted
  * @param {Object} [opts={}] - Object containing all the options of the method
  * @return {String} - Given number properly formatted as money
