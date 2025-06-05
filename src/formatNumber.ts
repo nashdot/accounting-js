@@ -20,7 +20,7 @@ import { toFixed } from './toFixed';
  *
  * @param {Number} number - Number to be formatted
  * @param {Object} [opts={}] - Object containing all the options of the method
- * @return {String} - Given number properly formatted
+ * @returns {String} - Given number properly formatted
   */
 export function formatNumber(number: number, opts: Settings = {}): string {
   // Build options object from second param (if object) or all params, extending defaults

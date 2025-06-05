@@ -21,7 +21,7 @@ import { settings } from './settings';
  * @param {Float} value - Float to be treated as a decimal number
  * @param {Number} [precision=settings.precision] - Number of decimal digits to keep
  * @param {Number} [round=settings.round] - Decide round direction
- * @return {String} - Given number transformed into a string with the given precission
+ * @returns {String} - Given number transformed into a string with the given precission
  */
 export function toFixed(value: number, precision?: number, round?: number): string {
   precision ??= settings.precision!;

@@ -28,7 +28,7 @@ import { formatNumber } from './formatNumber';
  *
  * @param {Number} amount - Amount to be formatted
  * @param {Object} [opts={}] - Object containing all the options of the method
- * @return {String} - Given number properly formatted as money
+ * @returns {String} - Given number properly formatted as money
  */
 export function formatMoney(amount: number, opts: Settings = {}): string {
   // Build options object from second param (if object) or all params, extending defaults

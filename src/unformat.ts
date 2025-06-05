@@ -22,7 +22,7 @@ import { settings } from './settings';
  * @param {String} value - String containing the number to parse
  * @param {String} [decimal=settings.decimal] - The character used to represent the decimal separator
  * @param {Float} [fallback=settings.fallback] - Value returned on unformat() failure
- * @return {Float} - Parsed number
+ * @returns {Float} - Parsed number
  */
 
 export function unformat(value: string, decimal: string = settings.decimal!, fallback: number = settings.fallback!): number {
