@@ -58,6 +58,7 @@
   "homepage": "https://github.com/nashdot/accounting-js#readme",
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.1",
+    "@changesets/cli": "^2.29.4",
     "@eslint/js": "^9.28.0",
     "@stylistic/eslint-plugin": "^4.4.1",
     "@vitest/coverage-v8": "^3.2.1",
