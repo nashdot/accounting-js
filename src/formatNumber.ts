@@ -39,7 +39,7 @@ export function formatNumber(number: number, opts: Settings = {}): string {
   const formatted = negative +
     (mod ? base.substr(0, mod) + opts.thousand : '') +
       base.substr(mod).replace(/(\d{3})(?=\d)/g, '$1' + opts.thousand) +
-        (opts.precision! > 0 ? opts.decimal + toFixed(Math.abs(number), opts.precision).split('.')[1] : '');
+        (opts.precision! > 0 ? opts.decimal! + toFixed(Math.abs(number), opts.precision).split('.')[1] : '');
 
   return opts.stripZeros ? stripInsignificantZeros(formatted, opts.decimal!) : formatted;
 }
