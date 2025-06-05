@@ -1,12 +1,19 @@
 
-export function stripInsignificantZeros(str: string, decimal: string) {
+export function stripInsignificantZeros(str: string, decimal: string): string {
   const parts = str.split(decimal);
-  const integerPart = parts[0];
-  const decimalPart = parts[1].replace(/0+$/, '');
+  let result = '';
 
-  if (decimalPart.length > 0) {
-    return integerPart + decimal + decimalPart;
+  if (parts[0] !== undefined) {
+    result = parts[0];
   }
 
-  return integerPart;
+  if (parts[1] !== undefined) {
+    const decimalPart = parts[1].replace(/0+$/, '');
+
+    if (decimalPart.length > 0) {
+      result = result + decimal + decimalPart;
+    }
+  }
+
+  return result;
 }
