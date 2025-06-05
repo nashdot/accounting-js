@@ -12,8 +12,6 @@ import { settings } from './settings';
  *
  * Doesn't throw any errors (`NaN`s become 0 or provided by fallback value).
  *
- * _Alias_: `parse(value, decimal, fallback)`
- *
  * **Usage:**
  *
  * ```js

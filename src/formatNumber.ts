@@ -6,8 +6,6 @@ import { toFixed } from './toFixed';
 /**
  * Format a number, with comma-separated thousands and custom precision/decimal places.
  *
- * _Alias_: `format(number, opts)`
- *
  * **Usage:**
  *
  * ```js
