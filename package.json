@@ -26,7 +26,8 @@
     "precoverage": "rimraf coverage",
     "coverage": "vitest run --coverage",
     "check-exports": "attw --pack .",
-    "ci": "npm run lint && npm run build && npm run check-exports && npm run test"
+    "ci": "npm run lint && npm run build && npm run check-exports && npm run test",
+    "local-release": "changeset version && changeset publish"
   },
   "repository": {
     "type": "git",
