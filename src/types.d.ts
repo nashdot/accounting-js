@@ -4,7 +4,7 @@ export type CurrencyFormat = {
   pos: string; // Currency format for positive values
   neg?: string; // Currency format for negative values
   zero?: string; // Currency format for zero values
-}
+};
 
 export type Settings = {
   symbol?: string; // Currency symbol
@@ -16,4 +16,4 @@ export type Settings = {
   stripZeros?: boolean; // Strip insignificant zeros from decimal part
   fallback?: number; // Value returned on unformat() failure
   round?: number; // Decide round direction.
-}
+};
