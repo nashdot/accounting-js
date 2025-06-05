@@ -60,18 +60,5 @@
   "dependencies": {
     "is-string": "^1.0.4",
     "object-assign": "^4.0.1"
-  },
-  "ava": {
-    "files": [
-      "tests/*.js"
-    ],
-    "failFast": true,
-    "tap": true
-  },
-  "nyc": {
-    "exclude": [
-      "rollup*.js",
-      "tests"
-    ]
   }
 }
