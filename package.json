@@ -1,6 +1,6 @@
 {
   "name": "accounting-js",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Number, money and currency formatting library.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

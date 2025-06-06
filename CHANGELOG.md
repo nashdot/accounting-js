@@ -1,4 +1,8 @@
 
+## 2.0.1
+
+Update README.md and docs
+
 ## 2.0.0
 
 ### Major Changes
