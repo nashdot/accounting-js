@@ -1,6 +1,6 @@
 {
   "name": "accounting-js",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "Number, money and currency formatting library.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -27,7 +27,7 @@
     "coverage": "vitest run --coverage",
     "check-exports": "attw --pack .",
     "ci": "npm run lint && npm run build && npm run check-exports && npm run test",
-    "local-release": "changeset version && changeset publish"
+    "local-release": "changeset version"
   },
   "repository": {
     "type": "git",
