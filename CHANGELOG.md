@@ -1,12 +1,4 @@
-## 2.0.2
-
-Export Settings and CurrencyFormat types
-
-## 2.0.1
-
-Update README.md and docs
-
-## 2.0.0
+## 2.0.3
 
 ### Major Changes
 
