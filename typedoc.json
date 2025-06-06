@@ -9,6 +9,5 @@
   },
   "cleanOutputDir": true,
   "includeVersion": true,
-  "hideGenerator": true,
-  "internalModule": "types"
+  "hideGenerator": true
 }

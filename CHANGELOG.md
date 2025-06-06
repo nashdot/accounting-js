@@ -1,3 +1,6 @@
+## 2.0.2
+
+Export Settings and CurrencyFormat types
 
 ## 2.0.1
 
