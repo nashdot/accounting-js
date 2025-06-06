@@ -18,7 +18,7 @@
   },
   "scripts": {
     "predoc": "rimraf docs",
-    "doc": "esdoc -c esdoc.json",
+    "docs": "typedoc src/index.ts",
     "build": "tsup",
     "lint": "eslint . --ext .js,.ts,.mjs",
     "prepublishOnly": "npm run ci",
