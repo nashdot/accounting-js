@@ -21,13 +21,13 @@
     "docs": "typedoc src/index.ts",
     "build": "tsup",
     "lint": "eslint . --ext .js,.ts,.mjs",
-    "prepublishOnly": "npm run ci",
     "test": "vitest run",
     "precoverage": "rimraf coverage",
     "coverage": "vitest run --coverage",
     "check-exports": "attw --pack .",
     "ci": "npm run lint && npm run build && npm run check-exports && npm run test",
-    "local-release": "changeset version"
+    "local-release": "changeset version",
+    "changeset-publish": "changeset publish"
   },
   "repository": {
     "type": "git",
