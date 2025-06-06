@@ -1,0 +1,14 @@
+{
+  "entryPoints": ["./src/*"],
+  "out": "./docs",
+  "plugin": ["typedoc-plugin-missing-exports"],
+  "disableSources": true,
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "strictNullChecks": false
+  },
+  "cleanOutputDir": true,
+  "includeVersion": true,
+  "hideGenerator": true,
+  "internalModule": "types"
+}
