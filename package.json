@@ -19,6 +19,7 @@
   "scripts": {
     "predoc": "rimraf docs",
     "docs": "typedoc src/index.ts",
+    "deploy-docs": "gh-pages -d docs",
     "build": "tsup",
     "lint": "eslint . --ext .js,.ts,.mjs",
     "test": "vitest run",
@@ -56,7 +57,7 @@
     "CHANGELOG.md",
     "dist"
   ],
-  "homepage": "https://github.com/nashdot/accounting-js#readme",
+  "homepage": "https://nashdot.github.io/accounting-js",
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.1",
     "@changesets/cli": "^2.29.4",
@@ -64,6 +65,7 @@
     "@stylistic/eslint-plugin": "^4.4.1",
     "@vitest/coverage-v8": "^3.2.1",
     "eslint": "^9.28.0",
+    "gh-pages": "^6.3.0",
     "rimraf": "^6.0.1",
     "tsup": "^8.5.0",
     "typedoc": "^0.28.5",
