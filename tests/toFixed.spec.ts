@@ -13,4 +13,12 @@ describe('toDate()', () => {
     expect(toFixed(3.1415, 2, 1)).toEqual('3.15');
     expect(toFixed(12.56, 1, -1)).toEqual('12.5');
   });
+
+  it('should not nudge ceil/floor of a value already at the target precision', () => {
+    expect(toFixed(1, 0, 1)).toEqual('1');
+    expect(toFixed(100, 0, 1)).toEqual('100');
+    expect(toFixed(5, 2, 1)).toEqual('5.00');
+    expect(toFixed(0.25, 2, 1)).toEqual('0.25');
+    expect(toFixed(0.99999999, 2, -1)).toEqual('0.99');
+  });
 });

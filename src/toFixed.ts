@@ -29,13 +29,18 @@ export function toFixed(value: number, precision?: number, round?: number): stri
   const power = Math.pow(10, precision);
 
   let roundMethod;
+  // The 1e-8 epsilon corrects Math.round's binary issue (eg. (0.615).toFixed(2) === '0.61').
+  // It must not be applied to ceil/floor, where it would push an exact value
+  // (eg. ceil(1)) across the boundary to the next integer.
+  let epsilon = 0;
   if (round > 0) {
     roundMethod = Math.ceil;
   } else if (round < 0) {
     roundMethod = Math.floor;
   } else {
     roundMethod = Math.round;
+    epsilon = 1e-8;
   }
   // Multiply up by precision, round accurately, then divide and use native toFixed()
-  return (roundMethod((value + 1e-8) * power) / power).toFixed(precision);
+  return (roundMethod((value + epsilon) * power) / power).toFixed(precision);
 }
